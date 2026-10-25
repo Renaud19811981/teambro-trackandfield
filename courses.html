@@ -1,0 +1,1635 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>#TEAMBRO Sprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#EEF1FF; --surface:#FFFFFF; --surface-2:#E6EBFF; --encre:#0A0F33; --encre-2:#4A5283; --trait:#CCD3F3;
+  --bleu:#1E46FF; --bleu-encre:#FFFFFF; --bleu-doux:#DCE4FF; --rose:#E8137A; --rose-encre:#FFFFFF; --rose-doux:#FFE1F0;
+  --gris:#7C83AB; --jaune:#C98A00; --jaune-doux:#FFF1CC;
+  --tv-fond:#03051A; --tv-panneau:#090E30; --tv-panneau-2:#0E1442; --tv-encre:#F3F5FF; --tv-encre-2:#8E97D6; --tv-trait:#1B2461;
+  --tv-bleu:#2F6BFF; --tv-bleu-neon:#6E97FF; --tv-rose:#FF2E9A; --tv-rose-neon:#FF7AC2; --tv-jaune:#FFD23F;
+  --rayon:10px;
+  --titre:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --texte:Saira,"Segoe UI",Roboto,system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#060A22; --surface:#0E1437; --surface-2:#161D49; --encre:#ECEFFF; --encre-2:#A2A9D8; --trait:#262F66;
+    --bleu:#3F6DFF; --bleu-doux:#17225E; --rose:#FF3DA0; --rose-doux:#3E1233; --gris:#8A91BE; --jaune:#FFC93D; --jaune-doux:#3A2E0E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#060A22; --surface:#0E1437; --surface-2:#161D49; --encre:#ECEFFF; --encre-2:#A2A9D8; --trait:#262F66;
+  --bleu:#3F6DFF; --bleu-doux:#17225E; --rose:#FF3DA0; --rose-doux:#3E1233; --gris:#8A91BE; --jaune:#FFC93D; --jaune-doux:#3A2E0E;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--fond);color:var(--encre);font:16px/1.5 var(--texte);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--titre);font-weight:800;line-height:1.05;margin:0;letter-spacing:.01em}
+h2{font-size:1.9rem}
+h3{font-size:1.35rem}
+p{margin:.4rem 0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+
+/* En-tête : la barre transversale */
+.entete{background:var(--surface);border-bottom:1px solid var(--trait)}
+.transversale{height:6px;background:linear-gradient(90deg,var(--bleu),var(--rose))}
+.entete-in{max-width:1320px;margin:0 auto;padding:14px 18px 4px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between}
+.marque{font-family:var(--titre);font-size:2.1rem;font-weight:900;line-height:1;letter-spacing:.01em;display:flex;gap:.35em;align-items:baseline;flex-wrap:wrap}
+.marque .tb{color:var(--rose)}
+.marque .pv{color:var(--bleu)}
+.marque small{font-family:var(--texte);font-size:.95rem;font-weight:500;color:var(--encre-2);letter-spacing:0}
+.sync{font-size:.85rem;color:var(--encre-2);display:flex;align-items:center;gap:8px}
+.sync i{width:9px;height:9px;border-radius:50%;background:var(--gris);display:inline-block}
+.sync[data-s="ok"] i{background:var(--bleu);box-shadow:0 0 0 3px var(--bleu-doux)}
+.sync[data-s="erreur"] i{background:var(--rose)}
+.onglets{max-width:1320px;margin:0 auto;padding:0 10px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+.onglets button{border:0;background:transparent;padding:12px 14px 10px;cursor:pointer;font-family:var(--titre);font-size:1.3rem;font-weight:800;color:var(--encre-2);border-bottom:4px solid transparent;white-space:nowrap;letter-spacing:.02em}
+.onglets button[aria-selected="true"]{color:var(--encre);border-bottom-color:var(--bleu)}
+.onglets button.tv-lien{color:var(--rose)}
+.onglets button:hover{color:var(--encre)}
+
+main{max-width:1320px;margin:0 auto;padding:20px 18px 70px}
+.bloc{background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:18px 20px;margin-bottom:18px}
+.bloc > h2,.bloc > h3{margin-bottom:10px}
+.discret{color:var(--encre-2);font-size:.93rem;max-width:78ch}
+.grille{display:grid;gap:14px 18px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+label.champ{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:500}
+label.champ small{font-weight:400;color:var(--encre-2)}
+input[type=text],input[type=number],input[type=date],input:not([type]),select,textarea{background:var(--surface-2);border:1px solid var(--trait);border-radius:8px;padding:9px 10px;min-height:42px;width:100%}
+textarea{min-height:120px;resize:vertical;font-family:ui-monospace,Consolas,monospace;font-size:.9rem}
+input:focus,select:focus,textarea:focus{border-color:var(--bleu);outline:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--trait);background:var(--surface);padding:9px 16px;min-height:42px;border-radius:8px;cursor:pointer;font-weight:600;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--surface-2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.bleu{background:var(--bleu);border-color:var(--bleu);color:var(--bleu-encre)}
+.btn.rose{background:var(--rose);border-color:var(--rose);color:var(--rose-encre)}
+.btn.bleu:hover,.btn.rose:hover{filter:brightness(1.1)}
+.btn.petit{min-height:32px;padding:4px 10px;font-size:.88rem;font-weight:500}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+
+/* Poste de concours */
+.poste{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(320px,1.5fr) minmax(240px,1fr);gap:16px;margin-bottom:18px}
+@media (max-width:980px){.poste{grid-template-columns:1fr 1fr}.poste .carte-saut{grid-column:1/-1;order:-1}}
+@media (max-width:620px){.poste{grid-template-columns:1fr}}
+.carte{background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.carte .lbl{font-size:.88rem;color:var(--encre-2);font-weight:500}
+.hauteur-geante{font-family:var(--titre);font-weight:900;font-size:4.6rem;line-height:.9;color:var(--bleu);font-variant-numeric:tabular-nums}
+.hauteur-geante small{font-size:.45em;color:var(--encre-2);margin-left:4px}
+.croquis-barre{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--bleu),var(--rose));position:relative;margin:6px 10px 2px}
+.croquis-barre::before,.croquis-barre::after{content:"";position:absolute;bottom:-26px;width:6px;height:40px;background:var(--encre-2);border-radius:3px}
+.croquis-barre::before{left:-10px}.croquis-barre::after{right:-10px}
+.carte-saut{border:2px solid var(--bleu)}
+.carte-saut .nom{font-family:var(--titre);font-weight:900;font-size:2.6rem;line-height:.95;overflow-wrap:anywhere}
+.carte-saut .meta{color:var(--encre-2);display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.95rem}
+.carte-saut .meta b{color:var(--encre)}
+.points{display:flex;gap:10px;align-items:center}
+.point{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--trait);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.point.O{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.point.X{background:var(--rose);border-color:var(--rose);color:#fff}
+.point.P{background:var(--gris);border-color:var(--gris);color:#fff}
+.point.suivant{border-color:var(--bleu);border-style:dashed}
+.decision{display:grid;grid-template-columns:1fr 1fr .7fr;gap:10px;margin-top:6px}
+.decision .btn{min-height:72px;font-size:1.25rem;font-family:var(--titre);font-weight:900;letter-spacing:.03em;flex-direction:column;gap:0;line-height:1}
+.decision .btn kbd{font-family:var(--texte);font-size:.72rem;font-weight:500;opacity:.8;margin-top:4px}
+.chrono-juge{font-family:var(--titre);font-weight:900;font-size:4.4rem;line-height:.9;font-variant-numeric:tabular-nums}
+.chrono-juge[data-a="1"]{color:var(--jaune)}
+.chrono-juge[data-a="2"]{color:var(--rose)}
+.chrono-juge[data-a="r"]{color:var(--bleu)}
+.auto-barre{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:10px 16px;margin-bottom:14px}
+.interrupteur{display:inline-flex;align-items:center;gap:10px;border:0;background:none;cursor:pointer;font-weight:600;padding:4px 0}
+.interrupteur .piste-i{width:46px;height:26px;border-radius:999px;background:var(--trait);position:relative;transition:background .2s}
+.interrupteur .piste-i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.interrupteur[aria-pressed="true"] .piste-i{background:linear-gradient(90deg,var(--bleu),var(--rose))}
+.interrupteur[aria-pressed="true"] .piste-i::after{transform:translateX(20px)}
+.auto-barre .discret{margin:0}
+.ensuite{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-bottom:16px;color:var(--encre-2)}
+.ensuite b{color:var(--encre);font-weight:600}
+.poteaux{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;background:var(--surface-2);border-radius:8px;padding:8px 10px}
+.poteaux .lbl{color:var(--encre-2);font-size:.9rem;margin-right:2px}
+.poteaux .val{font-family:var(--titre);font-weight:900;font-size:1.9rem;line-height:1;min-width:2.2ch;text-align:right;color:var(--encre)}
+.poteaux .unite{color:var(--encre-2);margin-right:6px}
+.poteaux .btn{min-height:36px;padding:4px 11px}
+.a-changer{color:var(--rose);font-weight:600}
+.phrases{display:grid;gap:12px}
+.phrase{display:grid;grid-template-columns:minmax(150px,220px) 1fr auto;gap:8px 12px;align-items:center}
+@media (max-width:700px){.phrase{grid-template-columns:1fr auto}.phrase label{grid-column:1/-1}}
+.phrase label{font-weight:600;font-size:.92rem}
+.jetons{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.jetons code{background:var(--surface-2);border:1px solid var(--trait);border-radius:6px;padding:1px 7px;font-size:.85rem}
+.annonce-libre{display:flex;gap:10px;flex-wrap:wrap}
+.annonce-libre input{flex:1;min-width:220px}
+.tv-liaison{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;background:var(--tv-panneau-2);border:1px solid var(--tv-trait);border-radius:16px;padding:28px 32px;text-align:center;max-width:90vw;box-shadow:0 0 60px rgba(47,107,255,.35)}
+.tv-liaison h3{font-size:clamp(22px,4vh,44px);margin-bottom:10px}
+.tv-liaison p{color:var(--tv-encre-2);margin:0 0 14px}
+.tv-liaison input{font:800 clamp(22px,4vh,40px) var(--titre);letter-spacing:.25em;text-transform:uppercase;text-align:center;background:var(--tv-fond);color:var(--tv-encre);border:2px solid var(--tv-bleu);border-radius:10px;padding:8px 12px;width:9ch;min-height:0}
+.tv-liaison button{margin-left:10px;background:var(--tv-bleu);color:#fff;border:0;border-radius:10px;padding:12px 20px;font:600 18px var(--texte);cursor:pointer}
+.tv-etat-liaison{position:absolute;left:1.4vw;bottom:1.4vh;z-index:9;font-size:13px;color:var(--tv-encre-2);background:rgba(0,0,0,.35);border-radius:999px;padding:4px 12px}
+.alerte{background:var(--rose-doux);border-left:4px solid var(--rose);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+.info{background:var(--bleu-doux);border-left:4px solid var(--bleu);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+
+/* Feuille de hauteur */
+.defil{overflow-x:auto;border:1px solid var(--trait);border-radius:var(--rayon);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:7px 9px;border-bottom:1px solid var(--trait);text-align:left;white-space:nowrap}
+th{font-weight:600;font-size:.85rem;color:var(--encre-2);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.feuille th.h,.feuille td.h{text-align:center;border-left:1px solid var(--trait);min-width:58px;padding:0}
+.feuille th.h{padding:7px 4px;font-family:var(--titre);font-size:1.05rem;font-weight:800;color:var(--encre)}
+.feuille th.h.cur{background:var(--bleu);color:#fff}
+.feuille td.h.cur{background:color-mix(in srgb,var(--bleu-doux) 70%,transparent)}
+.feuille td.h button{width:100%;min-height:42px;border:0;background:transparent;cursor:pointer;font-weight:700;letter-spacing:.12em;font-size:1rem}
+.feuille td.h button:hover{background:var(--surface-2)}
+.m-O{color:var(--bleu)}.m-X{color:var(--rose)}.m-P{color:var(--gris)}
+.feuille tr.au-saut td{background:var(--bleu-doux)}
+.feuille tr.au-saut td.nom{box-shadow:inset 5px 0 0 var(--bleu)}
+.feuille tr.hors td:not(.h){opacity:.55}
+.feuille td.perf{font-weight:700;font-size:1.05rem}
+.feuille td.rang{font-family:var(--titre);font-size:1.4rem;font-weight:900;text-align:center}
+.feuille td.nom button{border:0;background:none;padding:0;cursor:pointer;text-align:left;font-weight:600}
+.feuille td.nom small{display:block;color:var(--encre-2);font-weight:400}
+.etiq{display:inline-block;font-size:.72rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--trait);margin-left:6px;vertical-align:middle}
+.etiq.rose{background:var(--rose-doux);border-color:var(--rose)}
+.etiq.bleu{background:var(--bleu-doux);border-color:var(--bleu)}
+
+.liste-ath td .ordre{display:inline-flex;gap:4px}
+
+/* Modale & toast */
+#modale{position:fixed;inset:0;background:rgba(3,5,26,.55);display:grid;place-items:center;padding:20px;z-index:50}
+#modale[hidden]{display:none}
+#modale .boite{background:var(--surface);color:var(--encre);border-radius:14px;padding:20px 22px;max-width:520px;width:100%;max-height:85vh;overflow:auto;border-top:6px solid var(--bleu)}
+#modale .boite h3{margin-bottom:8px}
+#toast{opacity:0;visibility:hidden;position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--encre);color:var(--surface);padding:10px 18px;border-radius:999px;font-weight:600;transition:transform .25s;z-index:60;max-width:90vw;text-align:center}
+#toast.vu{transform:translate(-50%,0);opacity:1;visibility:visible}
+
+/* ============ AFFICHAGE TÉLÉ ============ */
+#tv{position:fixed;inset:0;background:var(--tv-fond);color:var(--tv-encre);font-family:var(--texte);overflow:hidden;z-index:40;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  background-image:radial-gradient(ellipse 70% 55% at 12% 0%,rgba(47,107,255,.22),transparent 70%),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(255,46,154,.16),transparent 70%)}
+#tv[hidden]{display:none}
+.tv{height:100%;display:grid;grid-template-rows:auto auto 1fr auto;gap:1.6vh;padding:2.4vh 2.6vw}
+.tv-haut{display:flex;align-items:center;justify-content:space-between;gap:2vw}
+.tv-marque{font-family:var(--titre);font-weight:900;font-size:clamp(22px,3.6vh,54px);line-height:1;display:flex;gap:.3em;align-items:baseline}
+.tv-marque .tb{color:var(--tv-rose);text-shadow:0 0 18px rgba(255,46,154,.55)}
+.tv-marque .pv{color:var(--tv-bleu-neon);text-shadow:0 0 18px rgba(47,107,255,.6)}
+.tv-concours{font-size:clamp(14px,2.3vh,32px);color:var(--tv-encre-2);text-align:center;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv-heure{font-family:var(--titre);font-weight:800;font-size:clamp(20px,3.6vh,52px);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:.5em}
+.tv-direct{width:.45em;height:.45em;border-radius:50%;background:var(--tv-rose);box-shadow:0 0 12px var(--tv-rose)}
+.tv-direct.off{background:var(--tv-encre-2);box-shadow:none}
+
+.tv-scene{display:grid;grid-template-columns:1fr 1.45fr 1fr;gap:1.6vw;min-height:0}
+.tv-panneau{background:linear-gradient(180deg,var(--tv-panneau-2),var(--tv-panneau));border:1px solid var(--tv-trait);border-radius:1.6vh;padding:2.2vh 1.8vw;display:flex;flex-direction:column;justify-content:center;min-width:0;position:relative;overflow:hidden}
+.tv-lbl{font-size:clamp(12px,1.9vh,26px);color:var(--tv-encre-2);font-weight:500}
+
+.tv-hauteur{font-family:var(--titre);font-weight:900;font-size:clamp(60px,15vh,230px);line-height:.82;color:#fff;text-shadow:0 0 28px rgba(47,107,255,.85),0 0 70px rgba(47,107,255,.45);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tv-hauteur small{font-size:.32em;color:var(--tv-bleu-neon);margin-left:.08em;text-shadow:none}
+.tv-poteaux{position:relative;height:5vh;margin:2.6vh .6vw 0}
+.tv-poteaux .barre{position:absolute;left:0;right:0;top:0;height:1.1vh;border-radius:1vh;background:linear-gradient(90deg,var(--tv-bleu),var(--tv-rose));box-shadow:0 0 18px rgba(47,107,255,.8),0 0 30px rgba(255,46,154,.45)}
+.tv-poteaux::before,.tv-poteaux::after{content:"";position:absolute;top:-1.2vh;width:.8vh;height:6.4vh;border-radius:.4vh;background:var(--tv-encre-2)}
+.tv-poteaux::before{left:-1.2vh}.tv-poteaux::after{right:-1.2vh}
+.tv-sous{font-size:clamp(12px,2vh,28px);color:var(--tv-encre-2);margin-top:.6vh}
+.tv-sous b{color:var(--tv-encre);font-weight:600}
+
+.tv-dossard{display:inline-block;font-family:var(--titre);font-weight:800;font-size:clamp(16px,2.8vh,40px);background:var(--tv-encre);color:var(--tv-fond);padding:.05em .45em;border-radius:.25em;align-self:flex-start;margin-bottom:1vh}
+.tv-nom{font-family:var(--titre);font-weight:900;font-size:clamp(34px,8.4vh,124px);line-height:.88;overflow-wrap:anywhere}
+.tv-nom .prenom{display:block;font-size:.5em;color:var(--tv-encre-2);font-weight:800;line-height:1.05}
+.tv-club{font-size:clamp(14px,2.4vh,34px);color:var(--tv-encre-2);margin-top:1vh}
+.tv-essais{display:flex;align-items:center;gap:1.2vw;margin-top:2.4vh;flex-wrap:wrap}
+.tv-essais .lbl{font-size:clamp(14px,2.3vh,32px);color:var(--tv-encre-2)}
+.tv-pt{width:5vh;height:5vh;border-radius:50%;border:.45vh solid var(--tv-trait);display:grid;place-items:center;font-family:var(--titre);font-weight:900;font-size:2.8vh}
+.tv-pt.O{background:var(--tv-bleu);border-color:var(--tv-bleu-neon);box-shadow:0 0 16px rgba(47,107,255,.8)}
+.tv-pt.X{background:var(--tv-rose);border-color:var(--tv-rose-neon);box-shadow:0 0 16px rgba(255,46,154,.7)}
+.tv-pt.P{background:var(--tv-encre-2);border-color:var(--tv-encre-2)}
+.tv-pt.suivant{border-color:var(--tv-encre);border-style:dashed}
+.tv-refs{display:flex;gap:2vw;margin-top:1.8vh;font-size:clamp(13px,2.2vh,30px);color:var(--tv-encre-2)}
+.tv-refs b{color:var(--tv-encre);font-family:var(--titre);font-weight:800;font-size:1.2em}
+
+.tv-chrono{align-items:center;text-align:center}
+.tv-anneau{position:relative;width:min(100%,32vh);aspect-ratio:1;border-radius:50%;box-shadow:0 0 40px rgba(255,46,154,.28)}
+.tv-anneau[data-e="idle"]{box-shadow:none}
+.tv-anneau[data-e="idle"] .arc{stroke:var(--tv-bleu);opacity:.55}
+.tv-anneau[data-a="1"]{box-shadow:0 0 46px rgba(255,210,63,.35)}
+.tv-anneau svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tv-anneau .fond{stroke:var(--tv-trait)}
+.tv-anneau .arc{stroke:var(--tv-rose);transition:stroke .3s}
+.tv-anneau[data-a="1"] .arc{stroke:var(--tv-jaune)}
+.tv-anneau .val{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--titre);font-weight:900;font-size:clamp(34px,9vh,140px);font-variant-numeric:tabular-nums;line-height:1}
+.tv-anneau[data-a="1"] .val{color:var(--tv-jaune)}
+.tv-anneau[data-a="2"] .val{color:var(--tv-rose);animation:clignote 1s steps(2) infinite}
+.tv-anneau[data-e="idle"] .val{color:var(--tv-encre-2)}
+.tv-anneau[data-e="remise"]{box-shadow:0 0 40px rgba(47,107,255,.35)}
+.tv-anneau[data-e="remise"] .arc{stroke:var(--tv-bleu-neon)}
+.tv-anneau[data-e="remise"] .val{color:var(--tv-bleu-neon)}
+.tv-chrono-etat{font-size:clamp(13px,2.2vh,30px);color:var(--tv-encre-2);margin-top:1.4vh}
+@keyframes clignote{50%{opacity:.25}}
+
+.tv-bas{display:grid;grid-template-rows:auto 1fr;min-height:0;background:var(--tv-panneau);border:1px solid var(--tv-trait);border-radius:1.6vh;overflow:hidden}
+.tv-classement{width:100%;border-collapse:collapse;font-size:clamp(13px,2.5vh,36px)}
+.tv-classement th{background:transparent;color:var(--tv-encre-2);font-weight:500;font-size:.62em;padding:.7vh 1vw;border-bottom:1px solid var(--tv-trait);position:static}
+.tv-classement td{padding:.55vh 1vw;border-bottom:1px solid var(--tv-trait);white-space:nowrap}
+.tv-classement tr:last-child td{border-bottom:0}
+.tv-classement .rg{font-family:var(--titre);font-weight:900;width:4vw;text-align:center;font-size:1.15em}
+.tv-classement .nm{font-weight:600;max-width:28vw;overflow:hidden;text-overflow:ellipsis}
+.tv-classement .nm small{color:var(--tv-encre-2);font-weight:400;margin-left:.6em;font-size:.72em}
+.tv-classement .hc{text-align:center;font-family:var(--titre);font-weight:800;letter-spacing:.12em;width:7vw}
+.tv-classement th.hc{font-family:var(--titre);font-weight:800;font-size:.7em;color:var(--tv-encre)}
+.tv-classement th.hc.cur{color:var(--tv-bleu-neon)}
+.tv-classement .pf{text-align:right;font-family:var(--titre);font-weight:900;font-size:1.15em;width:9vw}
+.tv-classement tr.actif td{background:rgba(47,107,255,.2)}
+.tv-classement tr.actif .nm{color:#fff}
+.tv-classement tr.elim td{color:var(--tv-encre-2)}
+.tv-classement .k-O{color:var(--tv-bleu-neon)}.tv-classement .k-X{color:var(--tv-rose)}.tv-classement .k-P{color:var(--tv-encre-2)}
+.tv-pages{font-size:.55em;color:var(--tv-encre-2);float:right}
+
+.tv-bandeau{background:linear-gradient(90deg,var(--tv-bleu),var(--tv-rose));color:#fff;font-weight:600;font-size:clamp(14px,2.5vh,34px);padding:.8vh 1.4vw;border-radius:1vh;overflow:hidden;white-space:nowrap}
+.tv-bandeau span{display:inline-block;padding-left:100%;animation:defile 22s linear infinite}
+@keyframes defile{to{transform:translateX(-100%)}}
+
+.tv-flash{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);padding:4vh 4vw;text-align:center;z-index:5;pointer-events:none;animation:flash 3.4s ease forwards}
+.tv-flash .big{font-family:var(--titre);font-weight:900;font-size:clamp(50px,15vh,220px);line-height:.9;color:#fff}
+.tv-flash .small{font-size:clamp(16px,3.4vh,48px);font-weight:600;margin-top:1vh}
+.tv-flash.O{background:linear-gradient(90deg,transparent,rgba(30,70,255,.95) 18%,rgba(30,70,255,.95) 82%,transparent)}
+.tv-flash.O .big{text-shadow:0 0 40px rgba(110,151,255,.9)}
+.tv-flash.X{background:linear-gradient(90deg,transparent,rgba(232,19,122,.95) 18%,rgba(232,19,122,.95) 82%,transparent)}
+.tv-flash.P{background:linear-gradient(90deg,transparent,rgba(60,66,110,.95) 18%,rgba(60,66,110,.95) 82%,transparent)}
+.tv-flash.R{background:linear-gradient(90deg,transparent,rgba(30,70,255,.96) 15%,rgba(232,19,122,.96) 85%,transparent)}
+@keyframes flash{0%{opacity:0;transform:translateY(-50%) scaleY(.2)}8%{opacity:1;transform:translateY(-50%) scaleY(1)}85%{opacity:1}100%{opacity:0}}
+
+.tv-centre{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2vh;min-height:0}
+.tv-titre{font-family:var(--titre);font-weight:900;font-size:clamp(40px,11vh,170px);line-height:.88}
+.tv-titre .tb{color:var(--tv-rose);text-shadow:0 0 30px rgba(255,46,154,.6)}
+.tv-titre .pv{color:var(--tv-bleu-neon);text-shadow:0 0 30px rgba(47,107,255,.7)}
+.tv-grille-ath{display:grid;grid-template-columns:repeat(auto-fill,minmax(26vw,1fr));gap:1vh 2vw;width:100%;max-width:92vw;font-size:clamp(14px,2.6vh,36px);text-align:left}
+.tv-grille-ath div{display:flex;gap:1vw;align-items:baseline;border-bottom:1px solid var(--tv-trait);padding:.6vh 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv-grille-ath b{font-family:var(--titre);font-weight:800;color:var(--tv-rose);min-width:3.2em}
+.tv-grille-ath small{color:var(--tv-encre-2)}
+
+.tv-podium{display:flex;align-items:flex-end;justify-content:center;gap:2vw;width:100%}
+.tv-marche{width:22vw;text-align:center}
+.tv-marche .qui{font-family:var(--titre);font-weight:900;font-size:clamp(20px,4.4vh,64px);line-height:.95;margin-bottom:1vh;overflow-wrap:anywhere}
+.tv-marche .qui small{display:block;font-family:var(--texte);font-weight:500;font-size:.4em;color:var(--tv-encre-2);margin-top:.5vh}
+.tv-marche .socle{border-radius:1.2vh 1.2vh 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:1.4vh;font-family:var(--titre);font-weight:900}
+.tv-marche .socle .r{font-size:clamp(36px,9vh,130px);line-height:.9}
+.tv-marche .socle .p{font-size:clamp(18px,3.6vh,52px)}
+.tv-marche.m1 .socle{height:26vh;background:linear-gradient(180deg,var(--tv-rose),#8A0E4C);box-shadow:0 0 40px rgba(255,46,154,.45)}
+.tv-marche.m2 .socle{height:19vh;background:linear-gradient(180deg,var(--tv-bleu),#132C8F);box-shadow:0 0 30px rgba(47,107,255,.4)}
+.tv-marche.m3 .socle{height:14vh;background:linear-gradient(180deg,#3C4790,#1B2260)}
+
+.tv-sortie{position:absolute;right:1.4vw;bottom:1.4vh;z-index:9;display:flex;gap:8px;opacity:0;transition:opacity .3s}
+#tv:hover .tv-sortie,.tv-sortie:focus-within,#tv.souris .tv-sortie{opacity:1}
+.tv-sortie button{background:rgba(255,255,255,.12);color:var(--tv-encre);border:1px solid var(--tv-trait);border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit;font-size:14px}
+.tv-son{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);z-index:9;background:var(--tv-rose);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:600 16px var(--texte);cursor:pointer}
+
+@media (max-aspect-ratio: 1/1){
+  .tv{grid-template-rows:auto auto auto 1fr auto}
+  .tv-scene{grid-template-columns:1fr 1fr}
+  .tv-scene .tv-ath{grid-column:1/-1;order:-1}
+}
+@media (prefers-reduced-motion: reduce){
+  .tv-flash{animation:none;opacity:1}
+  .tv-bandeau span{animation:none;padding-left:0}
+  .tv-anneau[data-a="2"] .val{animation:none}
+}
+
+.pad{width:100%;height:auto;aspect-ratio:3/1;background:#fff;border:2px dashed var(--bleu);border-radius:10px;touch-action:none;cursor:crosshair;display:block}
+.mini-sign{height:34px;background:#fff;border-radius:4px;display:block;margin-bottom:2px}
+.tete-bloc{display:flex;justify-content:space-between;align-items:baseline;gap:10px 16px;flex-wrap:wrap;margin-bottom:10px}
+#aideBtn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:35;border:0;border-radius:999px;padding:14px 20px;background:linear-gradient(90deg,var(--bleu),var(--rose));color:#fff;font:700 1rem var(--texte);box-shadow:0 6px 20px rgba(30,70,255,.35);cursor:pointer}
+#aidePanneau{position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:36;width:min(440px,calc(100vw - 24px));max-height:min(70vh,640px);display:flex;flex-direction:column;background:var(--surface);color:var(--encre);border:1px solid var(--trait);border-top:5px solid var(--rose);border-radius:14px;box-shadow:0 12px 40px rgba(3,5,26,.35)}
+#aidePanneau[hidden]{display:none}
+.aide-tete{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--trait)}
+.aide-tete b{font-family:var(--titre);font-size:1.3rem}
+.aide-fil{flex:1;overflow:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.aide-msg{padding:9px 12px;border-radius:10px;max-width:92%;white-space:pre-wrap}
+.aide-msg.moi{align-self:flex-end;background:var(--bleu);color:#fff}
+.aide-msg.app{align-self:flex-start;background:var(--surface-2)}
+.aide-msg .actions{margin-top:8px}
+.aide-msg ul{margin:6px 0 0;padding-left:18px}
+.aide-puces{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 8px}
+.aide-puces button{border:1px solid var(--trait);background:var(--surface-2);border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer;color:var(--encre)}
+.aide-saisie{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--trait)}
+.aide-saisie input{flex:1}
+.tete-bloc{display:flex;justify-content:space-between;align-items:baseline;gap:10px 16px;flex-wrap:wrap;margin-bottom:10px}
+.serie{border:1px solid var(--trait);border-radius:var(--rayon);padding:12px 14px;margin:12px 0}
+.serie.active{border:2px solid var(--rose)}
+.serie-tete{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:8px}
+.serie select{min-height:36px;padding:4px 8px}
+.etat-course{display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:var(--rayon);padding:14px 20px;margin:10px 0 16px;background:var(--surface-2);border-left:8px solid var(--gris)}
+.etat-course span{font-family:var(--titre);font-weight:900;font-size:1.8rem}
+.etat-course b{font-family:var(--titre);font-weight:900;font-size:3.4rem;font-variant-numeric:tabular-nums;line-height:1}
+.etat-course.e-pret{border-left-color:var(--jaune)}
+.etat-course.e-partie{border-left-color:var(--bleu);background:var(--bleu-doux)}
+.etat-course.e-rappel{border-left-color:var(--rose);background:var(--rose-doux)}
+.etat-course.e-valide{border-left-color:var(--bleu)}
+.boutons-depart{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:10px 0 16px}
+.btn.geant{min-height:96px;flex-direction:column;font-family:var(--titre);font-weight:900;font-size:1.7rem;gap:2px;line-height:1}
+.btn.geant small{font-family:var(--texte);font-weight:500;font-size:.8rem;opacity:.85}
+.micro{background:var(--surface-2);border-radius:var(--rayon);padding:12px 14px;margin-bottom:16px}
+.vumetre{position:relative;height:18px;border-radius:9px;background:var(--surface);border:1px solid var(--trait);overflow:hidden;margin-bottom:10px;--n:0;--s:.35}
+.vumetre i{position:absolute;inset:0 auto 0 0;width:calc(var(--n)*100%);background:linear-gradient(90deg,var(--bleu),var(--rose))}
+.vumetre em{position:absolute;top:-2px;bottom:-2px;left:calc(var(--s)*100%);width:3px;background:var(--rose)}
+.couloirs-mini{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+.couloirs-mini div{display:flex;gap:10px;align-items:center;background:var(--surface-2);border-radius:8px;padding:6px 10px}
+.couloirs-mini b{font-family:var(--titre);font-size:1.4rem;color:var(--bleu);min-width:1.2em}
+.couloirs-mini .vide{opacity:.45}
+.grille-couloirs{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0}
+.grille-couloirs .btn{justify-content:flex-start}
+.apercu{width:100%;border-radius:var(--rayon);background:#000;touch-action:manipulation;cursor:crosshair;display:block}
+.pf{width:100%;height:auto;border-radius:var(--rayon);background:#03051A;touch-action:none;cursor:crosshair;display:block}
+.detections{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.det{background:var(--surface-2);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums;font-weight:600}
+.det.ok{background:var(--bleu);color:#fff}
+.tv-corps{position:relative;min-height:0;display:flex;flex-direction:column;gap:2vh}
+.tv-titre-serie{font-family:var(--titre);font-weight:900;font-size:clamp(24px,5vh,72px);color:var(--tv-bleu-neon)}
+.tv-sprint{display:grid;grid-template-columns:1fr 1.2fr;gap:2vw;min-height:0}
+.tv-horloge{background:var(--tv-panneau);border:1px solid var(--tv-trait);border-radius:1.6vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2vh}
+.tv-horloge span{font-size:clamp(16px,3.4vh,48px);color:var(--tv-encre-2)}
+.tv-horloge b{font-family:var(--titre);font-weight:900;font-size:clamp(70px,24vh,340px);line-height:.9;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 30px rgba(47,107,255,.8)}
+.tv-horloge.e-pret b{color:var(--tv-jaune);text-shadow:0 0 30px rgba(255,210,63,.6)}
+.tv-horloge.e-partie span{color:var(--tv-rose)}
+.tv-res{width:100%;border-collapse:collapse;font-size:clamp(16px,3.6vh,52px)}
+.tv-res td{padding:.8vh 1vw;border-bottom:1px solid var(--tv-trait)}
+.tv-res .pl{font-family:var(--titre);font-weight:900;width:6vw;text-align:center;font-size:1.2em}
+.tv-res .co{font-family:var(--titre);font-weight:900;width:5vw;text-align:center;color:var(--tv-bleu-neon)}
+.tv-res .nm{font-weight:600}
+.tv-res .nm small{display:block;font-weight:400;color:var(--tv-encre-2);font-size:.55em}
+.tv-res .tp{font-family:var(--titre);font-weight:900;text-align:right;font-variant-numeric:tabular-nums;font-size:1.25em}
+.tv-res .ds,.tv-res .sr{color:var(--tv-encre-2);text-align:right}
+.tv-res tr.or td{background:rgba(255,46,154,.22)}
+.tv-res tr.or td:first-child{box-shadow:inset .6vw 0 0 var(--tv-rose)}
+
+.tours{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;border-radius:var(--rayon);padding:12px 18px;margin:10px 0;background:var(--surface-2);border-left:8px solid var(--bleu)}
+.tours span{font-family:var(--titre);font-weight:900;font-size:1.6rem}
+.tours b{font-family:var(--titre);font-weight:900;font-size:3rem;line-height:1}
+.tours small{color:var(--encre-2)}
+.tours .btn{margin-left:auto;min-height:56px;font-size:1.1rem}
+.tours.cloche{border-left-color:var(--rose);background:var(--rose-doux)}
+.tv-horloge em{font-style:normal;font-family:var(--titre);font-weight:900;font-size:clamp(20px,6vh,90px);color:var(--tv-bleu-neon);margin-top:1vh}
+.tv-horloge em.cloche{color:var(--tv-rose);animation:clignote 1s steps(2) infinite}
+.tv-res.compact{font-size:clamp(12px,2.4vh,34px)}
+.tv-res.compact td{padding:.4vh 1vw}
+
+</style>
+</head>
+<body>
+<div id="appJuge">
+  <header class="entete">
+    <div class="transversale"></div>
+    <div class="entete-in">
+      <div class="marque"><span class="tb">#TEAMBRO</span><span class="pv">Sprint</span><small id="sousTitre"></small></div>
+      <div class="sync" id="sync" data-s="local"><i></i><span>Enregistré sur cet appareil</span></div>
+    </div>
+    <nav class="onglets" role="tablist" id="onglets"></nav>
+  </header>
+  <main id="vue"></main>
+</div>
+<div id="tv" hidden></div>
+<div id="modale" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+/* =========================================================
+   #TEAMBRO Sprint – chronométrage photo-finish par téléphone
+   ========================================================= */
+const CLE='teambro-sprint-v1', CLE_CAL='teambro-sprint-cal-v1', CLE_SALLE='teambro-sprint-salle-tv';
+const LISTING = {
+  alias:{couloir:['couloir','lane','cou','c','ligne'], serie:['serie','heat','course','vague','groupe','race'], pb:['rp','record','record perso','pb','meilleure perf'], sb:['mps','sb','saison']},
+  ordre:['dossard','licence','prenom','nom','club','sexe','cat','serie','couloir','pb'],
+  libelles:{serie:'Série', couloir:'Couloir', pb:'RP'},
+  aide:'Dossard, Licence, Nom, Prénom, Club, Sexe, Catégorie, Série, Couloir, RP (dans n’importe quel ordre). Avec les colonnes Série et Couloir, les séries sont construites automatiquement',
+  exemple:'12;123456;Léa;MARTIN;EA Nîmes;F;U18;1;4;12,85',
+  fictifDefaut:16,
+  fictif:(o,i,n,niv) => {
+    const r = o.sexe==='F' ? [14.2,11.6] : [12.6,10.5];
+    o.pb=fP(r[0]+(r[1]-r[0])*niv);
+    const nc=+((typeof D!=='undefined'&&D.config.nbCouloirs)||8), ordre=[4,5,3,6,2,7,1,8,9,10].filter(c => c<=nc);
+    o.serie=String(Math.floor(i/nc)+1); o.couloir=String(ordre[i%nc]||(i%nc)+1);
+  }
+};
+const VUES=[['courses','Séries'],['depart','Départ'],['arrivee','Arrivée'],['reglages','Réglages'],['tv','Affichage télé']];
+function uid(){ return Math.random().toString(36).slice(2,10); }
+function aujourdhui(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function codeSalle(){ const c='ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let r=''; for(let i=0;i<5;i++) r+=c[Math.floor(Math.random()*c.length)]; return r; }
+/* Horloge en millisecondes alignée sur l’heure du téléphone, précise à la microseconde entre deux recalages.
+   performance.now() peut s’arrêter quand l’écran se met en veille : on le recale sur Date.now() dès que l’écart dépasse 250 ms. */
+let ancrePerf=performance.now(), ancreDate=Date.now();
+function horloge(){ const n=performance.now(), d=Date.now(); let t=ancreDate+(n-ancrePerf); if(Math.abs(t-d)>250){ ancrePerf=n; ancreDate=d; t=d; } return t; }
+function horlogeDePerf(p){ const h=horloge(); return h-(performance.now()-p); }
+const MOI = uid();
+function donneesDefaut(){
+  return {v:1, maj:0,
+    config:{nom:'Meeting #TEAMBRO', lieu:'', date:aujourdhui(), epreuve:'100 m', nbCouloirs:8, largeur:1.22, vent:'oui',
+      modeDepart:'depart', distArrivee:100, distDepart:2, temperature:20, fenetreFaux:5, sensibilite:0.35,
+      corrMicro:0, corrCam:0, rolling:0, zoneBas:0.9, zoneHaut:1.45, hauteurRef:1.5, seuilPix:70, seuilZone:0.5, tempsMini:2,
+      arrondi:'centieme', tvMode:'serie', salle:codeSalle(), typeCourse:'couloirs', maxParSerie:16, distance:'', longueurTour:400, dureeMemoire:150},
+    athletes:[], series:[], resultats:{}, courante:null};
+}
+function courseDefaut(){ return {ts:0, seq:0, serie:null, etat:'attente', departT:null, departSrc:'', faux:[], finTs:0, tours:null, passages:[]}; }
+function enLigne(){ return C().typeCourse==='ligne'; }
+function distanceCourse(){ const d=num(C().distance,0); if(d) return d; const m=String(C().epreuve||'').match(/(\d{2,5})/); return m?+m[1]:0; }
+function toursInitiaux(){ const d=distanceCourse(), l=num(C().longueurTour,400); return d>l ? Math.ceil(d/l-1e-9) : null; }
+function fusionD(o){ const d=donneesDefaut(), r={...d, ...o}; r.config={...d.config, ...(o.config||{})}; if(!Array.isArray(r.athletes)) r.athletes=[]; if(!Array.isArray(r.series)) r.series=[]; if(!r.resultats||typeof r.resultats!=='object') r.resultats={}; return r; }
+let D=(() => { try{ const t=localStorage.getItem(CLE); if(t) return fusionD(JSON.parse(t)); }catch(e){} return donneesDefaut(); })();
+if(window.__CONFIG_INITIALE && !D.maj) Object.assign(D.config, window.__CONFIG_INITIALE);
+let K=(() => { try{ const t=localStorage.getItem(CLE+'-course'); if(t) return {...courseDefaut(), ...JSON.parse(t)}; }catch(e){} return courseDefaut(); })();
+let CAL=(() => { try{ return JSON.parse(localStorage.getItem(CLE_CAL)||'null') || {pts:[], hauts:[]}; }catch(e){ return {pts:[], hauts:[]}; } })();
+let vue='courses';
+const C=() => D.config;
+const A=id => D.athletes.find(a => a.id===id);
+const SER=id => D.series.find(s => s.id===id);
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function nomComplet(a){ return a ? `${a.prenom||''} ${(a.nom||'').toUpperCase()}`.trim() : ''; }
+function num(v,def=0){ const n=parseFloat(String(v??'').replace(',','.')); return isNaN(n)?def:n; }
+function arrondiOfficiel(ms){ const s=ms/1000; return C().arrondi==='millieme' ? Math.ceil(s*1000-1e-6)/1000 : Math.ceil(s*100-1e-6)/100; }
+function fT(ms, precis){
+  if(ms==null || isNaN(ms)) return '';
+  const s = precis ? Math.round(ms)/1000 : arrondiOfficiel(ms), dec = precis||C().arrondi==='millieme' ? 3 : 2;
+  if(s<60) return s.toFixed(dec);
+  const m=Math.floor(s/60); return m+':'+(s-m*60).toFixed(dec).padStart(dec+3,'0');
+}
+function fPerf(v){ v=num(v,null); return v==null?'':v.toFixed(2); }
+function vitesseSon(){ return 331.3 + 0.606*num(C().temperature,20); }
+
+/* ---------- Séries ---------- */
+function serieCourante(){ return SER(D.courante) || D.series[0] || null; }
+function couloirsDe(s){ if(enLigne()) return s ? Object.keys(s.couloirs).map(Number).sort((a,b) => a-b).map(c => ({c, a:A(s.couloirs[c])})).filter(x => x.a) : []; const n=+C().nbCouloirs||8; return Array.from({length:n},(_,i) => i+1).map(c => ({c, a:s && s.couloirs[c] ? A(s.couloirs[c]) : null})); }
+function lignesResultats(s){
+  const r=(D.resultats[s.id]||[]).slice();
+  const ok=r.filter(x => x.t!=null && !x.statut).sort((a,b) => arrondiOfficiel(a.t)-arrondiOfficiel(b.t) || a.t-b.t);
+  let prec=null; ok.forEach((x,i) => { x.place = prec && arrondiOfficiel(prec.t)===arrondiOfficiel(x.t) && C().departageMillieme!=='oui' ? prec.place : i+1; prec=x; });
+  return [...ok, ...r.filter(x => !(x.t!=null && !x.statut))];
+}
+function classementGeneral(){
+  const L=[];
+  D.series.forEach(s => (D.resultats[s.id]||[]).forEach(x => { if(x.t!=null && !x.statut) L.push({...x, serie:s}); }));
+  L.sort((a,b) => arrondiOfficiel(a.t)-arrondiOfficiel(b.t) || a.t-b.t);
+  let prec=null; L.forEach((x,i) => { x.rang = prec && arrondiOfficiel(prec.t)===arrondiOfficiel(x.t) ? prec.rang : i+1; prec=x; });
+  return L;
+}
+function construireSeries(){
+  const avec=D.athletes.filter(a => a.serie);
+  if(avec.length){
+    const noms=[...new Set(avec.map(a => String(a.serie)))].sort((x,y) => (parseFloat(x)||0)-(parseFloat(y)||0) || x.localeCompare(y));
+    D.series=noms.map(n => ({id:uid(), nom:/^\d+$/.test(n)?'Série '+n:n, couloirs:{}, vent:null}));
+    avec.forEach(a => { const s=D.series[noms.indexOf(String(a.serie))]; let c=parseInt(a.couloir); if(!c || s.couloirs[c]) c=premierLibre(s); if(c) s.couloirs[c]=a.id; });
+  } else if(enLigne()){
+    const n=Math.max(2,+C().maxParSerie||16), L=D.athletes.slice(); D.series=[];
+    for(let i=0;i<L.length;i+=n){ const s={id:uid(), nom:'Course '+(D.series.length+1), couloirs:{}, vent:null}; L.slice(i,i+n).forEach((a,j) => s.couloirs[j+1]=a.id); D.series.push(s); }
+  } else {
+    const n=+C().nbCouloirs||8, ordre=[4,5,3,6,2,7,1,8,9,10].filter(c => c<=n), L=D.athletes.slice();
+    D.series=[];
+    for(let i=0;i<L.length;i+=n){ const s={id:uid(), nom:'Série '+(D.series.length+1), couloirs:{}, vent:null}; L.slice(i,i+n).forEach((a,j) => s.couloirs[ordre[j]||j+1]=a.id); D.series.push(s); }
+  }
+  D.courante=D.series[0]?.id||null; D.resultats={};
+}
+function premierLibre(s){ for(let c=1;c<=(+C().nbCouloirs||8);c++) if(!s.couloirs[c]) return c; return null; }
+
+/* ---------- Transport : claude.ai (db + room) ou GitHub (PeerJS) ---------- */
+const T={mode:'local', db:null, room:null, refD:null, refC:null, peer:null, conns:[], hub:null, etat:'', ecr:{D:false,K:false}, sale:{D:false,K:false}, tmr:{}};
+let canal=null; try{ canal=new BroadcastChannel('teambro-sprint'); canal.onmessage=ev => recevoirMsg(ev.data, true); }catch(e){}
+let decal=0, decalRtt=null, decalVu=0;  // horloge de l’arrivée = horloge() + decal
+function horlogeArrivee(){ return horloge() + (vue==='arrivee' ? 0 : decal); }
+function sauverLocal(){ try{ localStorage.setItem(CLE, JSON.stringify(D)); localStorage.setItem(CLE+'-course', JSON.stringify(K)); }catch(e){} }
+function publierD(rendre=true){ D.maj=Date.now(); D.rev=(D.rev||0)+1; try{ D.resume={type:'sprint', titre:C().epreuve, unite:'s', top:classementGeneral().slice(0,8).map(x => { const a=A(x.id); return {r:x.rang, n:nomComplet(a), c:a?.club||'', p:fT(x.t)}; }), sections:(typeof sectionsPubliques==='function'?sectionsPubliques():[]), partants:{serie:D.courante, liste:couloirsDe(serieCourante()).filter(x => x.a).map(x => ({c:enLigne()?(x.a.dossard||x.c):x.c, n:nomComplet(x.a), club:x.a.club||''}))}}; }catch(e){} sauverLocal(); const json=JSON.stringify(D); envoyer({t:'D', json}); planifier('D'); if(rendre) toutRendre(); }
+function publierK(etat, extra={}, rendre=true){ K={...K, ...extra, etat, ts:Date.now(), seq:(K.seq||0)+1}; sauverLocal(); envoyer({t:'K', json:JSON.stringify(K)}); planifier('K'); if(rendre) toutRendre(); }
+function envoyer(m){
+  if(canal) try{ canal.postMessage(m); }catch(e){}
+  if(T.mode==='libre'){ if(T.hub){ T.conns.forEach(c => { try{ if(c.open) c.send(m); }catch(e){} }); } else if(T.peer && T.peerConn && T.peerConn.open){ try{ T.peerConn.send(m); }catch(e){} } }
+}
+function planifier(q){
+  if(T.mode!=='claude') return; const ref=q==='D'?T.refD:T.refC; if(!ref) return;
+  T.sale[q]=true; clearTimeout(T.tmr[q]); T.tmr[q]=setTimeout(() => ecrire(q), 80);
+}
+async function ecrire(q){
+  if(T.ecr[q] || !T.sale[q]) return; T.ecr[q]=true; T.sale[q]=false;
+  const ref=q==='D'?T.refD:T.refC, obj=q==='D'?D:K;
+  try{ await ref.set({json:JSON.stringify(obj), maj:q==='D'?obj.maj:obj.ts}); majSync('ok'); }catch(e){ majSync('erreur'); }
+  T.ecr[q]=false; if(T.sale[q]) ecrire(q);
+}
+function recevoirMsg(m, local){
+  if(!m) return;
+  try{
+    if(m.t==='D'){ const r=fusionD(JSON.parse(m.json)); if((r.rev||0)>(D.rev||0) || ((r.rev||0)===(D.rev||0) && r.maj>D.maj)){ D=r; sauverLocal(); apresReception(); } }
+    else if(m.t==='K'){ const r={...courseDefaut(), ...JSON.parse(m.json)}; if((r.seq||0)>(K.seq||0) || ((r.seq||0)===(K.seq||0) && r.ts>K.ts)){ const avant=K; K=r; sauverLocal(); surChangementCourse(avant); apresReception(); } }
+    else if(m.t==='ping'){ if(vue==='arrivee') repondrePing(m); }
+    else if(m.t==='pong'){ if(m.a===MOI) recevoirPong(m); }
+  }catch(e){}
+  if(T.mode==='libre' && T.hub && !local && (m.t==='D'||m.t==='K')) envoyer(m);
+}
+async function initTransport(){
+  if(window.claude && typeof claude.use==='function'){
+    T.mode='claude';
+    try{ T.db=await claude.use('db'); }catch(e){}
+    try{ T.room=await claude.use('room'); }catch(e){}
+    if(T.db){
+      T.refD=T.db.doc('sprint/donnees'); T.refC=T.db.doc('sprint/course');
+      T.refD.onSnapshot(s => { if(!s.exists){ if(D.maj) planifier('D'); return; } recevoirMsg({t:'D', json:s.data().json}, true); majSync('ok'); }, () => majSync('erreur'));
+      T.refC.onSnapshot(s => { if(!s.exists){ if(K.ts) planifier('K'); return; } recevoirMsg({t:'K', json:s.data().json}, true); }, () => {});
+    }
+    if(T.room){ T.room.on('ping', m => recevoirMsg({...m.data, t:'ping'}, true)); T.room.on('pong', m => recevoirMsg({...m.data, t:'pong'}, true)); }
+    majSync(T.db?'ok':'local');
+  } else { T.mode='libre'; majLiaison(); }
+  setInterval(pinguer, 2000); pinguer();
+}
+/* Synchronisation d’horloge avec le téléphone d’arrivée (type NTP) */
+let echantillons=[];
+function pinguer(){
+  if(vue==='arrivee') return;
+  const m={t0:horloge(), a:MOI};
+  if(T.mode==='claude' && T.room) T.room.emit('ping', m).catch(()=>{});
+  else if(T.mode==='libre') envoyer({t:'ping', ...m});
+  if(canal) try{ canal.postMessage({t:'ping', ...m}); }catch(e){}
+}
+function repondrePing(m){
+  const r={t0:m.t0, tf:horloge(), a:m.a};
+  if(T.mode==='claude' && T.room) T.room.emit('pong', r).catch(()=>{});
+  if(T.mode==='libre') envoyer({t:'pong', ...r});
+  if(canal) try{ canal.postMessage({t:'pong', ...r}); }catch(e){}
+}
+function recevoirPong(m){
+  const t1=horloge(), rtt=t1-m.t0; if(rtt<0 || rtt>3000) return;
+  echantillons.push({rtt, off:m.tf-(m.t0+t1)/2, ts:Date.now()}); echantillons=echantillons.filter(e => Date.now()-e.ts<120000).slice(-40);
+  const best=echantillons.slice().sort((a,b) => a.rtt-b.rtt)[0];
+  decal=best.off; decalRtt=best.rtt; decalVu=Date.now();
+  const el=document.getElementById('etatSynchro'); if(el) el.innerHTML=htmlSynchro();
+}
+function htmlSynchro(){
+  if(vue==='arrivee') return 'Ce téléphone est l’horloge de référence.';
+  if(decalRtt==null || Date.now()-decalVu>15000) return '<span class="m-X">Téléphone d’arrivée introuvable : ouvrez l’onglet « Arrivée » sur le téléphone de la ligne.</span>';
+  return `Synchronisé avec l’arrivée, précision estimée ± ${Math.max(1,Math.round(decalRtt/2))} ms.`;
+}
+function majSync(s){
+  const el=document.getElementById('sync'); if(!el) return;
+  if(T.mode==='libre'){ const n=T.hub ? T.conns.filter(c => c.open).length : (T.peerConn&&T.peerConn.open?1:0);
+    el.dataset.s=n?'ok':'local'; el.querySelector('span').textContent = T.hub ? `Code ${C().salle} · ${n} appareil${n>1?'s':''} relié${n>1?'s':''}` : (n ? `Relié à l’arrivée (${codeLibre()})` : `En attente du téléphone d’arrivée (${codeLibre()||'sans code'})`); return; }
+  el.dataset.s=s; el.querySelector('span').textContent=({ok:'Synchronisé', erreur:'Synchro interrompue', local:'Enregistré sur cet appareil'})[s]||'';
+}
+const PEERJS='https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js'; let peerjsCharge=null;
+function chargerPeerJS(){ if(window.Peer) return Promise.resolve(); if(!peerjsCharge) peerjsCharge=new Promise((ok,ko) => { const s=document.createElement('script'); s.src=PEERJS; s.onload=ok; s.onerror=ko; document.head.appendChild(s); }); return peerjsCharge; }
+function codeLibre(){ if(vue==='arrivee') return C().salle; const q=new URLSearchParams(location.search).get('salle'); if(q) return q.toUpperCase(); try{ return (localStorage.getItem(CLE_SALLE)||C().salle||'').toUpperCase(); }catch(e){ return C().salle; } }
+function detruirePeer(){ try{ if(T.peer) T.peer.destroy(); }catch(e){} T.peer=null; T.conns=[]; T.hub=null; T.peerConn=null; clearTimeout(T.retry); }
+async function majLiaison(){
+  if(T.mode!=='libre') return;
+  try{ await chargerPeerJS(); }catch(e){ majSync('local'); return; }
+  const hub = vue==='arrivee';
+  if(T.peer && !T.peer.destroyed && !!T.hub===hub) return;
+  detruirePeer();
+  if(hub){
+    T.hub=true; T.peer=new Peer('teambro-sp-'+C().salle);
+    T.peer.on('connection', c => { T.conns.push(c);
+      c.on('open', () => { try{ c.send({t:'D', json:JSON.stringify(D)}); c.send({t:'K', json:JSON.stringify(K)}); }catch(e){} majSync(); });
+      c.on('data', d => recevoirMsg(d,false)); c.on('close', () => { T.conns=T.conns.filter(x => x!==c); majSync(); }); });
+    T.peer.on('open', () => majSync()); T.peer.on('error', () => majSync());
+    T.peer.on('disconnected', () => setTimeout(() => { try{ T.peer && T.peer.reconnect(); }catch(e){} }, 2000));
+  } else {
+    const code=codeLibre(); if(!code){ majSync(); return; }
+    T.peer=new Peer();
+    const retry=() => { clearTimeout(T.retry); T.retry=setTimeout(() => { detruirePeer(); majLiaison(); }, 3000); majSync(); };
+    T.peer.on('open', () => { const c=T.peer.connect('teambro-sp-'+code, {reliable:true});
+      c.on('open', () => { T.peerConn=c; majSync(); envoyer({t:'D', json:JSON.stringify(D)}); });
+      c.on('data', d => recevoirMsg(d,false)); c.on('close', retry); c.on('error', retry); });
+    T.peer.on('error', retry);
+  }
+}
+
+/* =========================================================
+   Détection du coup de pistolet (micro)
+   ========================================================= */
+const MIC={ctx:null, an:null, buf:null, flux:null, niveau:0, pic:0, traite:0, derniere:0, tmr:null, arme:false};
+async function activerMicro(){
+  if(MIC.ctx) { if(MIC.ctx.state==='suspended') await MIC.ctx.resume(); return true; }
+  try{
+    MIC.flux=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false, noiseSuppression:false, autoGainControl:false, channelCount:1}});
+    MIC.ctx=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});
+    const src=MIC.ctx.createMediaStreamSource(MIC.flux); MIC.an=MIC.ctx.createAnalyser(); MIC.an.fftSize=2048; src.connect(MIC.an);
+    MIC.buf=new Float32Array(MIC.an.fftSize); MIC.traite=MIC.ctx.currentTime;
+    MIC.tmr=setInterval(ecouterMicro, 12);
+    return true;
+  }catch(e){ toast('Micro indisponible : autorisez l’accès au micro'); return false; }
+}
+function ecouterMicro(){
+  if(!MIC.an) return;
+  const perfNow=horloge(), ctxNow=MIC.ctx.currentTime, sr=MIC.ctx.sampleRate, N=MIC.buf.length;
+  MIC.an.getFloatTimeDomainData(MIC.buf);
+  let mx=0; for(let i=0;i<N;i++){ const v=Math.abs(MIC.buf[i]); if(v>mx) mx=v; }
+  MIC.niveau=mx; MIC.pic=Math.max(MIC.pic*0.97, mx);
+  const seuil=Math.min(0.99, Math.max(0.02, num(C().sensibilite,0.35)));
+  if(MIC.arme){
+    for(let i=0;i<N;i++){
+      const ts=ctxNow-(N-1-i)/sr; if(ts<=MIC.traite) continue;
+      if(Math.abs(MIC.buf[i])>=seuil && ts-MIC.derniere>0.25){ MIC.derniere=ts; const tAbs=perfNow-(ctxNow-ts)*1000-num(C().corrMicro,0); MIC.traite=ctxNow; coupDetecte(tAbs); return; }
+    }
+  }
+  MIC.traite=ctxNow;
+  const m=document.getElementById('vumetre'); if(m){ m.style.setProperty('--n', Math.min(1,mx).toFixed(3)); m.style.setProperty('--s', seuil.toFixed(3)); }
+}
+function bip(f=1000,d=.12){ try{ const c=MIC.ctx||(MIC.ctx2||(MIC.ctx2=new AudioContext())); const o=c.createOscillator(), g=c.createGain(); o.frequency.value=f; g.gain.value=.2; o.connect(g).connect(c.destination); o.start(); o.stop(c.currentTime+d); }catch(e){} }
+/* Le téléphone qui écoute le pistolet : celui du départ, ou celui de l’arrivée en mode « micro à l’arrivée » */
+function ecouteIci(){ return (vue==='depart' && C().modeDepart==='depart') || (vue==='arrivee' && C().modeDepart==='micro'); }
+function versHorlogeArrivee(t){ return vue==='arrivee' ? t : t+decal; }
+function coupDetecte(tAbs){
+  const s=serieCourante(); if(!s) return;
+  if(K.etat==='pret'){
+    const dist = C().modeDepart==='micro' ? num(C().distArrivee,100) : num(C().distDepart,0);
+    const tDep = versHorlogeArrivee(tAbs) - dist/vitesseSon()*1000;
+    bip(1400,.08);
+    publierK('partie', {serie:s.id, departT:tDep, departSrc:C().modeDepart==='micro'?'micro arrivée':'téléphone départ', tours:enLigne()?toursInitiaux():null, passages:[]});
+  } else if(K.etat==='partie' && K.departT!=null && versHorlogeArrivee(tAbs)-K.departT < num(C().fenetreFaux,5)*1000 + 400){
+    bip(500,.4); rappel();
+  }
+}
+function pret(){
+  const s=serieCourante(); if(!s){ toast('Aucune série'); return; }
+  if(K.etat==='partie'){ toast('Course en cours'); return; }
+  publierK('pret', {serie:s.id, departT:null, departSrc:''});
+  if(ecouteIci()) activerMicro().then(ok => { MIC.arme=ok; MIC.traite=MIC.ctx?MIC.ctx.currentTime:0; });
+}
+function departManuel(){ const s=serieCourante(); if(!s) return; if(K.etat!=='pret' && K.etat!=='attente'){ toast('Mettez d’abord la série en « prêt »'); return; } publierK('partie', {serie:s.id, departT:versHorlogeArrivee(horloge()), departSrc:'manuel', tours:enLigne()?toursInitiaux():null, passages:[]}); }
+function passageTete(){ if(K.etat!=='partie'){ toast('Aucune course en cours'); return; } const t=versHorlogeArrivee(horloge()); const tours=K.tours!=null?Math.max(0,K.tours-1):null; publierK('partie', {tours, passages:[...(K.passages||[]), t]}); if(tours===1) bip(1800,.5); }
+function rappel(){ if(K.etat!=='partie' && K.etat!=='pret') return; MIC.arme=false; publierK('rappel', {}); if(vue==='depart' || (vue==='arrivee' && C().modeDepart==='micro')) choisirFautif(); }
+function choisirFautif(){
+  const s=serieCourante(); if(!s) return;
+  ouvrirModale(`<h3>Faux départ</h3><p class="discret">Touchez le couloir de l’athlète fautif (disqualifié), ou « Sans sanction » si le départ est annulé pour une autre raison. La série revient ensuite en attente.</p>
+    <div class="grille-couloirs">${couloirsDe(s).filter(x => x.a).map(x => `<button class="btn" data-act="fautif" data-c="${x.c}"><b>C${x.c}</b> ${esc(nomComplet(x.a))}</button>`).join('')}</div>
+    <div class="actions"><button class="btn bleu" data-act="fautif" data-c="0">Sans sanction (carton vert)</button></div>`);
+}
+function annulerCourse(){ MIC.arme=false; publierK('attente', {departT:null}); }
+
+/* =========================================================
+   Photo-finish : caméra, ligne d’arrivée, image balayée
+   ========================================================= */
+const CAM={flux:null, video:null, can:null, ctx:null, apercu:null, actif:false, fps:0, w:0, h:0, n:0, cadre:0,
+  lig:null, // {x0,y0,ux,uy,smin,smax,n, xs, ys}
+  bg:null, cols:[], temps:[], enreg:false, serie:null, detect:{}, frac:{}, calTap:null, dernierRendu:0};
+function solve(M,v){ const n=v.length; const a=M.map((r,i) => [...r, v[i]]);
+  for(let i=0;i<n;i++){ let p=i; for(let k=i+1;k<n;k++) if(Math.abs(a[k][i])>Math.abs(a[p][i])) p=k; [a[i],a[p]]=[a[p],a[i]]; if(Math.abs(a[i][i])<1e-12) return null;
+    for(let k=0;k<n;k++) if(k!==i){ const f=a[k][i]/a[i][i]; for(let j=i;j<=n;j++) a[k][j]-=f*a[i][j]; } }
+  return a.map((r,i) => r[n]/r[i]); }
+/* Modèle projectif 1D du plan d’arrivée : s = (a·x + b·y + c) / (d·x + e·y + 1), x = distance depuis la corde, y = hauteur */
+function calculerLigne(){
+  CAM.lig=null; const P=CAL.pts; if(P.length<2) return;
+  const p0=P[0], pN=P[P.length-1], L=Math.hypot(pN.x-p0.x, pN.y-p0.y); if(L<20) return;
+  const ux=(pN.x-p0.x)/L, uy=(pN.y-p0.y)/L, proj=p => (p.x-p0.x)*ux+(p.y-p0.y)*uy;
+  const w=num(C().largeur,1.22), rows=[], rhs=[];
+  P.forEach((p,k) => { const s=proj(p), x=k*w; rows.push([x,0,1,-s*x,0]); rhs.push(s); });
+  let modele=null;
+  if(CAL.hauts.length===2){
+    const H=num(C().hauteurRef,1.5), nL=P.length-1;
+    [[0,CAL.hauts[0]],[nL*w,CAL.hauts[1]]].forEach(([x,p]) => { const s=proj(p); rows.push([x,H,1,-s*x,-s*H]); rhs.push(s); rows.push([x,H,1,-s*x,-s*H]); rhs.push(s); });
+    const At=[0,1,2,3,4].map(j => rows.map(r => r[j])), M=At.map(r => [0,1,2,3,4].map(j => r.reduce((t,v,i) => t+v*rows[i][j],0))), v=At.map(r => r.reduce((t,x,i) => t+x*rhs[i],0));
+    const sol=solve(M,v); if(sol) modele=sol;
+  }
+  const sOf=(x,y) => modele ? (modele[0]*x+modele[1]*y+modele[2])/(modele[3]*x+modele[4]*y+1) : null;
+  let haut=proj(pN); if(modele){ const nL=P.length-1; for(let k=0;k<nL;k++) haut=Math.max(haut, sOf((k+0.5)*w, 2.1)); }
+  let smin=-25, smax=haut+25;
+  const W=CAM.w||1280, Hh=CAM.h||720, dans=s => { const x=p0.x+ux*s, y=p0.y+uy*s; return x>=0 && y>=0 && x<W && y<Hh; };
+  while(smin<0 && !dans(smin)) smin++; while(smax>0 && !dans(smax)) smax--;
+  const n=Math.max(2, Math.min(1000, Math.round(smax-smin)));
+  const zones=[]; const nL=P.length-1;
+  for(let k=0;k<nL;k++){
+    let a,b; if(modele){ a=sOf((k+0.5)*w, num(C().zoneBas,0.9)); b=sOf((k+0.5)*w, num(C().zoneHaut,1.45)); } else { a=proj(P[k]); b=proj(P[k+1]); }
+    const i0=Math.round(Math.min(a,b)-smin), i1=Math.round(Math.max(a,b)-smin);
+    zones.push({c:k+1, i0:Math.max(0,Math.min(n-1,i0)), i1:Math.max(0,Math.min(n-1,i1)), sol:proj(P[k])-smin});
+  }
+  CAM.lig={x0:p0.x, y0:p0.y, ux, uy, smin, smax, n, zones, modele:!!modele};
+}
+async function activerCamera(){
+  if(CAM.actif) return true;
+  try{
+    try{ CAM.flux=await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720}, frameRate:{ideal:120}}}); }
+    catch(e1){ CAM.flux=await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:'environment'}}}); }
+  }catch(e){ toast('Caméra indisponible : autorisez l’accès à la caméra'); return false; }
+  const v=document.createElement('video'); v.playsInline=true; v.muted=true; v.srcObject=CAM.flux; await v.play().catch(()=>{});
+  CAM.video=v; CAM.actif=true; CAM.w=v.videoWidth; CAM.h=v.videoHeight;
+  const st=CAM.flux.getVideoTracks()[0].getSettings(); CAM.fps=st.frameRate||0;
+  CAM.can=document.createElement('canvas'); CAM.ctx=CAM.can.getContext('2d', {willReadFrequently:true});
+  calculerLigne();
+  if('requestVideoFrameCallback' in HTMLVideoElement.prototype) v.requestVideoFrameCallback(surImage); else requestAnimationFrame(surImageRaf);
+  return true;
+}
+let fpsMes=[];
+function surImageRaf(now){ surImage(now,{}); if(CAM.actif && !('requestVideoFrameCallback' in HTMLVideoElement.prototype)) requestAnimationFrame(surImageRaf); }
+function surImage(now, meta){
+  if(!CAM.actif) return;
+  if(CAM.video.requestVideoFrameCallback) CAM.video.requestVideoFrameCallback(surImage);
+  const t = horlogeDePerf(meta.captureTime ?? meta.presentationTime ?? now) - num(C().corrCam,0);
+  fpsMes.push(t); if(fpsMes.length>60) fpsMes.shift(); if(fpsMes.length>10) CAM.fps=(fpsMes.length-1)*1000/(fpsMes[fpsMes.length-1]-fpsMes[0]);
+  if(CAM.video.videoWidth!==CAM.w){ CAM.w=CAM.video.videoWidth; CAM.h=CAM.video.videoHeight; calculerLigne(); }
+  CAM.cadre++;
+  if(vue==='arrivee' && !lectureOuverte && CAM.cadre%3===0) dessinerApercu();
+  const L=CAM.lig; if(!L) return;
+  const enCourse = K.etat==='pret' || K.etat==='partie';
+  if(!enCourse && !CAM.enreg) return;
+  if(enCourse && !CAM.enreg) demarrerEnregistrement();
+  if(CAM.enreg && enLigne()){ const lim=Math.round(Math.max(30,num(C().dureeMemoire,150))*Math.max(20,CAM.fps||30)); if(CAM.cols.length>lim+300){ CAM.cols.splice(0,300); CAM.temps.splice(0,300); } }
+  else if(CAM.enreg && CAM.cols.length>60*400) { arreterEnregistrement('limite'); return; }
+  // lecture de la ligne
+  const xa=L.x0+L.ux*L.smin, ya=L.y0+L.uy*L.smin, xb=L.x0+L.ux*L.smax, yb=L.y0+L.uy*L.smax;
+  const bx=Math.max(0,Math.floor(Math.min(xa,xb))-1), by=Math.max(0,Math.floor(Math.min(ya,yb))-1), bw=Math.min(CAM.w-bx, Math.ceil(Math.abs(xb-xa))+3), bh=Math.min(CAM.h-by, Math.ceil(Math.abs(yb-ya))+3);
+  if(bw<=0||bh<=0) return;
+  if(CAM.can.width<bw || CAM.can.height<bh){ CAM.can.width=Math.max(bw,CAM.can.width); CAM.can.height=Math.max(bh,CAM.can.height); }
+  CAM.ctx.drawImage(CAM.video, bx, by, bw, bh, 0, 0, bw, bh);
+  const img=CAM.ctx.getImageData(0,0,bw,bh).data, n=L.n, col=new Uint8ClampedArray(n*3);
+  for(let i=0;i<n;i++){ const s=L.smin+(L.smax-L.smin)*i/(n-1); const x=Math.round(L.x0+L.ux*s)-bx, y=Math.round(L.y0+L.uy*s)-by;
+    const o=(Math.min(bh-1,Math.max(0,y))*bw+Math.min(bw-1,Math.max(0,x)))*4; col[i*3]=img[o]; col[i*3+1]=img[o+1]; col[i*3+2]=img[o+2]; }
+  CAM.cols.push(col); CAM.temps.push(t);
+  analyser(col, t);
+}
+function demarrerEnregistrement(){ CAM.enreg=true; CAM.cols=[]; CAM.temps=[]; CAM.bg=null; CAM.detect={}; CAM.frac={}; CAM.candidats=[]; CAM.fracG=0; CAM.serie=K.serie; CAM.fin=null; resultatsLecture=null; }
+function arreterEnregistrement(raison){
+  if(!CAM.enreg) return; CAM.enreg=false;
+  if(K.etat==='partie') publierK('fin', {finTs:Date.now()}, false);
+  ouvrirLecture();
+}
+function analyser(col, t){
+  const L=CAM.lig, n=L.n, seuil=num(C().seuilPix,70);
+  if(!CAM.bg){ CAM.bg=new Float32Array(n*3); for(let i=0;i<n*3;i++) CAM.bg[i]=col[i]; return; }
+  const occ=new Uint8Array(n);
+  for(let i=0;i<n;i++){ const d=Math.abs(col[i*3]-CAM.bg[i*3])+Math.abs(col[i*3+1]-CAM.bg[i*3+1])+Math.abs(col[i*3+2]-CAM.bg[i*3+2]); occ[i]=d>seuil?1:0; }
+  const course = K.etat==='partie' && K.departT!=null;
+  const alpha = course ? 0.01 : 0.08;
+  for(let i=0;i<n;i++) if(!occ[i] || !course){ for(let c=0;c<3;c++) CAM.bg[i*3+c]+= (col[i*3+c]-CAM.bg[i*3+c])*alpha; }
+  if(!course || t-K.departT < num(C().tempsMini,2)*1000) return;
+  const s=SER(CAM.serie); if(!s) return;
+  const sz=num(C().seuilZone,0.5);
+  if(enLigne()){
+    let fmax=0; L.zones.forEach(z => { let k=0; for(let i=z.i0;i<=z.i1;i++) k+=occ[i]; fmax=Math.max(fmax, k/Math.max(1,z.i1-z.i0+1)); });
+    if(fmax>=sz && CAM.fracG<sz && (!CAM.candidats.length || t-CAM.candidats[CAM.candidats.length-1]>120)) CAM.candidats.push(t);
+    CAM.fracG=fmax;
+    const el=document.getElementById('detections'); if(el) el.innerHTML=`<span class="det ${CAM.candidats.length?'ok':''}">${CAM.candidats.length} passage${CAM.candidats.length>1?'s':''} détecté${CAM.candidats.length>1?'s':''}</span>`;
+    return;
+  }
+  L.zones.forEach(z => {
+    if(!s.couloirs[z.c] || CAM.detect[z.c]) return;
+    let k=0; for(let i=z.i0;i<=z.i1;i++) k+=occ[i]; const f=k/Math.max(1,z.i1-z.i0+1);
+    const fp=CAM.frac[z.c]??0;
+    if(f>=sz && fp<sz){ const t0=CAM.temps[CAM.temps.length-2]??t, r=(sz-fp)/Math.max(1e-6,f-fp); CAM.detect[z.c]={t:t0+(t-t0)*r, auto:true}; }
+    CAM.frac[z.c]=f;
+  });
+  const attendus=Object.keys(s.couloirs).filter(c => L.zones.some(z => z.c===+c)).length;
+  const vus=Object.keys(CAM.detect).length;
+  if(vus && vus>=attendus && !CAM.fin) CAM.fin=t;
+  if(CAM.fin && t-CAM.fin>2000) arreterEnregistrement('complet');
+  const el=document.getElementById('detections'); if(el) el.innerHTML=htmlDetections();
+}
+function htmlDetections(){
+  const s=SER(CAM.serie)||serieCourante(); if(!s) return '';
+  if(enLigne()) return `<span class="det ${CAM.candidats&&CAM.candidats.length?'ok':''}">${(CAM.candidats||[]).length} passage(s) détecté(s)</span>`;
+  return couloirsDe(s).filter(x => x.a).map(x => { const d=CAM.detect[x.c]; return `<span class="det ${d?'ok':''}">C${x.c} ${d&&K.departT!=null?fT(d.t-K.departT,true):'…'}</span>`; }).join('');
+}
+
+/* =========================================================
+   Lecture du photo-finish
+   ========================================================= */
+let lectureOuverte=false, resultatsLecture=null;
+const LECT={zoom:6, x0:0, couloir:null, base:null, glisse:null};
+function ouvrirLecture(){
+  if(!CAM.cols.length){ toast('Aucune image enregistrée'); return; }
+  const s=SER(CAM.serie)||serieCourante(), n=CAM.lig.n, w=CAM.cols.length;
+  const base=document.createElement('canvas'); base.width=w; base.height=n; const bc=base.getContext('2d'), im=bc.createImageData(w,n);
+  for(let x=0;x<w;x++){ const col=CAM.cols[x]; for(let i=0;i<n;i++){ const y=n-1-i, o=(y*w+x)*4; im.data[o]=col[i*3]; im.data[o+1]=col[i*3+1]; im.data[o+2]=col[i*3+2]; im.data[o+3]=255; } }
+  bc.putImageData(im,0,0); LECT.base=base;
+  const deja=D.resultats[s.id];
+  resultatsLecture={serie:s.id, vent:s.vent??'', lignes:{}};
+  if(enLigne()) LECT.couloir=null;
+  couloirsDe(s).filter(x => x.a).forEach(x => {
+    const v=deja && deja.find(r => r.couloir===x.c);
+    const fs=(K.faux||[]).some(f => f.serie===s.id && f.c===x.c);
+    const auto = enLigne() ? null : (CAM.detect[x.c]?.t??null);
+    resultatsLecture.lignes[x.c] = v ? {t: v.t!=null && K.departT!=null && CAM.serie===s.id ? v.t+K.departT : auto, auto:false, statut:v.statut} : {t:auto, auto:auto!=null, statut:fs?'DQ':(x.a.statut==='abs'?'DNS':'')};
+  });
+  const ts=[...Object.values(resultatsLecture.lignes).map(l => l.t), ...(CAM.candidats||[])].filter(t => t!=null).sort((a,b) => a-b);
+  LECT.zoom=6; LECT.couloir=null;
+  const c0 = ts.length ? colDeTemps(ts[0]) : w-1;
+  lectureOuverte=true; toutRendre();
+  const cv=document.getElementById('pf'); if(cv){ LECT.x0=Math.max(0, c0 - cv.width/LECT.zoom*0.3); dessinerLecture(); }
+}
+function colDeTemps(t){ const T=CAM.temps; if(!T.length) return 0; if(t<=T[0]) return 0; for(let i=1;i<T.length;i++) if(T[i]>=t) return i-1+(t-T[i-1])/(T[i]-T[i-1]); return T.length-1; }
+function tempsDeCol(c){ const T=CAM.temps; const i=Math.max(0,Math.min(T.length-1,Math.floor(c))), f=c-i; return i+1<T.length ? T[i]+(T[i+1]-T[i])*f : T[i]; }
+function dessinerLecture(){
+  const cv=document.getElementById('pf'); if(!cv||!LECT.base) return;
+  const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, L=CAM.lig, n=L.n, z=LECT.zoom, top=22, h=H-top;
+  ctx.fillStyle='#03051A'; ctx.fillRect(0,0,W,H); ctx.imageSmoothingEnabled=false;
+  const vis=W/z; LECT.x0=Math.max(0,Math.min(LECT.base.width-Math.min(vis,LECT.base.width), LECT.x0));
+  ctx.drawImage(LECT.base, LECT.x0, 0, vis, n, 0, top, W, h);
+  const yDe=i => top + (n-1-i)/(n-1)*h;
+  // passages détectés (course sans couloirs)
+  (CAM.candidats||[]).forEach(t => { const x=(colDeTemps(t)-LECT.x0)*z; if(x<0||x>W) return; ctx.fillStyle='#6E97FF'; ctx.beginPath(); ctx.moveTo(x-6,top); ctx.lineTo(x+6,top); ctx.lineTo(x,top+10); ctx.fill(); });
+  // bandes de couloirs
+  if(!enLigne()) L.zones.forEach((zn,k) => { const y0=yDe(zn.i1), y1=yDe(zn.i0);
+    ctx.fillStyle = LECT.couloir===zn.c ? 'rgba(255,46,154,.22)' : (k%2?'rgba(47,107,255,.10)':'rgba(47,107,255,.05)'); ctx.fillRect(0,y0,W,Math.max(2,y1-y0));
+    ctx.fillStyle='#fff'; ctx.font='bold 12px Saira, sans-serif'; ctx.fillText('C'+zn.c, 4, Math.min(H-2,(y0+y1)/2+4)); });
+  // repères de temps
+  if(K.departT!=null){
+    ctx.fillStyle='#0A0F33'; ctx.fillRect(0,0,W,top); ctx.fillStyle='#8E97D6'; ctx.font='11px Saira, sans-serif';
+    const tA=tempsDeCol(LECT.x0), tB=tempsDeCol(LECT.x0+vis), span=tB-tA, pas=span>4000?1000:span>800?100:span>150?20:10;
+    for(let t=Math.ceil((tA-K.departT)/pas)*pas; t<=tB-K.departT; t+=pas){ const x=(colDeTemps(t+K.departT)-LECT.x0)*z; ctx.fillRect(x,top-6,1,6); if(t%(pas*5)===0||pas>=100) ctx.fillText((t/1000).toFixed(pas>=100?1:2), x+2, 12); }
+  }
+  // marques
+  const s=SER(resultatsLecture?.serie);
+  Object.entries(resultatsLecture?.lignes||{}).forEach(([c,l]) => { if(l.t==null) return; const zn=L.zones.find(q => q.c===+c); const x=(colDeTemps(l.t)-LECT.x0)*z; if(x<0||x>W) return;
+    ctx.strokeStyle = l.auto ? '#6E97FF' : '#FF2E9A'; ctx.lineWidth=2; ctx.setLineDash(l.auto?[5,4]:[]); ctx.beginPath();
+    const y0=zn?yDe(zn.i1)-6:top, y1=zn?yDe(zn.i0)+6:H; ctx.moveTo(x,y0); ctx.lineTo(x,y1); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle=ctx.strokeStyle; ctx.font='bold 12px Saira, sans-serif'; ctx.fillText((enLigne()?'#'+(A(s?.couloirs[c])?.dossard||c):'C'+c)+' '+(K.departT!=null?fT(l.t-K.departT,true):''), x+4, enLigne()?top+14+(+c%6)*14:Math.max(top+12,y0+12)); });
+  const sl=document.getElementById('pfPos'); if(sl){ sl.max=Math.max(0,LECT.base.width-vis); sl.value=LECT.x0; }
+}
+function pointerSurImage(ev){
+  const cv=document.getElementById('pf'), r=cv.getBoundingClientRect(), x=(ev.clientX-r.left)*cv.width/r.width, y=(ev.clientY-r.top)*cv.height/r.height;
+  const L=CAM.lig, n=L.n, top=22, h=cv.height-top; if(y<top) return;
+  const i=Math.round((1-(y-top)/h)*(n-1));
+  const col=LECT.x0+x/LECT.zoom; let t=tempsDeCol(col);
+  const sPix=L.smin+(L.smax-L.smin)*i/(n-1), yImg=L.y0+L.uy*sPix; t+=num(C().rolling,0)*(yImg/(CAM.h||1));
+  let c=LECT.couloir; if(!c && !enLigne()){ const zn=L.zones.find(q => i>=q.i0 && i<=q.i1 && resultatsLecture.lignes[q.c]); c=zn?zn.c:null; }
+  if(!c && enLigne()){ choisirAthleteLecture(t); return; }
+  if(!c || !resultatsLecture.lignes[c]){ toast('Choisissez d’abord le couloir à pointer'); return; }
+  resultatsLecture.lignes[c]={...resultatsLecture.lignes[c], t, auto:false};
+  const suiv=Object.entries(resultatsLecture.lignes).find(([k,l]) => l.t==null && !l.statut); LECT.couloir = suiv ? +suiv[0] : null;
+  rendreTableLecture(); dessinerLecture();
+}
+function choisirAthleteLecture(t){
+  const s=SER(resultatsLecture.serie), L=Object.entries(resultatsLecture.lignes).map(([c,l]) => ({c:+c, a:A(s.couloirs[c]), ...l})).sort((x,y) => (x.t!=null)-(y.t!=null) || (parseInt(x.a?.dossard)||0)-(parseInt(y.a?.dossard)||0));
+  LECT.tEnAttente=t;
+  ouvrirModale(`<h3>Qui franchit la ligne à ${K.departT!=null?fT(t-K.departT,true):''} ?</h3><p class="discret">Repérez le dossard sur l’image, puis touchez l’athlète. Ceux déjà pointés sont en fin de liste.</p>
+    <input id="filtreAth" type="text" placeholder="Dossard ou nom" autocomplete="off" style="margin-bottom:10px">
+    <div class="grille-couloirs" id="listeAth">${L.map(x => `<button class="btn" data-act="assigner" data-c="${x.c}" data-f="${esc(norm2((x.a?.dossard||'')+' '+nomComplet(x.a)))}"><b>${esc(x.a?.dossard||'–')}</b> ${esc(nomComplet(x.a))}${x.t!=null?' <span class="etiq">déjà pointé</span>':''}</button>`).join('')}</div>`);
+  setTimeout(() => document.getElementById('filtreAth')?.focus(), 50);
+}
+function norm2(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function rendreTableLecture(){ const el=document.getElementById('tableLecture'); if(el) el.innerHTML=htmlTableLecture(); }
+function htmlTableLecture(){
+  const s=SER(resultatsLecture.serie), lignes=Object.entries(resultatsLecture.lignes).map(([c,l]) => ({c:+c, a:A(s.couloirs[c]), ...l}));
+  if(enLigne()) lignes.sort((x,y) => (x.t==null)-(y.t==null) || (x.t??0)-(y.t??0));
+  const ord=lignes.filter(l => l.t!=null && !l.statut).sort((a,b) => a.t-b.t);
+  return `<table><thead><tr><th>${enLigne()?'Dossard':'Couloir'}</th><th>Athlète</th><th class="num">Temps lu</th><th class="num">Officiel</th><th class="num">Place</th><th>Statut</th><th></th></tr></thead><tbody>
+    ${lignes.map(l => `<tr class="${LECT.couloir===l.c?'au-saut':''}"><td><b>${enLigne()?esc(l.a?.dossard||'–'):'C'+l.c}</b></td><td>${esc(nomComplet(l.a))}</td>
+      <td class="num">${l.t!=null&&K.departT!=null?fT(l.t-K.departT,true)+(l.auto?' <span class="etiq">auto</span>':''):'–'}</td>
+      <td class="num"><b>${l.t!=null&&K.departT!=null&&!l.statut?fT(l.t-K.departT):''}</b></td><td class="num">${ord.indexOf(ord.find(o => o.c===l.c))+1||''}</td>
+      <td><select data-statut="${l.c}">${['','DNF','DNS','DQ'].map(v => `<option value="${v}" ${l.statut===v?'selected':''}>${v||'Classé'}</option>`).join('')}</select></td>
+      <td><button class="btn petit" data-act="pointer" data-c="${l.c}">Pointer</button><button class="btn petit" data-act="saisirTemps" data-c="${l.c}">Saisir</button></td></tr>`).join('')}</tbody></table>`;
+}
+function validerLecture(){
+  const s=SER(resultatsLecture.serie); if(!s) return;
+  if(K.departT==null && Object.values(resultatsLecture.lignes).some(l => l.t!=null)){ toast('Pas d’heure de départ pour cette course'); return; }
+  D.resultats[s.id]=Object.entries(resultatsLecture.lignes).map(([c,l]) => ({couloir:+c, id:s.couloirs[c], t:l.t!=null&&!l.statut?l.t-K.departT:null, statut:l.statut||(l.t==null?'DNF':'')}));
+  s.vent = resultatsLecture.vent===''?null:num(resultatsLecture.vent,null);
+  publierD(false); publierK('valide', {serie:s.id}, false);
+  lectureOuverte=false; toast('Résultats validés et affichés'); toutRendre();
+}
+function serieSuivante(){
+  const i=D.series.findIndex(x => x.id===D.courante); const s=D.series[i+1]; if(!s){ toast('C’était la dernière série'); return; }
+  choisirSerie(s.id);
+}
+function choisirSerie(id){ D.courante=id; publierD(false); publierK('attente', {serie:id, departT:null, faux:[]}); CAM.cols=[]; CAM.temps=[]; lectureOuverte=false; toutRendre(); }
+function telechargerImage(){
+  if(!LECT.base) return; const s=SER(resultatsLecture?.serie);
+  LECT.base.toBlob(async b => { const nom=`photo-finish-${(s?.nom||'serie').replace(/\s+/g,'-').toLowerCase()}.png`;
+    if(telechargement){ try{ await telechargement.save({filename:nom, data:b}); return; }catch(e){ if(e&&e.code==='cancelled') return; } }
+    try{ const u=URL.createObjectURL(b), l=document.createElement('a'); l.href=u; l.download=nom; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),3000); }catch(e){ toast('Téléchargement indisponible ici'); } }, 'image/png');
+}
+
+/* ---------- Aperçu caméra et calibration ---------- */
+function dessinerApercu(){
+  const cv=document.getElementById('apercu'); if(!cv||!CAM.video) return;
+  const W=cv.width=cv.clientWidth*(window.devicePixelRatio>1?1.5:1), H=cv.height=Math.round(W*(CAM.h||9)/(CAM.w||16)), k=W/(CAM.w||1);
+  const ctx=cv.getContext('2d'); ctx.drawImage(CAM.video,0,0,W,H);
+  ctx.lineWidth=2;
+  if(CAM.lig){ const L=CAM.lig; ctx.strokeStyle='#2F6BFF'; ctx.beginPath(); ctx.moveTo((L.x0+L.ux*L.smin)*k,(L.y0+L.uy*L.smin)*k); ctx.lineTo((L.x0+L.ux*L.smax)*k,(L.y0+L.uy*L.smax)*k); ctx.stroke();
+    if(L.modele){ ctx.strokeStyle='rgba(255,46,154,.9)'; ctx.lineWidth=6; L.zones.forEach(z => { const a=L.smin+z.i0, b=L.smin+z.i1; ctx.beginPath(); ctx.moveTo((L.x0+L.ux*a)*k+6,(L.y0+L.uy*a)*k); ctx.lineTo((L.x0+L.ux*b)*k+6,(L.y0+L.uy*b)*k); ctx.stroke(); }); ctx.lineWidth=2; } }
+  CAL.pts.forEach((p,i) => { ctx.fillStyle='#FF2E9A'; ctx.beginPath(); ctx.arc(p.x*k,p.y*k,6,0,7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 13px Saira, sans-serif'; ctx.fillText(i===0?'corde':String(i), p.x*k+9, p.y*k+4); });
+  CAL.hauts.forEach((p,i) => { ctx.fillStyle='#FFD23F'; ctx.fillRect(p.x*k-6,p.y*k-6,12,12); });
+  if(CAM.enreg){ ctx.fillStyle='#FF2E9A'; ctx.beginPath(); ctx.arc(18,18,8,0,7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 14px Saira'; ctx.fillText('REC '+CAM.cols.length, 32, 23); }
+}
+function tapApercu(ev){
+  if(!CAM.calTap) return; const cv=document.getElementById('apercu'), r=cv.getBoundingClientRect();
+  const x=(ev.clientX-r.left)/r.width*CAM.w, y=(ev.clientY-r.top)/r.height*CAM.h;
+  if(CAM.calTap==='couloirs'){ CAL.pts.push({x,y}); const need=(+C().nbCouloirs||8)+1; if(CAL.pts.length>=need){ CAM.calTap=null; toast('Couloirs calibrés'); } }
+  else if(CAM.calTap==='hauteur'){ CAL.hauts.push({x,y}); if(CAL.hauts.length>=2){ CAM.calTap=null; toast('Hauteur calibrée'); } }
+  try{ localStorage.setItem(CLE_CAL, JSON.stringify(CAL)); }catch(e){}
+  calculerLigne(); toutRendre();
+}
+/* =========================================================
+   Chargement d’un listing d’athlètes (Excel, CSV, collage)
+   ========================================================= */
+const XLSX_URL = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+let xlsxCharge = null;
+function chargerXLSX(){
+  if(window.XLSX) return Promise.resolve();
+  if(!xlsxCharge) xlsxCharge = new Promise((ok,ko) => { const s=document.createElement('script'); s.src=XLSX_URL; s.onload=ok; s.onerror=ko; document.head.appendChild(s); });
+  return xlsxCharge;
+}
+function normEntete(s){ return String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim(); }
+const ALIAS_COMMUNS = {
+  dossard:['dossard','dos','doss','bib','numero','num','n','no','numero dossard'],
+  licence:['licence','license','lic','n licence','no licence','numero licence','num licence','licence ffa','numero de licence','n de licence'],
+  prenom:['prenom','first name','firstname','prenoms'],
+  nom:['nom','nom de famille','last name','lastname','surname'],
+  nomcomplet:['athlete','athletes','nom prenom','nom et prenom','concurrent','participant','identite'],
+  club:['club','equipe','structure','club ffa','association'],
+  sexe:['sexe','genre','sex','s'],
+  cat:['categorie','cat','category'],
+  naissance:['annee','naissance','date de naissance','ne le','nee le','an','annee de naissance','ddn']
+};
+function aliasListing(){ return {...ALIAS_COMMUNS, ...(LISTING.alias||{})}; }
+function cleDeColonne(h){
+  const n = normEntete(h); if(!n) return null;
+  const al = aliasListing();
+  for(const [k,v] of Object.entries(al)) if(v.includes(n)) return k;
+  for(const [k,v] of Object.entries(al)) if(v.some(x => x.length>3 && n.startsWith(x))) return k;
+  const mots = ' '+n+' ';
+  for(const [k,v] of Object.entries(al)) if(v.some(x => x.length>4 && mots.includes(' '+x+' '))) return k;
+  return null;
+}
+function analyserCSV(txt){
+  const l1 = (txt.split(/\r?\n/).find(x => x.trim())||'');
+  const sep = [';','\t',','].map(s => [s, l1.split(s).length]).sort((a,b) => b[1]-a[1])[0][0];
+  const rows=[]; let row=[], cell='', q=false;
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(q){ if(c==='"'){ if(txt[i+1]==='"'){ cell+='"'; i++; } else q=false; } else cell+=c; continue; }
+    if(c==='"') q=true;
+    else if(c===sep){ row.push(cell); cell=''; }
+    else if(c==='\n' || c==='\r'){ if(c==='\r' && txt[i+1]==='\n') i++; row.push(cell); rows.push(row); row=[]; cell=''; }
+    else cell+=c;
+  }
+  if(cell!=='' || row.length){ row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(x => x.trim())).filter(r => r.some(x => x));
+}
+function separerNomComplet(t){
+  const mots = String(t||'').trim().split(/\s+/); if(mots.length<2) return {nom:t||'', prenom:''};
+  const maj = mots.filter(m => m===m.toUpperCase() && /[A-ZÀ-Ý]/.test(m));
+  if(maj.length && maj.length<mots.length) return {nom:maj.join(' '), prenom:mots.filter(m => !maj.includes(m)).join(' ')};
+  return {nom:mots[0], prenom:mots.slice(1).join(' ')};
+}
+function normSexe(v){ v=normEntete(v); if(!v) return ''; if(/^(f|w|femme|feminin|fille|d|dame)/.test(v)) return 'F'; if(/^(h|m|homme|masculin|garcon|g)/.test(v)) return 'H'; return ''; }
+function lignesVersObjets(rows){
+  if(!rows.length) return {objets:[], colonnes:[]};
+  let ent=-1, map=null;
+  for(let i=0;i<Math.min(rows.length,10);i++){
+    const m = rows[i].map(cleDeColonne);
+    if(m.filter(Boolean).length>=2){ ent=i; map=m; break; }
+  }
+  if(!map){ map = LISTING.ordre.slice(); ent=-1; }
+  const objets=[];
+  rows.slice(ent+1).forEach(r => {
+    const o={};
+    map.forEach((k,j) => { if(k && r[j]!=null && String(r[j]).trim()!=='' && o[k]==null) o[k]=String(r[j]).trim(); });
+    if(o.nomcomplet && !o.nom){ Object.assign(o, separerNomComplet(o.nomcomplet)); }
+    if(!o.nom && !o.prenom) return;
+    if(o.sexe!=null) o.sexe = normSexe(o.sexe);
+    objets.push(o);
+  });
+  return {objets, colonnes:[...new Set(map.filter(Boolean))]};
+}
+let importEnAttente = null;
+function proposerImport(rows, source){
+  const {objets, colonnes} = lignesVersObjets(rows);
+  if(!objets.length){ toast('Aucun athlète reconnu dans '+source); return; }
+  proposerObjets(objets, colonnes);
+}
+function proposerObjets(objets, colonnes, fictif){
+  importEnAttente = objets;
+  const lib = {dossard:'Dossard',licence:'Licence',prenom:'Prénom',nom:'Nom',nomcomplet:'Nom complet',club:'Club',sexe:'Sexe',cat:'Catégorie',naissance:'Naissance', ...(LISTING.libelles||{})};
+  const cols = ['dossard','licence','nom','prenom','club','sexe','cat', ...Object.keys(LISTING.libelles||{})].filter(k => objets.some(o => o[k]!=null));
+  ouvrirModale(`<h3>${objets.length} athlète${objets.length>1?'s':''} ${fictif?'fictif':'trouvé'}${objets.length>1?'s':''}</h3>
+    <p class="discret">${fictif ? 'Athlètes fictifs pour la formation et les tests : licences commençant par FORM, club « TEAMBRO Formation ».' : 'Colonnes reconnues : '+colonnes.map(c => lib[c]||c).join(', ')+'.'}</p>
+    <div class="defil" style="max-height:240px;overflow:auto"><table><thead><tr>${cols.map(c => `<th>${lib[c]||c}</th>`).join('')}</tr></thead>
+    <tbody>${objets.slice(0,8).map(o => `<tr>${cols.map(c => `<td>${esc(o[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    ${objets.length>8?`<p class="discret">… et ${objets.length-8} autre${objets.length-8>1?'s':''}.</p>`:''}
+    <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="impRemplacer" ${fictif?'checked':''}> Remplacer la liste actuelle</label>
+    <div class="actions"><button class="btn bleu" data-act="okImport">Importer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+}
+async function lireFichierListing(f){
+  if(!f) return;
+  try{
+    if(/\.(xlsx|xlsm|xls|ods)$/i.test(f.name)){
+      await chargerXLSX();
+      const wb = XLSX.read(await f.arrayBuffer(), {type:'array'});
+      const ws = wb.Sheets[wb.SheetNames.find(n => /particip|athl|engag|inscri|liste/i.test(n)) || wb.SheetNames[0]];
+      proposerImport(XLSX.utils.sheet_to_json(ws, {header:1, raw:false, defval:''}).map(r => r.map(x => String(x??'').trim())), f.name);
+    } else {
+      const buf = await f.arrayBuffer();
+      let t = new TextDecoder('utf-8').decode(buf);
+      if(t.includes('\uFFFD')) t = new TextDecoder('windows-1252').decode(buf);
+      proposerImport(analyserCSV(t.replace(/^\uFEFF/,'')), f.name);
+    }
+  }catch(e){ toast('Lecture impossible : '+(/\.(xlsx|xls|ods)$/i.test(f.name)?'le lecteur Excel n’a pas pu se charger, enregistrez le fichier en CSV':'fichier illisible')); }
+}
+document.addEventListener('change', e => { if(e.target && e.target.id==='fichierListing'){ lireFichierListing(e.target.files[0]); e.target.value=''; } });
+function htmlImport(){
+  return `<section class="bloc"><h2>Charger un listing</h2>
+    <p class="discret">Fichier Excel (.xlsx, .xls, .ods) ou CSV exporté de votre logiciel d’engagements. La première ligne peut contenir les titres de colonnes : ${LISTING.aide}. Sans titres, l’ordre attendu est : ${LISTING.ordre.map(k => ({dossard:'dossard',licence:'licence',prenom:'prénom',nom:'nom',club:'club',sexe:'sexe',cat:'catégorie', ...(LISTING.libelles||{})})[k]||k).join(' ; ')}.</p>
+    <div class="actions" style="margin-top:6px"><label class="btn bleu" style="cursor:pointer">Choisir un fichier<input id="fichierListing" type="file" accept=".csv,.txt,.tsv,.xlsx,.xls,.xlsm,.ods" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
+    <h3 style="margin-top:16px">Ou coller depuis un tableur</h3>
+    <textarea id="collage" placeholder="${esc(LISTING.exemple)}"></textarea>
+    <div class="actions"><button class="btn" data-act="coller">Analyser le collage</button></div>
+    <h3 style="margin-top:16px">Liste fictive pour la formation</h3>
+    <p class="discret">Génère des athlètes imaginaires avec licence, club, catégorie et performances crédibles, pour former les juges ou tester l’app sans vraie liste.</p>
+    <div class="actions"><button class="btn rose" data-act="listeFictive">Créer une liste fictive</button>${typeof simulerDemo==='function'?'<button class="btn" data-act="simulerDemo">Charger des résultats fictifs</button>':''}</div>
+  </section>`;
+}
+/* ---------- Liste fictive (formation, tests) ---------- */
+const PRENOMS_F=['Léa','Inès','Chloé','Manon','Jade','Lina','Zoé','Emma','Louise','Alice','Camille','Sarah','Nina','Maëlys','Lou','Rose','Anaïs','Clara','Yasmine','Eva','Lucie','Margaux','Océane','Mila'];
+const PRENOMS_H=['Léo','Hugo','Tom','Nathan','Lucas','Enzo','Noah','Adam','Louis','Gabriel','Yanis','Théo','Rayan','Sacha','Maxime','Jules','Ethan','Mathis','Nolan','Bilal','Axel','Kylian','Rémi','Samuel'];
+const NOMS=['MARTIN','BERNARD','DUBOIS','THOMAS','ROBERT','RICHARD','PETIT','DURAND','LEROY','MOREAU','SIMON','LAURENT','LEFEBVRE','MICHEL','GARCIA','DAVID','BERTRAND','ROUX','VINCENT','FOURNIER','MOREL','GIRARD','ANDRE','MERCIER','BLANC','GUERIN','BOYER','FAURE','ROUSSEL','CHEVALIER','BONNET','FRANCOIS','LAMBERT','FONTAINE','ROUSSEAU','MASSON','NICOLAS','HENRY','DUMAS','BRUN'];
+const CLUBS=['TEAMBRO Formation','TEAMBRO Formation Nord','TEAMBRO Formation Sud','TEAMBRO Formation Est'];
+const CATS=['U16','U18','U20','Senior'];
+function hasard(a,b){ return a+Math.random()*(b-a); }
+function choix(t){ return t[Math.floor(Math.random()*t.length)]; }
+function genererFictifs(n, sexe){
+  const pris=new Set(), L=[];
+  for(let i=0;i<n;i++){
+    const sx = sexe==='mixte' ? (i%2?'H':'F') : sexe;
+    let pr, nm, k=0; do{ pr=choix(sx==='F'?PRENOMS_F:PRENOMS_H); nm=choix(NOMS); k++; } while(pris.has(pr+nm) && k<50); pris.add(pr+nm);
+    const niveau=Math.random();
+    const o={dossard:String(100+i+1), licence:'FORM'+String(Math.floor(hasard(100000,999999))), prenom:pr, nom:nm, club:choix(CLUBS), sexe:sx, cat:choix(CATS)};
+    if(LISTING.fictif) LISTING.fictif(o, i, n, niveau);
+    L.push(o);
+  }
+  return L;
+}
+function fP(v){ return (Math.round(v*100)/100).toFixed(2).replace('.',','); }
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return;
+  if(b.dataset.act==='listeFictive'){
+    ouvrirModale(`<h3>Créer une liste fictive</h3><p class="discret">Pour la formation et les tests. Les athlètes sont imaginaires et faciles à repérer (licence FORM…, club TEAMBRO Formation).</p>
+      <div class="grille" style="grid-template-columns:1fr 1fr">
+        <label class="champ">Nombre d’athlètes<select id="fxN">${[6,8,10,12,16,24,32].map(n => `<option value="${n}" ${n===(LISTING.fictifDefaut||12)?'selected':''}>${n}</option>`).join('')}</select></label>
+        <label class="champ">Sexe<select id="fxS"><option value="F">Femmes</option><option value="H">Hommes</option><option value="mixte">Mixte</option></select></label>
+      </div>
+      <div class="actions"><button class="btn bleu" data-act="okFictive">Générer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+  } else if(b.dataset.act==='okFictive'){
+    const n=+document.getElementById('fxN').value, sx=document.getElementById('fxS').value;
+    proposerObjets(genererFictifs(n, sx), [], true);
+  }
+});
+
+/* Engagés envoyés par l’artefact principal #TEAMBRO Athlé */
+window.addEventListener('message', ev => { const m=ev.data; if(m && m.tb && m.op==='engages' && ev.source===window.parent && Array.isArray(m.objets)){ if(!m.objets.length){ toast('Aucun engagé pour cette épreuve'); return; } proposerObjets(m.objets, [], false); } });
+
+/* =========================================================
+   Rendu
+   ========================================================= */
+const ETATS={attente:'En attente', pret:'À vos marques', partie:'Course en cours', rappel:'Faux départ', fin:'Lecture du photo-finish', valide:'Résultats officiels'};
+function estTV(){ return vue==='tv'; }
+function toutRendre(){
+  document.getElementById('sousTitre').textContent=[C().nom, C().epreuve].filter(Boolean).join(', ');
+  if(estTV()){ rendreTV(); return; }
+  document.getElementById('onglets').innerHTML=VUES.map(([k,l]) => `<button role="tab" aria-selected="${vue===k}" class="${k==='tv'?'tv-lien':''}" data-act="vue" data-v="${k}">${l}</button>`).join('');
+  const f=({courses:vCourses, depart:vDepart, arrivee:vArrivee, reglages:vReglages})[vue]||vCourses;
+  document.getElementById('vue').innerHTML=f();
+  if(vue==='arrivee' && lectureOuverte) requestAnimationFrame(() => { const cv=document.getElementById('pf'); if(cv){ cv.width=cv.clientWidth*(devicePixelRatio>1?1.5:1); cv.height=Math.round(Math.min(520, Math.max(260, CAM.lig.n))*(devicePixelRatio>1?1.5:1)); dessinerLecture(); } });
+  majSync(T.mode==='claude'?(T.db?'ok':'local'):'');
+}
+function htmlTours(){ if(!enLigne()||K.tours==null||K.etat!=='partie') return ''; const p=K.passages||[], dern=p.length>1?p[p.length-1]-p[p.length-2]:(p.length&&K.departT!=null?p[0]-K.departT:null);
+  return `<div class="tours ${K.tours===1?'cloche':''}"><span>${K.tours===0?'Arrivée':K.tours===1?'Dernier tour':'Tours restants'}</span><b>${K.tours>1?K.tours:''}</b>${dern!=null?`<small>dernier tour de la tête : ${fT(dern,true).slice(0,-1)}</small>`:''}<button class="btn bleu" data-act="tour">Passage de la tête</button></div>`; }
+function htmlEtat(){ return `${htmlTours()}<div class="etat-course e-${K.etat}"><span>${ETATS[K.etat]||K.etat}</span><b id="chronoCourse">${K.etat==='partie'&&K.departT!=null?fT(horlogeArrivee()-K.departT,true).slice(0,-2):'0.0'}</b></div>`; }
+function htmlSerieCompacte(s){ if(!s) return '<p class="discret">Aucune série : créez-les dans l’onglet « Séries ».</p>';
+  return `<div class="couloirs-mini">${couloirsDe(s).map(x => `<div class="${x.a?'':'vide'}"><b>${x.c}</b><span>${x.a?esc(nomComplet(x.a)):'–'}</span></div>`).join('')}</div>`; }
+function vCourses(){
+  const s=serieCourante();
+  return `<section class="bloc"><div class="tete-bloc"><h2>Séries ${esc(C().epreuve)}</h2>
+      <div class="actions" style="margin:0"><button class="btn" data-act="construire">Construire les séries</button><button class="btn" data-act="ajoutSerie">Ajouter une série</button></div></div>
+    ${D.series.length ? D.series.map(sr => { const res=D.resultats[sr.id]; return `<div class="serie ${sr.id===s?.id?'active':''}">
+      <div class="serie-tete"><h3>${esc(sr.nom)}</h3>${res?'<span class="etiq bleu">Résultats validés</span>':''}${sr.id===s?.id?`<span class="etiq rose">Série en cours · ${ETATS[K.etat]}</span>`:`<button class="btn petit" data-act="choisirSerie" data-id="${sr.id}">En faire la série en cours</button>`}
+        <button class="btn petit" data-act="renommerSerie" data-id="${sr.id}">Renommer</button><button class="btn petit" data-act="supprSerie" data-id="${sr.id}">Supprimer</button></div>
+      <div class="defil"><table><thead><tr><th>${enLigne()?'N°':'Couloir'}</th><th>Athlète</th><th>Club</th><th class="num">Temps</th><th class="num">Place</th></tr></thead><tbody>
+      ${couloirsDe(sr).map(x => { const r=(res?lignesResultats(sr):[]).find(q => q.couloir===x.c);
+        return `<tr><td><b>${enLigne()?x.c+'.':x.c}</b></td><td><select data-couloir="${x.c}" data-serie="${sr.id}"><option value="">–</option>${D.athletes.map(a => `<option value="${a.id}" ${x.a&&x.a.id===a.id?'selected':''}>${esc((a.dossard?a.dossard+' · ':'')+nomComplet(a))}</option>`).join('')}</select></td>
+        <td>${esc(x.a?.club||'')}</td><td class="num"><b>${r?(r.statut||fT(r.t)):''}</b></td><td class="num">${r&&r.place&&!r.statut?r.place:''}</td></tr>`; }).join('')}
+      ${enLigne()?`<tr><td>+</td><td><select data-couloir="${Math.max(0,...Object.keys(sr.couloirs).map(Number))+1}" data-serie="${sr.id}"><option value="">Ajouter un athlète…</option>${D.athletes.filter(a => !Object.values(sr.couloirs).includes(a.id)).map(a => `<option value="${a.id}">${esc((a.dossard?a.dossard+' · ':'')+nomComplet(a))}</option>`).join('')}</select></td><td></td><td></td><td></td></tr>`:''}
+      </tbody></table></div>${sr.vent!=null?`<p class="discret">Vent : ${sr.vent>0?'+':''}${String(sr.vent).replace('.',',')} m/s</p>`:''}</div>`; }).join('') : '<p class="discret">Pas encore de série. Chargez un listing (avec colonnes Série et Couloir si vous les avez), puis « Construire les séries ».</p>'}
+  </section>
+  <section class="bloc"><div class="tete-bloc"><h2>Classement général</h2><div class="actions" style="margin:0"><button class="btn bleu" data-act="csv">Télécharger le CSV</button></div></div>
+    ${(() => { const L=classementGeneral(); return L.length?`<div class="defil"><table><thead><tr><th class="num">Rang</th><th>Doss.</th><th>Licence</th><th>Athlète</th><th>Club</th><th>Série</th><th class="num">Temps</th></tr></thead><tbody>${L.map(x => { const a=A(x.id); return `<tr><td class="num"><b>${x.rang}</b></td><td>${esc(a?.dossard||'')}</td><td>${esc(a?.licence||'')}</td><td>${esc(nomComplet(a))}</td><td>${esc(a?.club||'')}</td><td>${esc(x.serie.nom)}</td><td class="num"><b>${fT(x.t)}</b></td></tr>`; }).join('')}</tbody></table></div>`:'<p class="discret">Aucun résultat validé.</p>'; })()}
+    <div class="grille" style="margin-top:12px">${sel('tvMode','La télé affiche',[['serie','Les résultats de la série'],['general','Le classement général']])}</div></section>
+  ${htmlOfficiels()}
+  <section class="bloc"><h2>Athlètes</h2>
+    <div class="grille"><label class="champ">Dossard<input id="nDos" type="text"></label><label class="champ">Licence<input id="nLic" type="text" inputmode="numeric"></label><label class="champ">Prénom<input id="nPre" type="text"></label><label class="champ">Nom<input id="nNom" type="text"></label><label class="champ">Club<input id="nClub" type="text"></label>
+    <label class="champ">Sexe<select id="nSexe"><option value="F">Femme</option><option value="H">Homme</option></select></label><label class="champ">Catégorie<input id="nCat" type="text"></label><label class="champ">Série<input id="nSer" type="text" placeholder="ex. 1"></label><label class="champ">Couloir<input id="nCou" type="number" min="1" max="10"></label></div>
+    <div class="actions"><button class="btn bleu" data-act="ajouter">Ajouter</button></div>
+    ${D.athletes.length?`<div class="defil" style="margin-top:12px"><table><thead><tr><th>Doss.</th><th>Licence</th><th>Athlète</th><th>Club</th><th>Cat.</th><th>Série</th><th>Couloir</th><th></th></tr></thead><tbody>${D.athletes.map(a => `<tr><td>${esc(a.dossard)}</td><td>${esc(a.licence||'')}</td><td>${esc(nomComplet(a))}</td><td>${esc(a.club)}</td><td>${esc(a.cat||'')}</td><td>${esc(a.serie||'')}</td><td>${esc(a.couloir||'')}</td><td><button class="btn petit" data-act="supprimer" data-id="${a.id}">Retirer</button></td></tr>`).join('')}</tbody></table></div>`:''}
+  </section>
+  ${htmlImport()}`;
+}
+function vDepart(){
+  const s=serieCourante(), ici=C().modeDepart==='depart';
+  return `<section class="bloc depart">
+    <div class="tete-bloc"><h2>${esc(s?.nom||'Aucune série')} · ${esc(C().epreuve)}</h2><span class="discret" id="etatSynchro">${htmlSynchro()}</span></div>
+    ${htmlEtat()}
+    ${!ici?`<div class="info">${C().modeDepart==='micro'?'Le coup de pistolet est écouté par le téléphone de l’arrivée.':'Départ manuel : le bouton « Départ » ci-dessous donne le top.'} Ce téléphone sert de télécommande.</div>`:''}
+    <div class="boutons-depart">
+      <button class="btn bleu geant" data-act="pret" ${K.etat==='partie'?'disabled':''}>Prêt<small>à vos marques, micro armé</small></button>
+      <button class="btn rose geant" data-act="rappel" ${K.etat!=='partie'&&K.etat!=='pret'?'disabled':''}>Faux départ<small>rappel manuel</small></button>
+      <button class="btn geant" data-act="departManuel" ${K.etat==='partie'?'disabled':''}>Départ manuel<small>sans pistolet</small></button>
+      <button class="btn geant" data-act="annulerCourse">Annuler<small>retour en attente</small></button>
+      ${K.etat==='valide'||K.etat==='fin'?`<button class="btn geant" data-act="serieSuivante">Série suivante<small>${esc(D.series[D.series.findIndex(x => x.id===D.courante)+1]?.nom||'dernière série')}</small></button>`:''}
+    </div>
+    ${ici?htmlMicro():''}
+    ${htmlSerieCompacte(s)}
+    ${(K.faux||[]).filter(f => f.serie===s?.id).length?`<p class="discret">Faux départs de la série : ${(K.faux||[]).filter(f => f.serie===s?.id).map(f => f.c?'couloir '+f.c:'sans sanction').join(', ')}.</p>`:''}
+  </section>`;
+}
+function htmlMicro(){
+  return `<div class="micro"><div class="vumetre" id="vumetre"><i></i><em></em></div>
+    <div class="grille" style="grid-template-columns:1fr auto"><label class="champ">Sensibilité du déclenchement <small>plus bas = plus sensible ; le trait rose est le seuil</small><input type="range" min="0.03" max="0.95" step="0.01" data-cfg="sensibilite" value="${C().sensibilite}"></label>
+    <button class="btn" data-act="activerMicro">${MIC.ctx?'Micro actif':'Activer le micro'}</button></div>
+    <p class="discret">Après un coup de pistolet, un second coup dans les ${C().fenetreFaux} s est compris comme un rappel pour faux départ.</p></div>`;
+}
+function vArrivee(){
+  if(lectureOuverte && resultatsLecture){ const s=SER(resultatsLecture.serie);
+    return `<section class="bloc"><div class="tete-bloc"><h2>Photo-finish · ${esc(s?.nom||'')}</h2><span class="discret">${CAM.cols.length} images · ${Math.round(CAM.fps)} im/s · départ ${esc(K.departSrc||'')}</span></div>
+      <p class="discret">Pointez le torse (pas la tête, les bras ni les jambes) de chaque athlète au moment où il touche la ligne. Choisissez un couloir avec « Pointer », puis touchez l’image. Traits bleus pointillés : détection automatique à vérifier ; traits roses : pointage du juge.</p>
+      <canvas id="pf" class="pf"></canvas>
+      <input id="pfPos" type="range" min="0" max="100" value="0" step="0.5" style="width:100%" aria-label="Défiler dans le temps">
+      <div class="actions"><button class="btn" data-act="zoom" data-z="0.5">Zoom −</button><button class="btn" data-act="zoom" data-z="2">Zoom +</button><button class="btn" data-act="allerPremier">Première arrivée</button><button class="btn" data-act="imagePF">Télécharger l’image</button></div>
+      <div class="defil" id="tableLecture" style="margin-top:12px">${htmlTableLecture()}</div>
+      <div class="grille" style="margin-top:12px">${C().vent==='oui'?`<label class="champ">Vent de la série (m/s)<input id="ventSerie" type="text" inputmode="decimal" value="${esc(resultatsLecture.vent??'')}" placeholder="+0,0"></label>`:''}</div>
+      <div class="actions"><button class="btn bleu" data-act="validerLecture">Valider les résultats</button><button class="btn" data-act="fermerLecture">Retour à la caméra</button><button class="btn" data-act="serieSuivante">Série suivante</button></div></section>`; }
+  const s=serieCourante(), cal=CAL.pts.length, need=(+C().nbCouloirs||8)+1;
+  return `<section class="bloc"><div class="tete-bloc"><h2>Arrivée · ${esc(s?.nom||'Aucune série')}</h2><span class="discret">${CAM.actif?`Caméra ${CAM.w}×${CAM.h}, ${Math.round(CAM.fps)} im/s`:'Caméra inactive'}</span></div>
+    ${htmlEtat()}
+    ${!CAM.actif?`<div class="info">Fixez le téléphone sur un pied, le plus haut possible (2 m minimum), exactement dans l’alignement de la ligne d’arrivée, objectif tourné vers la piste. La ligne blanche doit traverser l’image du bas vers le haut.</div><div class="actions"><button class="btn bleu" data-act="camera">Activer la caméra</button></div>`:`
+    <canvas id="apercu" class="apercu"></canvas>
+    <div class="actions">
+      <button class="btn ${CAM.calTap==='couloirs'?'rose':''}" data-act="calCouloirs">${CAM.calTap==='couloirs'?`Touchez le point ${CAL.pts.length+1} / ${need}`:cal>=need?'Recalibrer les couloirs':'Calibrer les couloirs'}</button>
+      <button class="btn ${CAM.calTap==='hauteur'?'rose':''}" data-act="calHauteur" ${cal<need?'disabled':''}>${CAM.calTap==='hauteur'?`Touchez le sommet du jalon ${CAL.hauts.length+1} / 2`:CAL.hauts.length===2?'Recalibrer la hauteur':'Calibrer la hauteur'}</button>
+      ${CAM.cols.length&&!CAM.enreg?'<button class="btn" data-act="ouvrirLecture">Lire la dernière course</button>':''}
+      ${CAM.enreg?'<button class="btn rose" data-act="stopEnreg">Arrêter l’enregistrement</button>':''}
+    </div>
+    <p class="discret">${CAM.calTap==='couloirs'?'Sur l’image, touchez dans l’ordre chaque croisement entre la ligne d’arrivée et une ligne de couloir : d’abord la corde (bord intérieur du couloir 1), puis chaque ligne jusqu’au bord extérieur du dernier couloir.'
+      :CAM.calTap==='hauteur'?`Posez un jalon de ${String(C().hauteurRef).replace('.',',')} m debout sur la ligne d’arrivée, d’abord au milieu du couloir 1, puis au milieu du dernier couloir, et touchez son sommet à chaque fois.`
+      :cal>=need&&CAL.hauts.length===2?'Calibration complète : les zones roses indiquent où le torse de chaque couloir est détecté.':cal>=need?'Couloirs calibrés. Calibrez la hauteur pour activer la détection automatique du torse ; sans elle, le pointage reste manuel.':'Calibrez les couloirs pour délimiter la ligne d’arrivée.'}</p>`}
+    <div class="detections" id="detections">${htmlDetections()}</div>
+    ${C().modeDepart==='micro'?`<h3 style="margin-top:14px">Départ (micro de ce téléphone)</h3><div class="boutons-depart"><button class="btn bleu geant" data-act="pret">Prêt<small>micro armé</small></button><button class="btn rose geant" data-act="rappel">Faux départ</button><button class="btn geant" data-act="annulerCourse">Annuler</button></div>${htmlMicro()}`:
+      C().modeDepart==='manuel'?`<div class="boutons-depart"><button class="btn bleu geant" data-act="pret">Prêt</button><button class="btn geant" data-act="departManuel">Départ manuel</button><button class="btn geant" data-act="annulerCourse">Annuler</button></div>`:''}
+  </section>`;
+}
+function champ(cle,label,type='text',extra='',aide=''){ return `<label class="champ">${label}${aide?` <small>${aide}</small>`:''}<input type="${type}" data-cfg="${cle}" value="${esc(C()[cle])}" ${extra}></label>`; }
+function sel(cle,label,opts){ return `<label class="champ">${label}<select data-cfg="${cle}">${opts.map(([v,l]) => `<option value="${v}" ${String(C()[cle])===String(v)?'selected':''}>${l}</option>`).join('')}</select></label>`; }
+function vReglages(){
+  return `<section class="bloc"><h2>Épreuve</h2><div class="grille">${champ('nom','Nom du meeting')}${champ('lieu','Lieu')}${champ('date','Date','date')}${champ('epreuve','Épreuve','text','placeholder="100 m"')}
+    ${sel('typeCourse','Type de course',[['couloirs','En couloirs (sprint, haies, 400 m)'],['ligne','Sans couloirs (800 m et plus)']])}
+    ${champ('nbCouloirs','Nombre de couloirs de la piste','number','min="1" max="10"')}${enLigne()?champ('maxParSerie','Athlètes par course','number','min="2" max="60"')+champ('distance','Distance','number','min="0" step="100"','mètres, vide = lue dans l’épreuve')+champ('longueurTour','Longueur du tour','number','min="100" step="1"','mètres')+champ('dureeMemoire','Mémoire du photo-finish','number','min="30" max="600" step="10"','secondes gardées avant l’arrêt'):''}${sel('vent','Vent',[['oui','Saisi par série'],['non','Non']])}${sel('arrondi','Temps officiels',[['centieme','Au 1/100 supérieur (TR 19)'],['millieme','Au 1/1000']])}</div></section>
+  <section class="bloc"><h2>Départ</h2><div class="grille">
+    ${sel('modeDepart','Qui écoute le pistolet ?',[['depart','Un téléphone au départ'],['micro','Le téléphone de l’arrivée'],['manuel','Personne : départ manuel']])}
+    ${champ('distDepart','Distance pistolet → téléphone de départ','number','min="0" step="0.5"','mètres')}${champ('distArrivee','Distance pistolet → téléphone d’arrivée','number','min="0" step="1"','mètres, mode « arrivée »')}
+    ${champ('temperature','Température de l’air','number','step="1"','°C, pour la vitesse du son')}${champ('fenetreFaux','Fenêtre de rappel','number','min="1" max="15"','secondes après le départ')}
+    ${champ('corrMicro','Correction micro','number','step="1"','ms à retrancher')}</div>
+    <p class="discret">Le son met environ 3 ms par mètre : l’app retranche automatiquement ce délai (${Math.round(vitesseSon())} m/s à ${C().temperature} °C). Un téléphone au départ, à quelques mètres du pistolet, est plus précis qu’une écoute depuis l’arrivée.</p></section>
+  <section class="bloc"><h2>Photo-finish</h2><div class="grille">
+    ${champ('largeur','Largeur d’un couloir','number','step="0.01"','mètres')}${champ('hauteurRef','Hauteur du jalon de calibration','number','step="0.05"','mètres')}
+    ${champ('zoneBas','Bas de la zone du torse','number','step="0.05"','mètres')}${champ('zoneHaut','Haut de la zone du torse','number','step="0.05"','mètres')}
+    ${champ('seuilPix','Sensibilité image','number','min="10" max="250"','écart de couleur, plus bas = plus sensible')}${champ('seuilZone','Remplissage de la zone','number','min="0.1" max="0.95" step="0.05"','part du torse qui déclenche')}
+    ${champ('tempsMini','Temps minimal de course','number','step="0.5"','secondes avant toute détection')}${champ('corrCam','Correction caméra','number','step="1"','ms à retrancher')}${champ('rolling','Obturateur roulant','number','step="1"','ms de lecture du capteur, haut → bas')}</div></section>
+  <section class="bloc"><h2>Liaison sans claude.ai (GitHub)</h2><p class="discret">Hors de claude.ai, le téléphone d’arrivée sert de relais. Code de salle : <b>${esc(C().salle)}</b>. Sur les autres appareils, ajoutez <code>?salle=${esc(C().salle)}</code> à l’adresse.</p>
+    <div class="grille"><label class="champ">Code de salle sur cet appareil<input id="codeSalle" type="text" value="${esc(codeLibre())}" style="text-transform:uppercase"></label></div><div class="actions"><button class="btn" data-act="okSalle">Enregistrer le code</button></div></section>
+  <section class="bloc"><h2>Remise à zéro</h2><div class="actions"><button class="btn" data-act="effacerResultats">Effacer les résultats</button><button class="btn" data-act="effacerCal">Effacer la calibration</button><button class="btn rose" data-act="nouveau">Tout effacer</button></div></section>`;
+}
+
+/* ---------- Télé ---------- */
+let tvFlash=0;
+function apresReception(){ if(estTV()) rendreTV(); else if(!(vue==='arrivee' && lectureOuverte) && !document.activeElement?.matches?.('input,select,textarea')) toutRendre(); else majSync(); }
+function surChangementCourse(avant){
+  if(vue==='arrivee' && CAM.enreg && (K.etat==='rappel' || K.etat==='attente')){ CAM.enreg=false; CAM.cols=[]; CAM.temps=[]; toast(K.etat==='rappel'?'Faux départ : enregistrement annulé':'Course annulée'); }
+  if(ecouteIci() && K.etat==='pret' && MIC.ctx) { MIC.arme=true; MIC.traite=MIC.ctx.currentTime; }
+  if(K.etat!=='pret' && K.etat!=='partie') MIC.arme=false;
+  if(K.etat==='rappel' && avant.etat!=='rappel'){ bip(500,.4); if(estTV()) tvFlash=Date.now(); }
+}
+function rendreTV(){
+  const s=SER(K.serie)||serieCourante(), el=document.getElementById('tv');
+  const gen=C().tvMode==='general' && K.etat==='valide';
+  let corps='';
+  if(gen){ const L=classementGeneral().slice(0,10); corps=`<div class="tv-titre-serie">Classement général · ${esc(C().epreuve)}</div><table class="tv-res">${L.map(x => { const a=A(x.id); return `<tr><td class="pl">${x.rang}</td><td class="nm">${esc(nomComplet(a))}<small>${esc(a?.club||'')}</small></td><td class="sr">${esc(x.serie.nom)}</td><td class="tp">${fT(x.t)}</td></tr>`; }).join('')}</table>`; }
+  else if(s && K.etat==='valide' && D.resultats[s.id]){ const L=lignesResultats(s); corps=`<div class="tv-titre-serie">${esc(s.nom)} · résultats${s.vent!=null?` · vent ${s.vent>0?'+':''}${String(s.vent).replace('.',',')} m/s`:''}</div>
+    <table class="tv-res ${L.length>10?'compact':''}">${L.slice(0,16).map(r => { const a=A(r.id); return `<tr class="${r.place===1&&!r.statut?'or':''}"><td class="pl">${r.statut?'':r.place}</td><td class="co">${enLigne()?esc(a?.dossard||''):r.couloir}</td><td class="nm">${esc(nomComplet(a))}<small>${esc(a?.club||'')}</small></td><td class="tp">${r.statut||fT(r.t)}</td></tr>`; }).join('')}</table>`; }
+  else { corps=`<div class="tv-titre-serie">${esc(s?.nom||'')} · ${esc(C().epreuve)}</div>
+    <div class="tv-sprint"><div class="tv-horloge e-${K.etat}"><span id="tvEtat">${ETATS[K.etat]||''}</span><b id="chronoCourse">0.0</b>${enLigne()&&K.etat==='partie'&&K.tours!=null?`<em class="${K.tours===1?'cloche':''}">${K.tours===0?'Arrivée':K.tours===1?'Dernier tour':K.tours+' tours'}</em>`:''}</div>
+    <table class="tv-res ${enLigne()?'compact':''}">${s?couloirsDe(s).filter(x => x.a).slice(0,enLigne()?16:10).map(x => `<tr><td class="co">${enLigne()?esc(x.a.dossard||''):x.c}</td><td class="nm">${esc(nomComplet(x.a))}<small>${esc(x.a.club||'')}</small></td>${enLigne()?'':`<td class="ds">${esc(x.a.dossard||'')}</td>`}</tr>`).join(''):''}</table></div>`; }
+  el.innerHTML=`<div class="tv" style="grid-template-rows:auto 1fr">
+    <div class="tv-haut"><div class="tv-marque"><span class="tb">#TEAMBRO</span><span class="pv">${enLigne()?'Running':'Sprint'}</span></div><div class="tv-concours">${esc([C().nom,C().lieu].filter(Boolean).join('  ·  '))}</div><div class="tv-heure"><span class="tv-direct ${K.etat==='partie'?'':'off'}"></span><span id="tvHeure">${new Date().toTimeString().slice(0,5)}</span></div></div>
+    <div class="tv-corps">${corps}${K.etat==='rappel'?'<div class="tv-flash X"><div class="big">Faux départ</div><div class="small">Rappel des athlètes</div></div>':''}</div></div>
+    <div class="tv-sortie"><button data-act="pleinEcran">Plein écran</button><button data-act="vue" data-v="courses">Quitter l’affichage</button></div>
+    ${T.mode==='libre'?`<div class="tv-etat-liaison">${T.peerConn&&T.peerConn.open?'Relié à l’arrivée':'Recherche du téléphone d’arrivée '+esc(codeLibre())+'…'}</div>`:''}`;
+}
+
+/* ---------- Boucle ---------- */
+setInterval(() => {
+  const el=document.getElementById('chronoCourse');
+  if(el){ if(K.etat==='partie' && K.departT!=null){ const ms=Math.max(0,horlogeArrivee()-K.departT), s=ms/1000; el.textContent = s>=60 ? Math.floor(s/60)+':'+(s%60).toFixed(estTV()?1:2).padStart(estTV()?4:5,'0') : s.toFixed(estTV()?1:2); } else if(K.etat==='pret'||K.etat==='attente'||K.etat==='rappel') el.textContent='0.0'; }
+  if(K.etat==='partie' && K.departT!=null && horlogeArrivee()-K.departT > num(C().fenetreFaux,5)*1000+500) MIC.arme=false;
+  if(vue==='arrivee' && CAM.enreg && K.etat==='partie' && K.departT!=null && horlogeArrivee()-K.departT>600000) arreterEnregistrement('duree');
+}, 50);
+setInterval(() => { const e=document.getElementById('tvHeure'); if(e) e.textContent=new Date().toTimeString().slice(0,5); }, 10000);
+
+/* ---------- Navigation, modales ---------- */
+let verrou=null;
+async function garderEcran(){ try{ if('wakeLock' in navigator && !verrou){ verrou=await navigator.wakeLock.request('screen'); verrou.addEventListener('release',()=>verrou=null); } }catch(e){} }
+function allerA(v){
+  if(!VUES.some(([k]) => k===v)) v='courses'; vue=v; const tv=v==='tv';
+  document.getElementById('tv').hidden=!tv; document.getElementById('appJuge').hidden=tv;
+  if(tv || v==='arrivee' || v==='depart') garderEcran();
+  try{ if(location.hash!=='#'+v) history.replaceState(null,'','#'+v); }catch(e){}
+  toutRendre(); window.scrollTo(0,0); if(T.mode==='libre') majLiaison(); echantillons=[]; decalRtt=null; pinguer();
+}
+window.addEventListener('hashchange', () => { const h=location.hash.slice(1); if(h && h!==vue) allerA(h); });
+document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible') garderEcran(); });
+let tToast=null;
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('vu'); clearTimeout(tToast); tToast=setTimeout(()=>t.classList.remove('vu'),3200); }
+function ouvrirModale(html){ const m=document.getElementById('modale'); m.innerHTML=`<div class="boite" role="dialog" aria-modal="true">${html}</div>`; m.hidden=false; }
+function fermerModale(){ const m=document.getElementById('modale'); m.hidden=true; m.innerHTML=''; }
+let actionConfirmee=null;
+function confirmer(msg,ok,lib='Confirmer'){ actionConfirmee=ok; ouvrirModale(`<h3>${msg}</h3><div class="actions"><button class="btn rose" data-act="okConfirm">${lib}</button><button class="btn" data-act="fermer">Annuler</button></div>`); }
+document.getElementById('modale').addEventListener('click', e => { if(e.target.id==='modale') fermerModale(); });
+let telechargement=null;
+(async () => { try{ if(window.claude && typeof claude.use==='function') telechargement=await claude.use('downloads'); }catch(e){} })();
+async function exporterCSV(){
+  const L=[['Rang','Série','Couloir','Dossard','Licence','Prénom','Nom','Club','Sexe','Catégorie','Temps','Temps (1/1000)','Statut','Vent']];
+  const G=classementGeneral();
+  D.series.forEach(s => lignesResultats(s).forEach(r => { const a=A(r.id)||{}; const g=G.find(x => x.id===r.id && x.serie.id===s.id);
+    L.push([g?g.rang:'', s.nom, r.couloir, a.dossard||'', a.licence||'', a.prenom||'', a.nom||'', a.club||'', a.sexe||'', a.cat||'', r.statut?'':fT(r.t), r.t!=null?fT(r.t,true):'', r.statut||'', s.vent??'']); }));
+  const csv='\uFEFF'+L.map(r => r.map(v => { const s=String(v??''); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(';')).join('\r\n');
+  const nom=(C().nom+'-'+C().epreuve).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase()+'.csv';
+  if(telechargement){ try{ await telechargement.save({filename:nom, data:csv}); return; }catch(e){ if(e&&e.code==='cancelled') return; } }
+  try{ const u=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})), l=document.createElement('a'); l.href=u; l.download=nom; document.body.appendChild(l); l.click(); l.remove(); }catch(e){ toast('Téléchargement indisponible'); }
+}
+
+/* ---------- Actions ---------- */
+const ACT={
+  vue: b => allerA(b.dataset.v), fermer: fermerModale, okConfirm: () => { const f=actionConfirmee; fermerModale(); actionConfirmee=null; if(f) f(); },
+  pret, rappel, departManuel, annulerCourse, tour: passageTete,
+  assigner: b => { const c=b.dataset.c; resultatsLecture.lignes[c]={...resultatsLecture.lignes[c], t:LECT.tEnAttente, auto:false}; fermerModale(); rendreTableLecture(); dessinerLecture(); },
+  activerMicro: async () => { if(await activerMicro()){ if(K.etat==='pret' && ecouteIci()) MIC.arme=true; toutRendre(); } },
+  fautif: b => { const c=+b.dataset.c, s=serieCourante(); fermerModale(); publierK('attente', {faux:[...(K.faux||[]), {serie:s.id, c, ts:Date.now()}], departT:null}); toast(c?`Couloir ${c} disqualifié pour faux départ`:'Départ annulé sans sanction'); },
+  camera: async () => { if(await activerCamera()) toutRendre(); },
+  calCouloirs: () => { if(CAM.calTap==='couloirs'){ CAM.calTap=null; toutRendre(); return; } CAL.pts=[]; CAL.hauts=[]; CAM.calTap='couloirs'; calculerLigne(); toutRendre(); },
+  calHauteur: () => { if(CAM.calTap==='hauteur'){ CAM.calTap=null; toutRendre(); return; } CAL.hauts=[]; CAM.calTap='hauteur'; calculerLigne(); toutRendre(); },
+  effacerCal: () => confirmer('Effacer la calibration de la caméra ?', () => { CAL={pts:[],hauts:[]}; try{ localStorage.removeItem(CLE_CAL); }catch(e){} calculerLigne(); toutRendre(); }, 'Effacer'),
+  stopEnreg: () => arreterEnregistrement('manuel'), ouvrirLecture,
+  fermerLecture: () => { lectureOuverte=false; toutRendre(); },
+  zoom: b => { const cv=document.getElementById('pf'), mid=LECT.x0+cv.width/LECT.zoom/2; LECT.zoom=Math.max(0.25,Math.min(32,LECT.zoom*+b.dataset.z)); LECT.x0=mid-cv.width/LECT.zoom/2; dessinerLecture(); },
+  allerPremier: () => { const ts=Object.values(resultatsLecture.lignes).map(l => l.t).filter(t => t!=null).sort((a,b) => a-b); const cv=document.getElementById('pf'); if(ts.length){ LECT.x0=colDeTemps(ts[0])-cv.width/LECT.zoom*0.3; dessinerLecture(); } },
+  pointer: b => { LECT.couloir=+b.dataset.c; rendreTableLecture(); dessinerLecture(); toast(`Touchez le torse du couloir ${b.dataset.c} sur l’image`); },
+  saisirTemps: b => { const c=b.dataset.c; ouvrirModale(`<h3>Temps du couloir ${c}</h3><p class="discret">En secondes, par exemple 11,284 ou 1:02,45.</p><label class="champ">Temps<input id="tpsMan" type="text" inputmode="decimal"></label><div class="actions"><button class="btn bleu" data-act="okTemps" data-c="${c}">Enregistrer</button><button class="btn" data-act="fermer">Annuler</button></div>`); },
+  okTemps: b => { const v=document.getElementById('tpsMan').value.trim().replace(',','.'); const m=v.match(/^(?:(\d+):)?(\d+(?:\.\d+)?)$/); if(!m){ toast('Temps invalide'); return; } const ms=((+m[1]||0)*60+(+m[2]))*1000;
+    if(K.departT==null){ toast('Pas d’heure de départ'); return; } resultatsLecture.lignes[b.dataset.c]={...resultatsLecture.lignes[b.dataset.c], t:K.departT+ms, auto:false}; fermerModale(); rendreTableLecture(); dessinerLecture(); },
+  imagePF: telechargerImage, validerLecture, serieSuivante,
+  choisirSerie: b => { if(K.etat==='partie'){ toast('Course en cours'); return; } choisirSerie(b.dataset.id); },
+  construire: () => { if(!D.athletes.length){ toast('Ajoutez d’abord des athlètes'); return; } const f=() => { construireSeries(); publierD(false); publierK('attente', {serie:D.courante, departT:null, faux:[]}); toast(`${D.series.length} série${D.series.length>1?'s':''} construite${D.series.length>1?'s':''}`); }; D.series.length?confirmer('Reconstruire les séries ? Les résultats saisis seront effacés.', f, 'Reconstruire'):f(); },
+  ajoutSerie: () => { D.series.push({id:uid(), nom:'Série '+(D.series.length+1), couloirs:{}, vent:null}); if(!D.courante) D.courante=D.series[0].id; publierD(); },
+  renommerSerie: b => { const s=SER(b.dataset.id); ouvrirModale(`<h3>Renommer</h3><label class="champ">Nom<input id="nomSerie" type="text" value="${esc(s.nom)}"></label><div class="actions"><button class="btn bleu" data-act="okRenommer" data-id="${s.id}">Enregistrer</button><button class="btn" data-act="fermer">Annuler</button></div>`); },
+  okRenommer: b => { SER(b.dataset.id).nom=document.getElementById('nomSerie').value.trim()||'Série'; fermerModale(); publierD(); },
+  supprSerie: b => confirmer('Supprimer cette série et ses résultats ?', () => { D.series=D.series.filter(s => s.id!==b.dataset.id); delete D.resultats[b.dataset.id]; if(D.courante===b.dataset.id) D.courante=D.series[0]?.id||null; publierD(); }, 'Supprimer'),
+  ajouter: () => { const g=id => (document.getElementById(id)||{}).value?.trim()||''; const a={id:uid(), dossard:g('nDos'), licence:g('nLic'), prenom:g('nPre'), nom:g('nNom'), club:g('nClub'), sexe:g('nSexe')||'F', cat:g('nCat'), serie:g('nSer'), couloir:g('nCou')};
+    if(!a.nom&&!a.prenom){ toast('Indiquez au moins un nom'); return; } D.athletes.push(a); publierD(); toast(nomComplet(a)+' ajouté'+(a.sexe==='F'?'e':'')); },
+  supprimer: b => { D.athletes=D.athletes.filter(a => a.id!==b.dataset.id); D.series.forEach(s => Object.keys(s.couloirs).forEach(c => { if(s.couloirs[c]===b.dataset.id) delete s.couloirs[c]; })); publierD(); },
+  coller: () => { const t=document.getElementById('collage').value; if(!t.trim()){ toast('Collez d’abord une liste'); return; } proposerImport(analyserCSV(t),'le collage'); },
+  okImport: () => { const rem=document.getElementById('impRemplacer')?.checked, liste=importEnAttente||[]; importEnAttente=null; fermerModale();
+    if(rem){ D.athletes=[]; D.series=[]; D.resultats={}; }
+    liste.forEach(o => D.athletes.push({id:uid(), dossard:o.dossard||'', licence:o.licence||'', prenom:o.prenom||'', nom:o.nom||'', club:o.club||'', sexe:o.sexe||'F', cat:o.cat||'', serie:o.serie||'', couloir:o.couloir||'', pb:o.pb||''}));
+    if(liste.some(o => o.serie) && (rem || !D.series.length)) construireSeries();
+    publierD(false); if(D.courante) publierK('attente', {serie:D.courante, departT:null, faux:[]}, false); toutRendre();
+    toast(`${liste.length} athlète${liste.length>1?'s':''} importé${liste.length>1?'s':''}${D.series.length?`, ${D.series.length} série${D.series.length>1?'s':''}`:''}`); },
+  csv: exporterCSV,
+  okSalle: () => { const v=document.getElementById('codeSalle').value.trim().toUpperCase(); if(!v) return; try{ localStorage.setItem(CLE_SALLE,v); }catch(e){} if(vue==='arrivee'||true){ C().salle = vue==='arrivee' ? v : C().salle; } detruirePeer(); majLiaison(); toast('Code enregistré'); },
+  effacerResultats: () => confirmer('Effacer tous les résultats ?', () => { D.resultats={}; publierD(false); publierK('attente', {departT:null, faux:[]}); }, 'Effacer'),
+  nouveau: () => confirmer('Tout effacer (athlètes, séries, résultats) ?', () => { const cfg={...C()}; const rev=D.rev||0, seq=K.seq||0; D=donneesDefaut(); D.config={...D.config, ...cfg}; D.rev=rev; K={...courseDefaut(), seq}; publierD(false); publierK('attente'); }, 'Tout effacer'),
+  pleinEcran: () => { try{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>toast('Plein écran indisponible ici')); else document.exitFullscreen(); }catch(e){} }
+};
+document.addEventListener('click', e => { const b=e.target.closest('[data-act]'); if(!b||b.disabled) return; const f=ACT[b.dataset.act]; if(f){ e.preventDefault(); f(b,e); } });
+document.addEventListener('pointerdown', e => {
+  if(e.target.id==='apercu') tapApercu(e);
+  if(e.target.id==='pf'){ LECT.glisse={x:e.clientX, x0:LECT.x0, t:Date.now(), moved:false}; e.target.setPointerCapture(e.pointerId); }
+});
+document.addEventListener('pointermove', e => { if(!LECT.glisse || e.target.id!=='pf') return; const cv=e.target, dx=(e.clientX-LECT.glisse.x)*cv.width/cv.getBoundingClientRect().width; if(Math.abs(dx)>6) LECT.glisse.moved=true; if(LECT.glisse.moved){ LECT.x0=LECT.glisse.x0-dx/LECT.zoom; dessinerLecture(); } });
+document.addEventListener('pointerup', e => { if(!LECT.glisse) return; const g=LECT.glisse; LECT.glisse=null; if(e.target.id==='pf' && !g.moved) pointerSurImage(e); });
+document.addEventListener('input', e => { if(e.target.id==='filtreAth'){ const q=norm2(e.target.value); document.querySelectorAll('#listeAth [data-f]').forEach(b => b.hidden = q && !b.dataset.f.includes(q)); return; } if(e.target.id==='pfPos'){ LECT.x0=+e.target.value; dessinerLecture(); } if(e.target.id==='ventSerie' && resultatsLecture) resultatsLecture.vent=e.target.value; });
+document.addEventListener('change', e => {
+  const el=e.target;
+  if(el.dataset.statut && resultatsLecture){ resultatsLecture.lignes[el.dataset.statut].statut=el.value; rendreTableLecture(); return; }
+  if(el.dataset.couloir){ const s=SER(el.dataset.serie); if(el.value){ Object.keys(s.couloirs).forEach(c => { if(s.couloirs[c]===el.value) delete s.couloirs[c]; }); s.couloirs[el.dataset.couloir]=el.value; } else delete s.couloirs[el.dataset.couloir]; publierD(); return; }
+  if(!el.dataset.cfg) return;
+  const k=el.dataset.cfg; let v=el.value; if(el.type==='number'||el.type==='range') v = v==='' ? '' : +v;
+  C()[k]=v; if(['nbCouloirs','largeur','hauteurRef','zoneBas','zoneHaut'].includes(k)) calculerLigne();
+  publierD(el.type!=='range'); if(el.type!=='range') toast('Réglage enregistré');
+});
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape'){ fermerModale(); return; }
+  if(e.key==='Enter' && !document.getElementById('modale').hidden){ const ok=document.querySelector('#modale .btn.bleu'); if(ok){ e.preventDefault(); ok.click(); } }
+});
+const FAQ_COMMUN=[
+  ['Exporter les résultats en PDF ou CSV','Onglet « Résultats » : ajoutez les officiels, faites signer chacun à l’écran (doigt ou stylet), puis « Télécharger le PDF signé ». Le bouton CSV est à côté.',['pdf','csv','export','imprim','signat','officiel','envoi']],
+  ['Charger une liste d’athlètes','Bloc « Charger un listing » : fichier Excel ou CSV (modèle #TEAMBRO conseillé), collage depuis un tableur, ou « Créer une liste fictive » pour s’entraîner.',['charger','import','listing','excel','fichier','liste fictive','formation']],
+  ['Afficher sur la télé','Ouvrez le même lien sur la télé et choisissez « Affichage télé ». Hors de claude.ai (GitHub), utilisez le code de salle indiqué en haut.',['tele','ecran','affich','spectat']],
+  ['Annonces vocales','Réglages, section Synthèse vocale : choix de la voix, débit, répétition, phrases modifiables. Touche R : répéter la dernière annonce.',['voix','annonce','parler','micro']]
+];
+/* =========================================================
+   Officiels, signatures électroniques et export PDF
+   ========================================================= */
+const ROLES_OFF=['Juge-arbitre','Chef de concours','Chef juge','Juge','Starter','Juge à l’arrivée','Chronométreur','Secrétaire','Délégué technique'];
+function offListe(){ const c=EXPORT.config(); if(!Array.isArray(c.officiels)) c.officiels=[]; return c.officiels; }
+function offSign(){ const st=EXPORT.etat(); if(!st.signatures || typeof st.signatures!=='object') st.signatures={}; return st.signatures; }
+function empreinte(){ const t=JSON.stringify(EXPORT.sections().map(s => s.lignes)); let h=5381; for(let i=0;i<t.length;i++) h=((h<<5)+h+t.charCodeAt(i))|0; return (h>>>0).toString(36); }
+function htmlOfficiels(){
+  const L=offListe(), S_=offSign(), emp=empreinte();
+  return `<section class="bloc" id="blocOfficiels"><div class="tete-bloc"><h2>Officiels et signatures</h2><span class="discret">${L.filter(o => S_[o.id]).length} / ${L.length} signature${L.length>1?'s':''}</span></div>
+    <p class="discret">Ajoutez les officiels de la compétition. Avant l’envoi, chacun signe à l’écran avec le doigt ou un stylet : la signature est intégrée au PDF des résultats. Si les résultats changent après une signature, elle est signalée comme antérieure à la modification.</p>
+    ${L.length?`<div class="defil"><table><thead><tr><th>Fonction</th><th>Nom</th><th>Licence</th><th>Signature</th><th></th></tr></thead><tbody>
+      ${L.map(o => { const sg=S_[o.id]; return `<tr><td>${esc(o.role)}</td><td>${esc(o.nom)}</td><td>${esc(o.licence||'')}</td>
+        <td>${sg?`<img src="${sg.img}" alt="Signature de ${esc(o.nom)}" class="mini-sign"><small class="${sg.empreinte!==emp?'m-X':''}">${sg.empreinte!==emp?'Résultats modifiés depuis':'Signé le '+new Date(sg.ts).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'})}</small>`:'<span class="etiq">À signer</span>'}</td>
+        <td><button class="btn petit ${sg?'':'bleu'}" data-act="offSigner" data-id="${o.id}">${sg?'Signer à nouveau':'Signer'}</button><button class="btn petit" data-act="offRetirer" data-id="${o.id}">Retirer</button></td></tr>`; }).join('')}</tbody></table></div>`:''}
+    <div class="grille" style="margin-top:12px"><label class="champ">Fonction<input id="offRole" list="offRoles" placeholder="ex. Juge-arbitre"><datalist id="offRoles">${ROLES_OFF.map(r => `<option value="${r}">`).join('')}</datalist></label>
+      <label class="champ">Nom et prénom<input id="offNom"></label><label class="champ">Licence<input id="offLic" inputmode="numeric"></label></div>
+    <div class="actions"><button class="btn" data-act="offAjouter">Ajouter l’officiel</button>
+      <button class="btn bleu" data-act="pdf">Télécharger le PDF signé</button><button class="btn" data-act="csv">Télécharger le CSV</button>
+      ${Object.keys(S_).length?'<button class="btn petit" data-act="offEffacer">Effacer les signatures</button>':''}</div>
+  </section>`;
+}
+let padTrace=false, padVide=true;
+function ouvrirPad(id){
+  const o=offListe().find(x => x.id===id); if(!o) return;
+  ouvrirModale(`<h3>Signature : ${esc(o.nom)}</h3><p class="discret">${esc(o.role)}${o.licence?' · licence '+esc(o.licence):''}. En signant, l’officiel certifie l’exactitude des résultats de « ${esc(EXPORT.titre())} ».</p>
+    <canvas id="pad" class="pad" width="900" height="300" aria-label="Zone de signature"></canvas>
+    <div class="actions"><button class="btn bleu" data-act="offValider" data-id="${o.id}">Valider la signature</button><button class="btn" data-act="offEffacerPad">Effacer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+  const cv=document.getElementById('pad'), ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0A0F33'; padVide=true;
+  const pos=e => { const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)*cv.width/r.width, (e.clientY-r.top)*cv.height/r.height]; };
+  cv.addEventListener('pointerdown', e => { padTrace=true; padVide=false; cv.setPointerCapture(e.pointerId); const [x,y]=pos(e); ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+.1,y+.1); ctx.stroke(); e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if(!padTrace) return; const [x,y]=pos(e); ctx.lineTo(x,y); ctx.stroke(); e.preventDefault(); });
+  cv.addEventListener('pointerup', () => { padTrace=false; });
+}
+function validerPad(id){
+  const o=offListe().find(x => x.id===id), cv=document.getElementById('pad'); if(!o||!cv) return;
+  if(padVide){ toast('Signez dans le cadre blanc'); return; }
+  const m=document.createElement('canvas'); m.width=450; m.height=150; const c=m.getContext('2d'); c.fillStyle='#fff'; c.fillRect(0,0,450,150); c.drawImage(cv,0,0,450,150);
+  offSign()[id]={img:m.toDataURL('image/png'), ts:Date.now(), nom:o.nom, role:o.role, licence:o.licence||'', empreinte:empreinte()};
+  fermerModale(); EXPORT.sauver(); toast('Signature enregistrée');
+}
+/* --- PDF --- */
+const JSPDF_URL='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', AUTOTABLE_URL='https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
+let pdfCharge=null;
+function chargerScript(u){ return new Promise((ok,ko) => { const s=document.createElement('script'); s.src=u; s.onload=ok; s.onerror=ko; document.head.appendChild(s); }); }
+function chargerPDF(){ if(!pdfCharge) pdfCharge=(window.jspdf?Promise.resolve():chargerScript(JSPDF_URL)).then(() => chargerScript(AUTOTABLE_URL)); return pdfCharge; }
+function txtPDF(v){ return String(v??'').replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/…/g,'...').replace(/\u00a0|\u202f/g,' ').replace(/[^\x00-\xff]/g,'?'); }
+async function exporterPDF(forcer){
+  const L=offListe(), S_=offSign(), emp=empreinte();
+  const manque=L.filter(o => !S_[o.id]), perimes=L.filter(o => S_[o.id] && S_[o.id].empreinte!==emp);
+  if(!forcer && (manque.length || perimes.length || !L.length)){
+    ouvrirModale(`<h3>Avant l’envoi</h3><p>${!L.length?'Aucun officiel n’est déclaré.':''}${manque.length?` Signature manquante : ${manque.map(o => esc(o.nom)).join(', ')}.`:''}${perimes.length?` Résultats modifiés après la signature de ${perimes.map(o => esc(o.nom)).join(', ')}.`:''}</p>
+      <div class="actions"><button class="btn rose" data-act="pdfForcer">Exporter quand même</button><button class="btn" data-act="fermer">Revenir</button></div>`);
+    return;
+  }
+  try{ await chargerPDF(); }catch(e){ toast('Le générateur de PDF n’a pas pu se charger (connexion ?)'); return; }
+  const secs=EXPORT.sections(), large=Math.max(...secs.map(s => s.colonnes.length))>9;
+  const doc=new window.jspdf.jsPDF({orientation:large?'landscape':'portrait', unit:'mm', format:'a4'});
+  const W=doc.internal.pageSize.getWidth(), Hh=doc.internal.pageSize.getHeight(), c=EXPORT.config();
+  doc.setFillColor(30,70,255); doc.rect(0,0,W/2,3,'F'); doc.setFillColor(232,19,122); doc.rect(W/2,0,W/2,3,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(232,19,122); doc.text('#TEAMBRO', 14, 15);
+  doc.setTextColor(30,70,255); doc.text(txtPDF(EXPORT.titre()), 14+doc.getTextWidth('#TEAMBRO ')+1, 15);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(60,66,110);
+  doc.text(txtPDF([c.nom, c.lieu, c.date ? new Date(c.date+'T12:00').toLocaleDateString('fr-FR',{dateStyle:'long'}) : ''].filter(Boolean).join('  ·  ')), 14, 21);
+  let y=27;
+  secs.forEach(sec => {
+    if(sec.titre){ doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,15,51); doc.text(txtPDF(sec.titre), 14, y+2); y+=5; }
+    if(sec.note){ doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(74,82,131); doc.text(txtPDF(sec.note), 14, y+2); y+=5; }
+    doc.autoTable({startY:y, head:[sec.colonnes.map(txtPDF)], body:sec.lignes.map(r => r.map(txtPDF)), margin:{left:14, right:14},
+      styles:{font:'helvetica', fontSize:sec.colonnes.length>14?6.5:sec.colonnes.length>9?8:9, cellPadding:1.4, textColor:[10,15,51], lineColor:[205,211,242], lineWidth:.1},
+      headStyles:{fillColor:[30,70,255], textColor:255, fontStyle:'bold'}, alternateRowStyles:{fillColor:[238,241,255]}});
+    y=doc.lastAutoTable.finalY+8; if(y>Hh-40){ doc.addPage(); y=16; }
+  });
+  // Officiels
+  if(y>Hh-60){ doc.addPage(); y=16; }
+  doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,15,51); doc.text('Officiels', 14, y); y+=4;
+  if(!L.length){ doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.text('Aucun officiel déclaré.', 14, y+4); y+=10; }
+  const colW=(W-28)/(large?4:3); let x=14;
+  L.forEach((o,i) => {
+    if(x+colW>W-10){ x=14; y+=34; } if(y>Hh-38){ doc.addPage(); y=16; x=14; }
+    const sg=S_[o.id];
+    doc.setDrawColor(205,211,242); doc.roundedRect(x, y, colW-4, 30, 2, 2);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(10,15,51); doc.text(txtPDF(o.nom), x+3, y+5);
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(74,82,131); doc.text(txtPDF(o.role+(o.licence?' · lic. '+o.licence:'')), x+3, y+9);
+    if(sg){ try{ doc.addImage(sg.img, 'PNG', x+3, y+11, 39, 13); }catch(e){} doc.setFontSize(7); doc.text(txtPDF((sg.empreinte!==emp?'Signé AVANT modification des résultats, le ':'Signé le ')+new Date(sg.ts).toLocaleString('fr-FR')), x+3, y+28); }
+    else { doc.setTextColor(232,19,122); doc.text('Non signé', x+3, y+18); }
+    x+=colW;
+  });
+  const n=doc.getNumberOfPages();
+  for(let i=1;i<=n;i++){ doc.setPage(i); doc.setFontSize(7.5); doc.setTextColor(124,131,171); doc.text(txtPDF(`Généré par #TEAMBRO le ${new Date().toLocaleString('fr-FR')} · empreinte des résultats ${emp} · page ${i}/${n}`), 14, Hh-6); }
+  const nom=(c.nom+'-'+EXPORT.titre()).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase()+'.pdf';
+  const blob=doc.output('blob');
+  if(typeof telechargement!=='undefined' && telechargement){ try{ await telechargement.save({filename:nom, data:blob}); return; }catch(e){ if(e&&e.code==='cancelled') return; } }
+  try{ const u=URL.createObjectURL(blob), l=document.createElement('a'); l.href=u; l.download=nom; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),3000); }catch(e){ toast('Téléchargement indisponible ici'); }
+}
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
+  if(a==='offAjouter'){ const r=document.getElementById('offRole').value.trim(), n=document.getElementById('offNom').value.trim(), l=document.getElementById('offLic').value.trim(); if(!n){ toast('Indiquez le nom de l’officiel'); return; } offListe().push({id:Math.random().toString(36).slice(2,9), role:r||'Juge', nom:n, licence:l}); EXPORT.sauver(); }
+  else if(a==='offRetirer'){ const id=b.dataset.id; EXPORT.config().officiels=offListe().filter(o => o.id!==id); delete offSign()[id]; EXPORT.sauver(); }
+  else if(a==='offSigner') ouvrirPad(b.dataset.id);
+  else if(a==='offValider') validerPad(b.dataset.id);
+  else if(a==='offEffacerPad'){ const cv=document.getElementById('pad'); if(cv){ const c=cv.getContext('2d'); c.fillStyle='#fff'; c.fillRect(0,0,cv.width,cv.height); padVide=true; } }
+  else if(a==='offEffacer'){ const st=EXPORT.etat(); st.signatures={}; EXPORT.sauver(); toast('Signatures effacées'); }
+  else if(a==='pdf') exporterPDF(false);
+  else if(a==='pdfForcer'){ fermerModale(); exporterPDF(true); }
+});
+
+function sectionsPubliques(){ try{ return tableauxResultats().map(s => { const i=s.colonnes.indexOf('Licence'); return i<0 ? s : {...s, colonnes:s.colonnes.filter((_,j) => j!==i), lignes:s.lignes.map(r => r.filter((_,j) => j!==i))}; }); }catch(e){ return []; } }
+
+if(window.__DEMO){ setTimeout(() => { try{ simulerDemo(window.__DEMO.objets, window.__DEMO.avancement, true); }catch(e){ console.error(e); } setTimeout(() => { try{ window.parent.postMessage({tb:1, op:'demoFini'}, '*'); }catch(e){} }, 1800); }, 1500); }
+document.addEventListener('click', e => { const b=e.target.closest('[data-act="simulerDemo"]'); if(!b) return;
+  confirmer('Remplacer les athlètes et les résultats par une compétition fictive ?', () => { simulerDemo(genererFictifs(LISTING.fictifDefaut||12,'mixte'), 1, true); toutRendre(); toast('Résultats fictifs chargés'); }, 'Charger'); });
+/* ---------- Export et assistant (courses) ---------- */
+function tableauxResultats(){
+  const secs=[];
+  D.series.forEach(s => { if(!D.resultats[s.id]) return; secs.push({titre:s.nom, note:s.vent!=null?`Vent : ${s.vent>0?'+':''}${String(s.vent).replace('.',',')} m/s`:'',
+    colonnes:['Pl.', enLigne()?'N°':'Couloir','Doss.','Licence','Athlète','Club','Cat.','Temps'],
+    lignes:lignesResultats(s).map(r => { const a=A(r.id)||{}; return [r.statut?'':r.place||'', r.couloir, a.dossard||'', a.licence||'', nomComplet(a), a.club||'', a.cat||'', r.statut||fT(r.t)]; })}); });
+  const G=classementGeneral(); if(G.length && D.series.length>1) secs.push({titre:'Classement général', colonnes:['Rg','Doss.','Licence','Athlète','Club','Série','Temps'], lignes:G.map(x => { const a=A(x.id)||{}; return [x.rang, a.dossard||'', a.licence||'', nomComplet(a), a.club||'', x.serie.nom, fT(x.t)]; })});
+  if(!secs.length) secs.push({titre:'Résultats', colonnes:['Information'], lignes:[['Aucun résultat validé']]});
+  return secs;
+}
+const EXPORT={etat:() => D, config:() => C(), sections:tableauxResultats, titre:() => C().epreuve||'Course', sauver:() => publierD()};
+function serieDeNumero(n){ return n ? D.series[n-1] : serieCourante(); }
+const ASSIST={nom:'#TEAMBRO '+(enLigne()?'Running':'Sprint'), couloirs:true,
+  suggestions:['Retirer le dossard 12','Mettre le 12 au couloir 4','Échanger 12 et 15','Le 15 est absent','Comment calibrer la caméra ?'],
+  athletes:() => D.athletes.map(a => { const s=D.series.find(x => Object.values(x.couloirs).includes(a.id)), c=s?Object.keys(s.couloirs).find(k => s.couloirs[k]===a.id):null; return {id:a.id, dossard:a.dossard, prenom:a.prenom, nom:a.nom, statut:a.statut==='abs'?'absent':'', pos:c||'', extra:s?`${s.nom}, ${enLigne()?'n°':'couloir'} ${c}`:'sans série'}; }),
+  contexte:() => `${C().epreuve}, ${enLigne()?'course sans couloirs':'course en couloirs'}, ${D.series.length} série(s), série en cours : ${serieCourante()?.nom||'aucune'}, état : ${ETATS[K.etat]||K.etat}`,
+  schema:`{"type":"retirer","id":"…"} retire l’athlète de la liste et des séries
+{"type":"statut","id":"…","statut":"abs"|""} absent (DNS à la lecture) ou présent
+{"type":"couloir","id":"…","couloir":n,"serie":n ou null} place l’athlète au couloir (ou au numéro) n de la série n (série en cours si null) ; échange avec l’occupant
+{"type":"echanger","id":"…","id2":"…"} échange les places de deux athlètes
+{"type":"modifier","id":"…","champ":"dossard|licence|prenom|nom|club|cat|pb","valeur":"…"} modifie la fiche`,
+  instantane:() => JSON.stringify({athletes:D.athletes, series:D.series}),
+  restaurer:t => { const o=JSON.parse(t); D.athletes=o.athletes; D.series=o.series; },
+  executer:ac => {
+    const a=A(ac.id); if(!a) throw new Error('athlète introuvable');
+    const ou=id => { for(const s of D.series) for(const k of Object.keys(s.couloirs)) if(s.couloirs[k]===id) return {s,k}; return null; };
+    if(ac.type==='retirer'){ D.athletes=D.athletes.filter(x => x.id!==a.id); D.series.forEach(s => Object.keys(s.couloirs).forEach(k => { if(s.couloirs[k]===a.id) delete s.couloirs[k]; })); }
+    else if(ac.type==='statut') a.statut=ac.statut||'';
+    else if(ac.type==='couloir' || ac.type==='deplacer'){ const s=serieDeNumero(ac.serie); if(!s) throw new Error('série introuvable'); const c=String(ac.couloir||ac.position); const p=ou(a.id), occ=s.couloirs[c];
+      if(p) delete p.s.couloirs[p.k]; if(occ && p) p.s.couloirs[p.k]=occ; s.couloirs[c]=a.id; }
+    else if(ac.type==='echanger'){ const b=A(ac.id2); const pa=ou(a.id), pb=ou(b?.id); if(!pa||!pb) throw new Error('les deux athlètes doivent être dans une série'); pa.s.couloirs[pa.k]=b.id; pb.s.couloirs[pb.k]=a.id; }
+    else if(ac.type==='modifier'){ if(['dossard','licence','prenom','nom','club','cat','pb'].includes(ac.champ)) a[ac.champ]=String(ac.valeur??''); else throw new Error('champ inconnu'); }
+    else return false;
+  },
+  sauver:() => publierD(),
+  aide:[...FAQ_COMMUN,
+    ['Installer le téléphone d’arrivée','Sur pied, le plus haut possible, exactement dans l’alignement de la ligne. Onglet Arrivée : « Calibrer les couloirs » puis « Calibrer la hauteur » avec un jalon.',['calibr','camera','installer','pied','jalon']],
+    ['Départ et faux départ','Onglet Départ : « Prêt » arme le micro, le coup de pistolet lance le chrono, un second coup dans les 5 s déclare un faux départ. Choisissez alors le couloir fautif.',['depart','pistolet','faux','rappel','starter']],
+    ['Lire le photo-finish','Après l’arrivée : « Pointer » un couloir puis touchez le torse sur l’image, vérifiez les temps et « Valider les résultats ».',['lire','lecture','photo','pointer','torse']],
+    ['Course sans couloirs','Réglages, Type de course : « Sans couloirs ». Pendant la course, « Passage de la tête » compte les tours. À la lecture, touchez chaque torse puis choisissez le dossard.',['demi','fond','couloirs','tour','cloche','800','1500']],
+    ['Changer un athlète de couloir','Onglet Séries : menu déroulant de chaque couloir. Ou dites-moi « mettre le 12 au couloir 4 de la série 2 ».',['couloir','serie','changer']]]
+};
+/* ---------- Démonstration : courses fictives ---------- */
+function simulerDemo(objets, av, remplacer){
+  const tr=toutRendre; toutRendre=() => {};
+  try{
+    if(remplacer){ D.athletes=[]; D.series=[]; D.resultats={}; }
+    objets.forEach((o,i) => LISTING.fictif(o, i, objets.length, Math.random()));
+    importEnAttente=objets; ACT.okImport();
+    if(!D.series.length) construireSeries();
+    const nb = av>=1 ? D.series.length : Math.max(1, Math.floor(D.series.length*av));
+    D.series.slice(0,nb).forEach(s => {
+      D.resultats[s.id]=Object.entries(s.couloirs).map(([c,id]) => { const a=A(id), dnf=Math.random()<0.04;
+        const t = enLigne() ? (distanceCourse()||1500)/(5+Math.random()*1.7)*1000 : num(a?.pb,12.5)*1000*(1+Math.random()*0.04);
+        return {couloir:+c, id, t:dnf?null:Math.round(t), statut:dnf?'DNF':''}; });
+      s.vent = enLigne() ? null : Math.round((Math.random()*3-0.8)*10)/10;
+    });
+    D.courante=(D.series[nb]||D.series[D.series.length-1]).id;
+  } finally { toutRendre=tr; }
+  publierD(false); publierK(av>=1?'valide':'attente', {serie:D.courante, departT:null, faux:[]});
+}
+/* =========================================================
+   Assistant : commandes en langage courant
+   ========================================================= */
+let samplerIA=null, histoAssist=[], annulerAssist=null;
+(async () => { try{ if(window.claude && typeof claude.use==='function') samplerIA=await claude.use('sample'); }catch(e){} })();
+function nrm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,' ').replace(/\s+/g,' ').trim(); }
+function trouverAthletes(txt){
+  const L=ASSIST.athletes(), t=' '+nrm(txt)+' ', res=[];
+  const nums=[...t.matchAll(/(?:dossard|doss|n°|no|numero|#|le)\s*(\d{1,5})\b/g)].map(m => m[1]);
+  nums.forEach(n => { const a=L.find(x => String(x.dossard)===n); if(a && !res.includes(a)) res.push(a); });
+  L.forEach(a => { const p=nrm(a.prenom), n=nrm(a.nom); if(!n) return;
+    const ok = (p && t.includes(' '+p+' '+n+' ')) || (p && t.includes(' '+n+' '+p+' ')) || (n.length>2 && t.includes(' '+n+' ') && L.filter(x => nrm(x.nom)===n).length===1) || (p.length>2 && t.includes(' '+p+' ') && L.filter(x => nrm(x.prenom)===p).length===1);
+    if(ok && !res.includes(a)) res.push(a); });
+  if(!res.length){ const seuls=[...t.matchAll(/\b(\d{1,4})\b/g)].map(m => m[1]); seuls.forEach(n => { const a=L.find(x => String(x.dossard)===n); if(a && !res.includes(a)) res.push(a); }); }
+  return res;
+}
+function analyseLocale(txt){
+  const t=nrm(txt), cibles=trouverAthletes(txt), n=ASSIST.athletes().length;
+  const a=cibles[0];
+  if(/^(aide|\?|que (peux|sais)|comment|ou |où |pourquoi|quand)/.test(t) || /comment /.test(t)) return {aide:true};
+  if(!a) return null;
+  if(/(echang|invers|permut)/.test(t) && cibles[1]) return {actions:[{type:'echanger', id:a.id, id2:cibles[1].id}]};
+  if(/(retir|enlev|supprim|efface|sortir)/.test(t)) return {actions:[{type:'retirer', id:a.id}]};
+  if(/(absent|forfait|dns|pas venu|non partant)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:'abs'}]};
+  if(/(abandon|blesse|arrete)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:'ab'}]};
+  if(/(reintegr|remettre en competition|retablir|annuler l absence|de retour)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:''}]};
+  if(ASSIST.couloirs && /couloir\s*(\d{1,2})/.test(t)){ const c=+t.match(/couloir\s*(\d{1,2})/)[1]; const sm=t.match(/(?:serie|course)\s*(\d{1,2})/); return {actions:[{type:'couloir', id:a.id, couloir:c, serie:sm?+sm[1]:null}]}; }
+  let pos=null; const ap=a.pos||1;
+  if(/en (premier|tete|1er)|en premiere position/.test(t)) pos=1; else if(/en dernier|a la fin|en derniere position/.test(t)) pos=n;
+  else { const m=t.match(/(?:position|place|rang|ordre|en|au)\s*(?:n°|no|numero)?\s*(\d{1,3})\b(?!\s*(?:m|cm|kg))/); if(m && /(mett|plac|deplac|pass|chang|bouge|ordre|position|rang)/.test(t)) pos=+m[1]; }
+  if(pos==null && /(remonte|monter|avance|plus tot)/.test(t)) pos=Math.max(1,ap-1);
+  if(pos==null && /(descend|recule|plus tard|apres)/.test(t)) pos=Math.min(n,ap+1);
+  if(pos!=null && /(mett|plac|deplac|pass|chang|bouge|ordre|position|rang|monte|descend|avance|recule|premier|dernier|tete|fin)/.test(t)) return {actions:[{type:'deplacer', id:a.id, position:pos}]};
+  return null;
+}
+function decrire(ac){
+  const A_=id => { const a=ASSIST.athletes().find(x => x.id===id); return a ? `${a.prenom} ${String(a.nom||'').toUpperCase()}${a.dossard?' (dossard '+a.dossard+')':''}` : 'athlète inconnu'; };
+  switch(ac.type){
+    case 'retirer': return `Retirer ${A_(ac.id)} de la liste`;
+    case 'statut': return ac.statut==='abs' ? `Déclarer ${A_(ac.id)} absent` : ac.statut==='ab' ? `Déclarer l’abandon de ${A_(ac.id)}` : `Remettre ${A_(ac.id)} en compétition`;
+    case 'deplacer': return `Placer ${A_(ac.id)} en position ${ac.position} de l’ordre de passage`;
+    case 'echanger': return `Échanger ${A_(ac.id)} et ${A_(ac.id2)}`;
+    case 'modifier': return `Modifier ${ac.champ} de ${A_(ac.id)} : ${ac.valeur}`;
+    case 'couloir': return `Mettre ${A_(ac.id)} au couloir ${ac.couloir}${ac.serie?' de la série '+ac.serie:''}`;
+    default: return ASSIST.decrire ? ASSIST.decrire(ac) : JSON.stringify(ac);
+  }
+}
+function ajouterMsg(qui, html){ histoAssist.push({qui, html}); const f=document.getElementById('aideFil'); if(f){ f.insertAdjacentHTML('beforeend', `<div class="aide-msg ${qui}">${html}</div>`); f.scrollTop=f.scrollHeight; } }
+let propositions=null;
+function proposer(reponse, actions){
+  propositions=actions||[];
+  ajouterMsg('app', `${reponse?esc(reponse):''}${propositions.length?`<ul>${propositions.map(a => `<li>${esc(decrire(a))}</li>`).join('')}</ul><div class="actions"><button class="btn bleu petit" data-act="assistOk">Appliquer</button><button class="btn petit" data-act="assistNon">Annuler</button></div>`:''}`);
+}
+function texteAide(){ return ASSIST.aide.map(([q,r]) => `• ${q}\n${r}`).join('\n\n'); }
+async function demanderAssistant(txt){
+  txt=String(txt||'').trim(); if(!txt) return;
+  ajouterMsg('moi', esc(txt));
+  const loc=analyseLocale(txt);
+  if(loc && loc.actions){ proposer('Voici ce que je propose :', loc.actions); return; }
+  const faq=ASSIST.aide.find(([q,r,mots]) => (mots||[]).some(m => nrm(txt).includes(m)));
+  if(!samplerIA){
+    if(faq){ ajouterMsg('app', `<b>${esc(faq[0])}</b>\n${esc(faq[1])}`); return; }
+    ajouterMsg('app', esc('Je n’ai pas compris. Essayez par exemple : « retirer le dossard 12 », « Léa Martin est absente », « mettre Martin en position 3 », « échanger 12 et 15 ».'+(loc&&loc.aide?'\n\n'+texteAide():'')));
+    return;
+  }
+  ajouterMsg('app', '<i>Je réfléchis…</i>');
+  const fil=document.getElementById('aideFil'), att=fil && fil.lastElementChild;
+  const prompt=`Tu es l’assistant de l’application « ${ASSIST.nom} » de gestion de compétition d’athlétisme (règlement World Athletics et FFA). Réponds en français, brièvement, avec des apostrophes typographiques.
+Mode d’emploi de l’application :
+${texteAide()}
+
+État actuel : ${ASSIST.contexte()}
+Athlètes (id | dossard | prénom nom | statut | position) :
+${ASSIST.athletes().map(a => `${a.id} | ${a.dossard||''} | ${a.prenom||''} ${a.nom||''} | ${a.statut||'en compétition'} | ${a.pos||''}${a.extra?' | '+a.extra:''}`).join('\n')}
+
+Actions possibles (n’utilise que celles-ci, avec les id ci-dessus) :
+${ASSIST.schema}
+
+Demande de l’utilisateur : « ${txt} »
+Réponds UNIQUEMENT avec un objet JSON : {"reponse": "phrase courte pour l’utilisateur", "actions": [ ... ]}. Si la demande est une question ou est ambiguë, "actions" est vide et "reponse" explique ou pose une question.`;
+  try{
+    const r=await samplerIA.json(prompt, {modelTier:'quick'});
+    if(att) att.remove();
+    const acts=(Array.isArray(r.actions)?r.actions:[]).filter(a => a && a.type && (!a.id || ASSIST.athletes().some(x => x.id===a.id)));
+    proposer(r.reponse||'', acts);
+  }catch(e){ if(att) att.remove(); ajouterMsg('app', esc(faq ? faq[0]+'\n'+faq[1] : 'L’assistant n’est pas disponible pour le moment. '+(e&&e.code==='not_granted'?'Autorisez Claude pour l’utiliser.':''))); }
+}
+function appliquerPropositions(){
+  if(!propositions||!propositions.length) return;
+  const avant=ASSIST.instantane(); let ok=0; const err=[];
+  propositions.forEach(a => { try{ const m=ASSIST.executer(a); if(m===false) err.push(decrire(a)); else ok++; }catch(e){ err.push(decrire(a)+' : '+e.message); } });
+  propositions=null; ASSIST.sauver();
+  annulerAssist=avant;
+  ajouterMsg('app', `${ok} action${ok>1?'s':''} appliquée${ok>1?'s':''}.${err.length?'\nNon appliqué : '+esc(err.join(' ; ')):''}<div class="actions"><button class="btn petit" data-act="assistDefaire">Défaire</button></div>`);
+}
+function construireAssistant(){
+  if(document.getElementById('aideBtn')) return;
+  document.body.insertAdjacentHTML('beforeend', `<button id="aideBtn" data-act="assistOuvrir" aria-expanded="false">Aide</button>
+  <div id="aidePanneau" hidden role="dialog" aria-label="Assistant"><div class="aide-tete"><b>Assistant</b><button class="btn petit" data-act="assistFermer">Fermer</button></div>
+    <div class="aide-fil" id="aideFil"><div class="aide-msg app">Dites-moi ce que vous voulez faire, par exemple : « retirer le dossard 12 », « Léa Martin est absente », « mettre Martin en 3e position », « échanger 12 et 15 »${ASSIST.couloirs?', « mettre le 12 au couloir 4 »':''}. Vous pouvez aussi poser une question sur l’app.</div></div>
+    <div class="aide-puces">${ASSIST.suggestions.map(s => `<button data-act="assistPuce" data-t="${esc(s)}">${esc(s)}</button>`).join('')}</div>
+    <div class="aide-saisie"><input id="aideTexte" type="text" placeholder="Votre demande" autocomplete="off"><button class="btn bleu" data-act="assistEnvoyer">OK</button></div></div>`);
+}
+function majVisibiliteAssistant(){ const b=document.getElementById('aideBtn'); if(!b) return; const tv=document.getElementById('tv'), mo=document.getElementById('module'), cache=(tv && !tv.hidden) || (document.getElementById('ecran') && !document.getElementById('ecran').hidden) || (mo && !mo.hidden); b.hidden=!!cache; if(cache) document.getElementById('aidePanneau').hidden=true; }
+setInterval(majVisibiliteAssistant, 700);
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
+  if(a==='assistOuvrir'){ const p=document.getElementById('aidePanneau'); p.hidden=!p.hidden; b.setAttribute('aria-expanded', String(!p.hidden)); if(!p.hidden) document.getElementById('aideTexte').focus(); }
+  else if(a==='assistFermer'){ document.getElementById('aidePanneau').hidden=true; }
+  else if(a==='assistEnvoyer'){ const i=document.getElementById('aideTexte'); demanderAssistant(i.value); i.value=''; }
+  else if(a==='assistPuce'){ const i=document.getElementById('aideTexte'); i.value=b.dataset.t; i.focus(); }
+  else if(a==='assistOk') appliquerPropositions();
+  else if(a==='assistNon'){ propositions=null; ajouterMsg('app','D’accord, rien n’a été modifié.'); }
+  else if(a==='assistDefaire'){ if(annulerAssist){ ASSIST.restaurer(annulerAssist); annulerAssist=null; ASSIST.sauver(); ajouterMsg('app','C’est défait.'); } }
+});
+document.addEventListener('keydown', e => { if(e.key==='Enter' && e.target.id==='aideTexte'){ e.preventDefault(); e.stopPropagation(); demanderAssistant(e.target.value); e.target.value=''; } }, true);
+setTimeout(() => { if(!(typeof MODE_PUBLIC!=='undefined' && MODE_PUBLIC)) construireAssistant(); }, 0);
+
+allerA((location.hash||'').slice(1)||window.__VUE_INITIALE||'courses');
+initTransport();
+</script>
+</body>
+</html>

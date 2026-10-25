@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>#TEAMBRO Throws</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#EEF1FF; --surface:#FFFFFF; --surface-2:#E6EBFF; --encre:#0A0F33; --encre-2:#4A5283; --trait:#CCD3F3;
+  --bleu:#1E46FF; --bleu-encre:#FFFFFF; --bleu-doux:#DCE4FF; --rose:#E8137A; --rose-encre:#FFFFFF; --rose-doux:#FFE1F0;
+  --gris:#7C83AB; --jaune:#C98A00; --jaune-doux:#FFF1CC;
+  --tv-fond:#03051A; --tv-panneau:#090E30; --tv-panneau-2:#0E1442; --tv-encre:#F3F5FF; --tv-encre-2:#8E97D6; --tv-trait:#1B2461;
+  --tv-bleu:#2F6BFF; --tv-bleu-neon:#6E97FF; --tv-rose:#FF2E9A; --tv-rose-neon:#FF7AC2; --tv-jaune:#FFD23F;
+  --rayon:10px;
+  --titre:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --texte:Saira,"Segoe UI",Roboto,system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#060A22; --surface:#0E1437; --surface-2:#161D49; --encre:#ECEFFF; --encre-2:#A2A9D8; --trait:#262F66;
+    --bleu:#3F6DFF; --bleu-doux:#17225E; --rose:#FF3DA0; --rose-doux:#3E1233; --gris:#8A91BE; --jaune:#FFC93D; --jaune-doux:#3A2E0E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#060A22; --surface:#0E1437; --surface-2:#161D49; --encre:#ECEFFF; --encre-2:#A2A9D8; --trait:#262F66;
+  --bleu:#3F6DFF; --bleu-doux:#17225E; --rose:#FF3DA0; --rose-doux:#3E1233; --gris:#8A91BE; --jaune:#FFC93D; --jaune-doux:#3A2E0E;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--fond);color:var(--encre);font:16px/1.5 var(--texte);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--titre);font-weight:800;line-height:1.05;margin:0;letter-spacing:.01em}
+h2{font-size:1.9rem}
+h3{font-size:1.35rem}
+p{margin:.4rem 0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+
+/* En-tête : la barre transversale */
+.entete{background:var(--surface);border-bottom:1px solid var(--trait)}
+.transversale{height:6px;background:linear-gradient(90deg,var(--bleu),var(--rose))}
+.entete-in{max-width:1320px;margin:0 auto;padding:14px 18px 4px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between}
+.marque{font-family:var(--titre);font-size:2.1rem;font-weight:900;line-height:1;letter-spacing:.01em;display:flex;gap:.35em;align-items:baseline;flex-wrap:wrap}
+.marque .tb{color:var(--rose)}
+.marque .pv{color:var(--bleu)}
+.marque small{font-family:var(--texte);font-size:.95rem;font-weight:500;color:var(--encre-2);letter-spacing:0}
+.sync{font-size:.85rem;color:var(--encre-2);display:flex;align-items:center;gap:8px}
+.sync i{width:9px;height:9px;border-radius:50%;background:var(--gris);display:inline-block}
+.sync[data-s="ok"] i{background:var(--bleu);box-shadow:0 0 0 3px var(--bleu-doux)}
+.sync[data-s="erreur"] i{background:var(--rose)}
+.onglets{max-width:1320px;margin:0 auto;padding:0 10px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+.onglets button{border:0;background:transparent;padding:12px 14px 10px;cursor:pointer;font-family:var(--titre);font-size:1.3rem;font-weight:800;color:var(--encre-2);border-bottom:4px solid transparent;white-space:nowrap;letter-spacing:.02em}
+.onglets button[aria-selected="true"]{color:var(--encre);border-bottom-color:var(--bleu)}
+.onglets button.tv-lien{color:var(--rose)}
+.onglets button:hover{color:var(--encre)}
+
+main{max-width:1320px;margin:0 auto;padding:20px 18px 70px}
+.bloc{background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:18px 20px;margin-bottom:18px}
+.bloc > h2,.bloc > h3{margin-bottom:10px}
+.discret{color:var(--encre-2);font-size:.93rem;max-width:78ch}
+.grille{display:grid;gap:14px 18px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+label.champ{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:500}
+label.champ small{font-weight:400;color:var(--encre-2)}
+input[type=text],input[type=number],input[type=date],input:not([type]),select,textarea{background:var(--surface-2);border:1px solid var(--trait);border-radius:8px;padding:9px 10px;min-height:42px;width:100%}
+textarea{min-height:120px;resize:vertical;font-family:ui-monospace,Consolas,monospace;font-size:.9rem}
+input:focus,select:focus,textarea:focus{border-color:var(--bleu);outline:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--trait);background:var(--surface);padding:9px 16px;min-height:42px;border-radius:8px;cursor:pointer;font-weight:600;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--surface-2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.bleu{background:var(--bleu);border-color:var(--bleu);color:var(--bleu-encre)}
+.btn.rose{background:var(--rose);border-color:var(--rose);color:var(--rose-encre)}
+.btn.bleu:hover,.btn.rose:hover{filter:brightness(1.1)}
+.btn.petit{min-height:32px;padding:4px 10px;font-size:.88rem;font-weight:500}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+
+/* Poste de concours */
+.poste{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(320px,1.5fr) minmax(240px,1fr);gap:16px;margin-bottom:18px}
+@media (max-width:980px){.poste{grid-template-columns:1fr 1fr}.poste .carte-saut{grid-column:1/-1;order:-1}}
+@media (max-width:620px){.poste{grid-template-columns:1fr}}
+.carte{background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.carte .lbl{font-size:.88rem;color:var(--encre-2);font-weight:500}
+.hauteur-geante{font-family:var(--titre);font-weight:900;font-size:4.6rem;line-height:.9;color:var(--bleu);font-variant-numeric:tabular-nums}
+.hauteur-geante small{font-size:.45em;color:var(--encre-2);margin-left:4px}
+.croquis-barre{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--bleu),var(--rose));position:relative;margin:6px 10px 2px}
+.croquis-barre::before,.croquis-barre::after{content:"";position:absolute;bottom:-26px;width:6px;height:40px;background:var(--encre-2);border-radius:3px}
+.croquis-barre::before{left:-10px}.croquis-barre::after{right:-10px}
+.carte-saut{border:2px solid var(--bleu)}
+.carte-saut .nom{font-family:var(--titre);font-weight:900;font-size:2.6rem;line-height:.95;overflow-wrap:anywhere}
+.carte-saut .meta{color:var(--encre-2);display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.95rem}
+.carte-saut .meta b{color:var(--encre)}
+.points{display:flex;gap:10px;align-items:center}
+.point{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--trait);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.point.O{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.point.X{background:var(--rose);border-color:var(--rose);color:#fff}
+.point.P{background:var(--gris);border-color:var(--gris);color:#fff}
+.point.suivant{border-color:var(--bleu);border-style:dashed}
+.decision{display:grid;grid-template-columns:1fr 1fr .7fr;gap:10px;margin-top:6px}
+.decision .btn{min-height:72px;font-size:1.25rem;font-family:var(--titre);font-weight:900;letter-spacing:.03em;flex-direction:column;gap:0;line-height:1}
+.decision .btn kbd{font-family:var(--texte);font-size:.72rem;font-weight:500;opacity:.8;margin-top:4px}
+.chrono-juge{font-family:var(--titre);font-weight:900;font-size:4.4rem;line-height:.9;font-variant-numeric:tabular-nums}
+.chrono-juge[data-a="1"]{color:var(--jaune)}
+.chrono-juge[data-a="2"]{color:var(--rose)}
+.chrono-juge[data-a="r"]{color:var(--bleu)}
+.auto-barre{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;background:var(--surface);border:1px solid var(--trait);border-radius:var(--rayon);padding:10px 16px;margin-bottom:14px}
+.interrupteur{display:inline-flex;align-items:center;gap:10px;border:0;background:none;cursor:pointer;font-weight:600;padding:4px 0}
+.interrupteur .piste-i{width:46px;height:26px;border-radius:999px;background:var(--trait);position:relative;transition:background .2s}
+.interrupteur .piste-i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.interrupteur[aria-pressed="true"] .piste-i{background:linear-gradient(90deg,var(--bleu),var(--rose))}
+.interrupteur[aria-pressed="true"] .piste-i::after{transform:translateX(20px)}
+.auto-barre .discret{margin:0}
+.ensuite{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-bottom:16px;color:var(--encre-2)}
+.ensuite b{color:var(--encre);font-weight:600}
+.poteaux{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;background:var(--surface-2);border-radius:8px;padding:8px 10px}
+.poteaux .lbl{color:var(--encre-2);font-size:.9rem;margin-right:2px}
+.poteaux .val{font-family:var(--titre);font-weight:900;font-size:1.9rem;line-height:1;min-width:2.2ch;text-align:right;color:var(--encre)}
+.poteaux .unite{color:var(--encre-2);margin-right:6px}
+.poteaux .btn{min-height:36px;padding:4px 11px}
+.a-changer{color:var(--rose);font-weight:600}
+.phrases{display:grid;gap:12px}
+.phrase{display:grid;grid-template-columns:minmax(150px,220px) 1fr auto;gap:8px 12px;align-items:center}
+@media (max-width:700px){.phrase{grid-template-columns:1fr auto}.phrase label{grid-column:1/-1}}
+.phrase label{font-weight:600;font-size:.92rem}
+.jetons{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.jetons code{background:var(--surface-2);border:1px solid var(--trait);border-radius:6px;padding:1px 7px;font-size:.85rem}
+.annonce-libre{display:flex;gap:10px;flex-wrap:wrap}
+.annonce-libre input{flex:1;min-width:220px}
+.tv-liaison{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;background:var(--tv-panneau-2);border:1px solid var(--tv-trait);border-radius:16px;padding:28px 32px;text-align:center;max-width:90vw;box-shadow:0 0 60px rgba(47,107,255,.35)}
+.tv-liaison h3{font-size:clamp(22px,4vh,44px);margin-bottom:10px}
+.tv-liaison p{color:var(--tv-encre-2);margin:0 0 14px}
+.tv-liaison input{font:800 clamp(22px,4vh,40px) var(--titre);letter-spacing:.25em;text-transform:uppercase;text-align:center;background:var(--tv-fond);color:var(--tv-encre);border:2px solid var(--tv-bleu);border-radius:10px;padding:8px 12px;width:9ch;min-height:0}
+.tv-liaison button{margin-left:10px;background:var(--tv-bleu);color:#fff;border:0;border-radius:10px;padding:12px 20px;font:600 18px var(--texte);cursor:pointer}
+.tv-etat-liaison{position:absolute;left:1.4vw;bottom:1.4vh;z-index:9;font-size:13px;color:var(--tv-encre-2);background:rgba(0,0,0,.35);border-radius:999px;padding:4px 12px}
+.alerte{background:var(--rose-doux);border-left:4px solid var(--rose);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+.info{background:var(--bleu-doux);border-left:4px solid var(--bleu);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+
+/* Feuille de hauteur */
+.defil{overflow-x:auto;border:1px solid var(--trait);border-radius:var(--rayon);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:7px 9px;border-bottom:1px solid var(--trait);text-align:left;white-space:nowrap}
+th{font-weight:600;font-size:.85rem;color:var(--encre-2);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.feuille th.h,.feuille td.h{text-align:center;border-left:1px solid var(--trait);min-width:58px;padding:0}
+.feuille th.h{padding:7px 4px;font-family:var(--titre);font-size:1.05rem;font-weight:800;color:var(--encre)}
+.feuille th.h.cur{background:var(--bleu);color:#fff}
+.feuille td.h.cur{background:color-mix(in srgb,var(--bleu-doux) 70%,transparent)}
+.feuille td.h button{width:100%;min-height:42px;border:0;background:transparent;cursor:pointer;font-weight:700;letter-spacing:.12em;font-size:1rem}
+.feuille td.h button:hover{background:var(--surface-2)}
+.m-O{color:var(--bleu)}.m-X{color:var(--rose)}.m-P{color:var(--gris)}
+.feuille tr.au-saut td{background:var(--bleu-doux)}
+.feuille tr.au-saut td.nom{box-shadow:inset 5px 0 0 var(--bleu)}
+.feuille tr.hors td:not(.h){opacity:.55}
+.feuille td.perf{font-weight:700;font-size:1.05rem}
+.feuille td.rang{font-family:var(--titre);font-size:1.4rem;font-weight:900;text-align:center}
+.feuille td.nom button{border:0;background:none;padding:0;cursor:pointer;text-align:left;font-weight:600}
+.feuille td.nom small{display:block;color:var(--encre-2);font-weight:400}
+.etiq{display:inline-block;font-size:.72rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--trait);margin-left:6px;vertical-align:middle}
+.etiq.rose{background:var(--rose-doux);border-color:var(--rose)}
+.etiq.bleu{background:var(--bleu-doux);border-color:var(--bleu)}
+
+.liste-ath td .ordre{display:inline-flex;gap:4px}
+
+/* Modale & toast */
+#modale{position:fixed;inset:0;background:rgba(3,5,26,.55);display:grid;place-items:center;padding:20px;z-index:50}
+#modale[hidden]{display:none}
+#modale .boite{background:var(--surface);color:var(--encre);border-radius:14px;padding:20px 22px;max-width:520px;width:100%;max-height:85vh;overflow:auto;border-top:6px solid var(--bleu)}
+#modale .boite h3{margin-bottom:8px}
+#toast{opacity:0;visibility:hidden;position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--encre);color:var(--surface);padding:10px 18px;border-radius:999px;font-weight:600;transition:transform .25s;z-index:60;max-width:90vw;text-align:center}
+#toast.vu{transform:translate(-50%,0);opacity:1;visibility:visible}
+
+/* ============ AFFICHAGE TÉLÉ ============ */
+#tv{position:fixed;inset:0;background:var(--tv-fond);color:var(--tv-encre);font-family:var(--texte);overflow:hidden;z-index:40;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  background-image:radial-gradient(ellipse 70% 55% at 12% 0%,rgba(47,107,255,.22),transparent 70%),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(255,46,154,.16),transparent 70%)}
+#tv[hidden]{display:none}
+.tv{height:100%;display:grid;grid-template-rows:auto auto 1fr auto;gap:1.6vh;padding:2.4vh 2.6vw}
+.tv-haut{display:flex;align-items:center;justify-content:space-between;gap:2vw}
+.tv-marque{font-family:var(--titre);font-weight:900;font-size:clamp(22px,3.6vh,54px);line-height:1;display:flex;gap:.3em;align-items:baseline}
+.tv-marque .tb{color:var(--tv-rose);text-shadow:0 0 18px rgba(255,46,154,.55)}
+.tv-marque .pv{color:var(--tv-bleu-neon);text-shadow:0 0 18px rgba(47,107,255,.6)}
+.tv-concours{font-size:clamp(14px,2.3vh,32px);color:var(--tv-encre-2);text-align:center;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv-heure{font-family:var(--titre);font-weight:800;font-size:clamp(20px,3.6vh,52px);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:.5em}
+.tv-direct{width:.45em;height:.45em;border-radius:50%;background:var(--tv-rose);box-shadow:0 0 12px var(--tv-rose)}
+.tv-direct.off{background:var(--tv-encre-2);box-shadow:none}
+
+.tv-scene{display:grid;grid-template-columns:1fr 1.45fr 1fr;gap:1.6vw;min-height:0}
+.tv-panneau{background:linear-gradient(180deg,var(--tv-panneau-2),var(--tv-panneau));border:1px solid var(--tv-trait);border-radius:1.6vh;padding:2.2vh 1.8vw;display:flex;flex-direction:column;justify-content:center;min-width:0;position:relative;overflow:hidden}
+.tv-lbl{font-size:clamp(12px,1.9vh,26px);color:var(--tv-encre-2);font-weight:500}
+
+.tv-hauteur{font-family:var(--titre);font-weight:900;font-size:clamp(60px,15vh,230px);line-height:.82;color:#fff;text-shadow:0 0 28px rgba(47,107,255,.85),0 0 70px rgba(47,107,255,.45);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tv-hauteur small{font-size:.32em;color:var(--tv-bleu-neon);margin-left:.08em;text-shadow:none}
+.tv-poteaux{position:relative;height:5vh;margin:2.6vh .6vw 0}
+.tv-poteaux .barre{position:absolute;left:0;right:0;top:0;height:1.1vh;border-radius:1vh;background:linear-gradient(90deg,var(--tv-bleu),var(--tv-rose));box-shadow:0 0 18px rgba(47,107,255,.8),0 0 30px rgba(255,46,154,.45)}
+.tv-poteaux::before,.tv-poteaux::after{content:"";position:absolute;top:-1.2vh;width:.8vh;height:6.4vh;border-radius:.4vh;background:var(--tv-encre-2)}
+.tv-poteaux::before{left:-1.2vh}.tv-poteaux::after{right:-1.2vh}
+.tv-sous{font-size:clamp(12px,2vh,28px);color:var(--tv-encre-2);margin-top:.6vh}
+.tv-sous b{color:var(--tv-encre);font-weight:600}
+
+.tv-dossard{display:inline-block;font-family:var(--titre);font-weight:800;font-size:clamp(16px,2.8vh,40px);background:var(--tv-encre);color:var(--tv-fond);padding:.05em .45em;border-radius:.25em;align-self:flex-start;margin-bottom:1vh}
+.tv-nom{font-family:var(--titre);font-weight:900;font-size:clamp(34px,8.4vh,124px);line-height:.88;overflow-wrap:anywhere}
+.tv-nom .prenom{display:block;font-size:.5em;color:var(--tv-encre-2);font-weight:800;line-height:1.05}
+.tv-club{font-size:clamp(14px,2.4vh,34px);color:var(--tv-encre-2);margin-top:1vh}
+.tv-essais{display:flex;align-items:center;gap:1.2vw;margin-top:2.4vh;flex-wrap:wrap}
+.tv-essais .lbl{font-size:clamp(14px,2.3vh,32px);color:var(--tv-encre-2)}
+.tv-pt{width:5vh;height:5vh;border-radius:50%;border:.45vh solid var(--tv-trait);display:grid;place-items:center;font-family:var(--titre);font-weight:900;font-size:2.8vh}
+.tv-pt.O{background:var(--tv-bleu);border-color:var(--tv-bleu-neon);box-shadow:0 0 16px rgba(47,107,255,.8)}
+.tv-pt.X{background:var(--tv-rose);border-color:var(--tv-rose-neon);box-shadow:0 0 16px rgba(255,46,154,.7)}
+.tv-pt.P{background:var(--tv-encre-2);border-color:var(--tv-encre-2)}
+.tv-pt.suivant{border-color:var(--tv-encre);border-style:dashed}
+.tv-refs{display:flex;gap:2vw;margin-top:1.8vh;font-size:clamp(13px,2.2vh,30px);color:var(--tv-encre-2)}
+.tv-refs b{color:var(--tv-encre);font-family:var(--titre);font-weight:800;font-size:1.2em}
+
+.tv-chrono{align-items:center;text-align:center}
+.tv-anneau{position:relative;width:min(100%,32vh);aspect-ratio:1;border-radius:50%;box-shadow:0 0 40px rgba(255,46,154,.28)}
+.tv-anneau[data-e="idle"]{box-shadow:none}
+.tv-anneau[data-e="idle"] .arc{stroke:var(--tv-bleu);opacity:.55}
+.tv-anneau[data-a="1"]{box-shadow:0 0 46px rgba(255,210,63,.35)}
+.tv-anneau svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tv-anneau .fond{stroke:var(--tv-trait)}
+.tv-anneau .arc{stroke:var(--tv-rose);transition:stroke .3s}
+.tv-anneau[data-a="1"] .arc{stroke:var(--tv-jaune)}
+.tv-anneau .val{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--titre);font-weight:900;font-size:clamp(34px,9vh,140px);font-variant-numeric:tabular-nums;line-height:1}
+.tv-anneau[data-a="1"] .val{color:var(--tv-jaune)}
+.tv-anneau[data-a="2"] .val{color:var(--tv-rose);animation:clignote 1s steps(2) infinite}
+.tv-anneau[data-e="idle"] .val{color:var(--tv-encre-2)}
+.tv-anneau[data-e="remise"]{box-shadow:0 0 40px rgba(47,107,255,.35)}
+.tv-anneau[data-e="remise"] .arc{stroke:var(--tv-bleu-neon)}
+.tv-anneau[data-e="remise"] .val{color:var(--tv-bleu-neon)}
+.tv-chrono-etat{font-size:clamp(13px,2.2vh,30px);color:var(--tv-encre-2);margin-top:1.4vh}
+@keyframes clignote{50%{opacity:.25}}
+
+.tv-bas{display:grid;grid-template-rows:auto 1fr;min-height:0;background:var(--tv-panneau);border:1px solid var(--tv-trait);border-radius:1.6vh;overflow:hidden}
+.tv-classement{width:100%;border-collapse:collapse;font-size:clamp(13px,2.5vh,36px)}
+.tv-classement th{background:transparent;color:var(--tv-encre-2);font-weight:500;font-size:.62em;padding:.7vh 1vw;border-bottom:1px solid var(--tv-trait);position:static}
+.tv-classement td{padding:.55vh 1vw;border-bottom:1px solid var(--tv-trait);white-space:nowrap}
+.tv-classement tr:last-child td{border-bottom:0}
+.tv-classement .rg{font-family:var(--titre);font-weight:900;width:4vw;text-align:center;font-size:1.15em}
+.tv-classement .nm{font-weight:600;max-width:28vw;overflow:hidden;text-overflow:ellipsis}
+.tv-classement .nm small{color:var(--tv-encre-2);font-weight:400;margin-left:.6em;font-size:.72em}
+.tv-classement .hc{text-align:center;font-family:var(--titre);font-weight:800;letter-spacing:.12em;width:7vw}
+.tv-classement th.hc{font-family:var(--titre);font-weight:800;font-size:.7em;color:var(--tv-encre)}
+.tv-classement th.hc.cur{color:var(--tv-bleu-neon)}
+.tv-classement .pf{text-align:right;font-family:var(--titre);font-weight:900;font-size:1.15em;width:9vw}
+.tv-classement tr.actif td{background:rgba(47,107,255,.2)}
+.tv-classement tr.actif .nm{color:#fff}
+.tv-classement tr.elim td{color:var(--tv-encre-2)}
+.tv-classement .k-O{color:var(--tv-bleu-neon)}.tv-classement .k-X{color:var(--tv-rose)}.tv-classement .k-P{color:var(--tv-encre-2)}
+.tv-pages{font-size:.55em;color:var(--tv-encre-2);float:right}
+
+.tv-bandeau{background:linear-gradient(90deg,var(--tv-bleu),var(--tv-rose));color:#fff;font-weight:600;font-size:clamp(14px,2.5vh,34px);padding:.8vh 1.4vw;border-radius:1vh;overflow:hidden;white-space:nowrap}
+.tv-bandeau span{display:inline-block;padding-left:100%;animation:defile 22s linear infinite}
+@keyframes defile{to{transform:translateX(-100%)}}
+
+.tv-flash{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);padding:4vh 4vw;text-align:center;z-index:5;pointer-events:none;animation:flash 3.4s ease forwards}
+.tv-flash .big{font-family:var(--titre);font-weight:900;font-size:clamp(50px,15vh,220px);line-height:.9;color:#fff}
+.tv-flash .small{font-size:clamp(16px,3.4vh,48px);font-weight:600;margin-top:1vh}
+.tv-flash.O{background:linear-gradient(90deg,transparent,rgba(30,70,255,.95) 18%,rgba(30,70,255,.95) 82%,transparent)}
+.tv-flash.O .big{text-shadow:0 0 40px rgba(110,151,255,.9)}
+.tv-flash.X{background:linear-gradient(90deg,transparent,rgba(232,19,122,.95) 18%,rgba(232,19,122,.95) 82%,transparent)}
+.tv-flash.P{background:linear-gradient(90deg,transparent,rgba(60,66,110,.95) 18%,rgba(60,66,110,.95) 82%,transparent)}
+.tv-flash.R{background:linear-gradient(90deg,transparent,rgba(30,70,255,.96) 15%,rgba(232,19,122,.96) 85%,transparent)}
+@keyframes flash{0%{opacity:0;transform:translateY(-50%) scaleY(.2)}8%{opacity:1;transform:translateY(-50%) scaleY(1)}85%{opacity:1}100%{opacity:0}}
+
+.tv-centre{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2vh;min-height:0}
+.tv-titre{font-family:var(--titre);font-weight:900;font-size:clamp(40px,11vh,170px);line-height:.88}
+.tv-titre .tb{color:var(--tv-rose);text-shadow:0 0 30px rgba(255,46,154,.6)}
+.tv-titre .pv{color:var(--tv-bleu-neon);text-shadow:0 0 30px rgba(47,107,255,.7)}
+.tv-grille-ath{display:grid;grid-template-columns:repeat(auto-fill,minmax(26vw,1fr));gap:1vh 2vw;width:100%;max-width:92vw;font-size:clamp(14px,2.6vh,36px);text-align:left}
+.tv-grille-ath div{display:flex;gap:1vw;align-items:baseline;border-bottom:1px solid var(--tv-trait);padding:.6vh 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv-grille-ath b{font-family:var(--titre);font-weight:800;color:var(--tv-rose);min-width:3.2em}
+.tv-grille-ath small{color:var(--tv-encre-2)}
+
+.tv-podium{display:flex;align-items:flex-end;justify-content:center;gap:2vw;width:100%}
+.tv-marche{width:22vw;text-align:center}
+.tv-marche .qui{font-family:var(--titre);font-weight:900;font-size:clamp(20px,4.4vh,64px);line-height:.95;margin-bottom:1vh;overflow-wrap:anywhere}
+.tv-marche .qui small{display:block;font-family:var(--texte);font-weight:500;font-size:.4em;color:var(--tv-encre-2);margin-top:.5vh}
+.tv-marche .socle{border-radius:1.2vh 1.2vh 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:1.4vh;font-family:var(--titre);font-weight:900}
+.tv-marche .socle .r{font-size:clamp(36px,9vh,130px);line-height:.9}
+.tv-marche .socle .p{font-size:clamp(18px,3.6vh,52px)}
+.tv-marche.m1 .socle{height:26vh;background:linear-gradient(180deg,var(--tv-rose),#8A0E4C);box-shadow:0 0 40px rgba(255,46,154,.45)}
+.tv-marche.m2 .socle{height:19vh;background:linear-gradient(180deg,var(--tv-bleu),#132C8F);box-shadow:0 0 30px rgba(47,107,255,.4)}
+.tv-marche.m3 .socle{height:14vh;background:linear-gradient(180deg,#3C4790,#1B2260)}
+
+.tv-sortie{position:absolute;right:1.4vw;bottom:1.4vh;z-index:9;display:flex;gap:8px;opacity:0;transition:opacity .3s}
+#tv:hover .tv-sortie,.tv-sortie:focus-within,#tv.souris .tv-sortie{opacity:1}
+.tv-sortie button{background:rgba(255,255,255,.12);color:var(--tv-encre);border:1px solid var(--tv-trait);border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit;font-size:14px}
+.tv-son{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);z-index:9;background:var(--tv-rose);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:600 16px var(--texte);cursor:pointer}
+
+@media (max-aspect-ratio: 1/1){
+  .tv{grid-template-rows:auto auto auto 1fr auto}
+  .tv-scene{grid-template-columns:1fr 1fr}
+  .tv-scene .tv-ath{grid-column:1/-1;order:-1}
+}
+@media (prefers-reduced-motion: reduce){
+  .tv-flash{animation:none;opacity:1}
+  .tv-bandeau span{animation:none;padding-left:0}
+  .tv-anneau[data-a="2"] .val{animation:none}
+}
+
+.pad{width:100%;height:auto;aspect-ratio:3/1;background:#fff;border:2px dashed var(--bleu);border-radius:10px;touch-action:none;cursor:crosshair;display:block}
+.mini-sign{height:34px;background:#fff;border-radius:4px;display:block;margin-bottom:2px}
+.tete-bloc{display:flex;justify-content:space-between;align-items:baseline;gap:10px 16px;flex-wrap:wrap;margin-bottom:10px}
+#aideBtn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:35;border:0;border-radius:999px;padding:14px 20px;background:linear-gradient(90deg,var(--bleu),var(--rose));color:#fff;font:700 1rem var(--texte);box-shadow:0 6px 20px rgba(30,70,255,.35);cursor:pointer}
+#aidePanneau{position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:36;width:min(440px,calc(100vw - 24px));max-height:min(70vh,640px);display:flex;flex-direction:column;background:var(--surface);color:var(--encre);border:1px solid var(--trait);border-top:5px solid var(--rose);border-radius:14px;box-shadow:0 12px 40px rgba(3,5,26,.35)}
+#aidePanneau[hidden]{display:none}
+.aide-tete{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--trait)}
+.aide-tete b{font-family:var(--titre);font-size:1.3rem}
+.aide-fil{flex:1;overflow:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.aide-msg{padding:9px 12px;border-radius:10px;max-width:92%;white-space:pre-wrap}
+.aide-msg.moi{align-self:flex-end;background:var(--bleu);color:#fff}
+.aide-msg.app{align-self:flex-start;background:var(--surface-2)}
+.aide-msg .actions{margin-top:8px}
+.aide-msg ul{margin:6px 0 0;padding-left:18px}
+.aide-puces{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 8px}
+.aide-puces button{border:1px solid var(--trait);background:var(--surface-2);border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer;color:var(--encre)}
+.aide-saisie{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--trait)}
+.aide-saisie input{flex:1}
+.saisie{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.saisie input{font-family:var(--titre);font-weight:900;font-size:2rem;min-height:58px;letter-spacing:.02em}
+.feuille td.h button small.vt{display:block;font-size:.7rem;font-weight:500;letter-spacing:0;color:var(--encre-2)}
+.feuille td.h button small.vt.fort{color:var(--rose)}
+.feuille td.h button{letter-spacing:0}
+.feuille td.rang{font-size:1.2rem}
+.tv-sable{height:3.2vh;margin:2.4vh .6vw 0;border-radius:.6vh;background:repeating-linear-gradient(90deg,rgba(255,210,63,.55) 0 1.2vh,rgba(255,210,63,.25) 1.2vh 2.4vh);box-shadow:0 0 18px rgba(255,210,63,.25);position:relative}
+.tv-sable::before{content:"";position:absolute;left:-1.6vh;top:-.6vh;width:1.4vh;height:4.4vh;border-radius:.3vh;background:linear-gradient(180deg,var(--tv-bleu),var(--tv-rose))}
+.tv-serie{display:flex;gap:.5vw;margin-top:2.4vh;flex-wrap:wrap}
+.tv-case{min-width:7.2vh;height:5vh;padding:0 .5vh;border-radius:1vh;border:.35vh solid var(--tv-trait);display:grid;place-items:center;font-family:var(--titre);font-weight:900;font-size:2.5vh}
+.tv-case.O{background:var(--tv-bleu);border-color:var(--tv-bleu-neon)}
+.tv-case.X{background:var(--tv-rose);border-color:var(--tv-rose-neon)}
+.tv-case.P{background:var(--tv-encre-2);border-color:var(--tv-encre-2)}
+.tv-case.suivant:not(.O):not(.X):not(.P){border-style:dashed;border-color:var(--tv-encre)}
+.tv-classement .hc.mesure{letter-spacing:0;font-size:.9em;width:6.5vw}
+
+</style>
+</head>
+<body>
+<div id="appJuge">
+  <header class="entete">
+    <div class="transversale"></div>
+    <div class="entete-in">
+      <div class="marque"><span class="tb">#TEAMBRO</span><span class="pv">Throws</span><small id="sousTitre"></small></div>
+      <div class="sync" id="sync" data-s="local"><i></i><span>Enregistré sur cet appareil</span></div>
+    </div>
+    <nav class="onglets" role="tablist" id="onglets"></nav>
+  </header>
+  <main id="vue"></main>
+</div>
+<div id="tv" hidden></div>
+<div id="modale" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const EPR = {"code": "lancers", "titre": "Throws", "epreuve": "Lancer du poids", "epreuveMin": "lancer", "cle": "teambro-lancers", "peer": "teambro-th-", "triple": false, "lancer": true, "exM": "12,45", "max": 110, "fictif": {"poids": {"F": [7.5, 15.5], "H": [9.0, 18.5]}, "disque": {"F": [20, 55], "H": [25, 60]}, "javelot": {"F": [22, 55], "H": [30, 72]}, "marteau": {"F": [22, 62], "H": [28, 70]}}};
+const ENGINS = {poids:{nom:'Lancer du poids', titre:'Shot Put', lieu:'Au cercle'}, disque:{nom:'Lancer du disque', titre:'Discus', lieu:'Au cercle'}, javelot:{nom:'Lancer du javelot', titre:'Javelin', lieu:'À l’élan'}, marteau:{nom:'Lancer du marteau', titre:'Hammer', lieu:'Au cercle'}};
+const CATS_ENGIN = [['U14','U14 (Benjamins)'],['U16','U16 (Minimes)'],['U18','U18 (Cadets)'],['U20','U20 (Juniors)'],['SE','U23, Seniors'],['M35','Masters 35-49'],['M50','Masters 50-59'],['M60','Masters 60-69'],['M70','Masters 70-74'],['M75','Masters 75-79'],['M80','Masters 80 et +']];
+/* Masses FFA (règles particulières) pour U14 à Seniors ; Masters d’après les règles World Athletics Masters, à vérifier selon votre compétition */
+const MASSES_DEFAUT = {
+  poids:  {U14:{F:2,H:3},U16:{F:3,H:4},U18:{F:3,H:5},U20:{F:4,H:6},SE:{F:4,H:7.26},M35:{F:4,H:7.26},M50:{F:3,H:6},M60:{F:3,H:5},M70:{F:3,H:4},M75:{F:2,H:4},M80:{F:2,H:3}},
+  disque: {U14:{F:0.6,H:1},U16:{F:0.8,H:1.25},U18:{F:1,H:1.5},U20:{F:1,H:1.75},SE:{F:1,H:2},M35:{F:1,H:2},M50:{F:1,H:1.5},M60:{F:1,H:1},M70:{F:1,H:1},M75:{F:0.75,H:1},M80:{F:0.75,H:1}},
+  javelot:{U14:{F:0.4,H:0.5},U16:{F:0.5,H:0.6},U18:{F:0.5,H:0.7},U20:{F:0.6,H:0.8},SE:{F:0.6,H:0.8},M35:{F:0.6,H:0.8},M50:{F:0.5,H:0.7},M60:{F:0.5,H:0.6},M70:{F:0.5,H:0.5},M75:{F:0.4,H:0.5},M80:{F:0.4,H:0.4}},
+  marteau:{U14:{F:2,H:3},U16:{F:3,H:4},U18:{F:3,H:5},U20:{F:4,H:6},SE:{F:4,H:7.26},M35:{F:4,H:7.26},M50:{F:3,H:6},M60:{F:3,H:5},M70:{F:3,H:4},M75:{F:2,H:4},M80:{F:2,H:3}}
+};
+function catKey(cat){
+  const s=String(cat||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  const m=s.match(/^(?:m|v|w|master|veteran)\s*-?\s*(\d{1,2})\b/);
+  if(m){ let n=+m[1]; const age = n<=10 ? 35+5*n : n; return age>=80?'M80':age>=75?'M75':age>=70?'M70':age>=60?'M60':age>=50?'M50':'M35'; }
+  if(/u14|benj|^be[fm]?$|^b[fm]$/.test(s)) return 'U14';
+  if(/u16|minim|^mi[fm]?$|^m[fm]$/.test(s)) return 'U16';
+  if(/u18|cadet|^ca[fm]?$|^c[fm]$/.test(s)) return 'U18';
+  if(/u20|junior|^ju[fm]?$|^j[fm]$/.test(s)) return 'U20';
+  return 'SE';
+}
+function titreAff(){ return EPR.lancer ? (ENGINS[C().engin]||ENGINS.poids).titre : EPR.titre; }
+function lieuAff(){ return EPR.lancer ? (ENGINS[C().engin]||ENGINS.poids).lieu : 'Au sautoir'; }
+function masseEngin(a){ if(!EPR.lancer||!a) return null; if(a.masse) return +a.masse; const t=(C().masses||MASSES_DEFAUT)[C().engin]||{}, k=catKey(a.cat); return (t[k]||{})[a.sexe==='H'?'H':'F'] ?? null; }
+function fEngin(kg){ if(kg==null||kg==='') return ''; kg=+kg; return kg>=1 ? String(kg).replace('.',',')+' kg' : Math.round(kg*1000)+' g'; }
+function engParle(kg){ if(kg==null) return ''; kg=+kg; if(kg<1) return Math.round(kg*1000)+' grammes'; const e=Math.floor(kg+1e-9), g=Math.round((kg-e)*1000); return e+' kilo'+(e>1?'s':'')+(g?' '+g:''); }
+const LISTING = {
+  alias:{masse:['engin','masse','masse engin','poids engin'], pb:['rp','record','record perso','record personnel','pb','meilleure perf'], sb:['mps','sb','saison','perf saison','meilleure perf saison'],
+    planche:['planche','planche d appel','board','distance planche']},
+  ordre:['dossard','licence','prenom','nom','club','sexe','cat', ...(EPR.triple?['planche']:[]), 'pb','sb'],
+  libelles:{...(EPR.triple?{planche:'Planche'}:{}), ...(EPR.lancer?{masse:'Engin'}:{}), pb:'RP', sb:'MPS'},
+  aide:'Dossard, Licence, Nom, Prénom, Club, Sexe, Catégorie'+(EPR.triple?', Planche':'')+', RP, MPS (dans n’importe quel ordre)',
+  exemple:'12;123456;Léa;MARTIN;EA Nîmes;F;U18;'+(EPR.triple?'11;':'')+EPR.exM,
+  fictifDefaut:10,
+  fictif:(o,i,n,niv) => {
+    const r=(EPR.lancer?EPR.fictif[C().engin]:EPR.fictif)[o.sexe], pb=r[0]+(r[1]-r[0])*niv;
+    o.pb=fP(pb); o.sb=fP(pb-Math.random()*EPR.fictif.ecart);
+    if(EPR.triple) o.planche = pb<11.5 ? '9' : pb<13.5 ? '11' : '13';
+  }
+};
+const CLE = EPR.cle+'-v1', CLE_HISTO = EPR.cle+'-histo-v1';
+const VUES = [['concours','Concours'],['athletes','Athlètes'],['reglages','Réglages'],['export','Résultats'],['tv','Affichage télé']];
+const PHRASES_DEFAUT = {
+  debut:'Début du concours : {epreuve}.',
+  appel:EPR.lancer ? '{prenom} {nom}, dossard {dossard}. {essai} essai.' : 'Au sautoir, {prenom} {nom}, dossard {dossard}. {essai} essai.',
+  mesure:'{prenom} {nom} : {mesure}.',
+  record:'{prenom} {nom} : {mesure}, {record} !',
+  mordu:EPR.lancer ? 'Essai nul pour {prenom} {nom}.' : 'Essai mordu pour {prenom} {nom}.',
+  engin:'Engin de {engin} pour {prenom} {nom}.',
+  passe:'{prenom} {nom} passe son essai.',
+  finale:'Fin du troisième essai. Les finalistes poursuivent le concours dans l’ordre inverse du classement.',
+  planche:'Planche à {planche} mètres pour {prenom} {nom}.',
+  temps:'Temps écoulé pour {prenom} {nom}.',
+  fin:'Fin du concours. Victoire de {prenom} {nom} avec {mesure} !'
+};
+const LIB_PHRASES = [['debut','Début du concours'],['appel','Appel de l’athlète'],['mesure','Essai mesuré'],['record','Essai avec record'],['mordu',EPR.lancer?'Essai nul':'Essai mordu'],['passe','Passe'],
+  ['finale','Passage en finale'],['planche','Réglage de la planche'],['engin','Changement d’engin'],['temps','Temps écoulé'],['fin','Fin du concours']].filter(([k]) => (EPR.triple || k!=='planche') && (EPR.lancer || k!=='engin'));
+const REGLES_TEMPS = {
+  wa:{lib:'World Athletics / FFA (règles techniques)', t1:60, tconsec:120},
+  combinees:{lib:'Épreuves combinées (World Athletics / FFA)', t1:60, tconsec:120}
+};
+function codeSalle(){ const c='ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let r=''; for(let i=0;i<5;i++) r+=c[Math.floor(Math.random()*c.length)]; return r; }
+function aujourdhui(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function uid(){ return Math.random().toString(36).slice(2,10); }
+function chronoVide(){ return {etat:'idle', finAt:0, resteMs:0, duree:0, pour:null}; }
+function etatDefaut(){
+  return {v:1, maj:0, etat:'prep',
+    config:{nom:'Meeting #TEAMBRO', lieu:'', date:aujourdhui(), epreuve:EPR.epreuve, nbEssais:6, finalistes:8, reordre:'oui', vent:EPR.lancer?'non':'oui',
+      engin:'poids', masses:JSON.parse(JSON.stringify(MASSES_DEFAUT)),
+      planches:EPR.triple?'7 9 11 13':'', regle:'wa', t1:60, tconsec:120, alerte:15,
+      voix:'aucun', son:'juge', bandeau:'', recordMeeting:'', nbTV:8, voixNom:'', debit:1, tonalite:1, volume:1, repet:1,
+      phrases:{...PHRASES_DEFAUT}, salle:codeSalle(), auto:'oui', typeAuto:'semi', delai:20, autoPlanche:(EPR.triple||EPR.lancer)?'change':'jamais', autoTemps:'oui', echecTemps:'non'},
+    athletes:[], essais:{}, tour:0, ordres:[],
+    live:{chrono:chronoVide(), dernier:null, annonce:null, precedent:null, auto:null}};
+}
+function fusion(o){
+  const d=etatDefaut(), r={...d, ...o};
+  r.config={...d.config, ...(o.config||{})}; r.config.phrases={...PHRASES_DEFAUT, ...((o.config||{}).phrases||{})};
+  r.live={...d.live, ...(o.live||{})}; r.live.chrono={...chronoVide(), ...((o.live||{}).chrono||{})};
+  if(!Array.isArray(r.athletes)) r.athletes=[]; if(!Array.isArray(r.ordres)) r.ordres=[]; if(!r.essais||typeof r.essais!=='object') r.essais={};
+  return r;
+}
+function charger(){ try{ const t=localStorage.getItem(CLE); if(t) return fusion(JSON.parse(t)); }catch(e){} return etatDefaut(); }
+let S = charger();
+if(window.__CONFIG_INITIALE && !S.maj) Object.assign(S.config, window.__CONFIG_INITIALE);
+let HISTO=[]; try{ const h=JSON.parse(localStorage.getItem(CLE_HISTO)||'[]'); if(Array.isArray(h)) HISTO=h; }catch(e){}
+let vue='concours';
+let canal=null; try{ canal=new BroadcastChannel(EPR.cle); }catch(e){}
+
+/* ---------- Outils ---------- */
+const C = () => S.config;
+const A = id => S.athletes.find(a => a.id===id);
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fM(m){ return (m==null||isNaN(m)) ? '' : (+m).toFixed(2).replace('.',','); }
+function parseM(s){
+  s=String(s??'').trim().replace(',','.').replace(/\s*m$/i,''); if(!s) return null;
+  let v=parseFloat(s); if(isNaN(v)||v<=0) return null;
+  if(v>(EPR.lancer?150:30)) v=v/100;
+  return Math.floor(v*100+1e-6)/100;
+}
+function parseVent(s){ s=String(s??'').trim().replace(',','.'); if(s==='') return null; const v=parseFloat(s); return isNaN(v) ? null : Math.round(v*10)/10; }
+function fV(v){ return v==null ? '' : (v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(1).replace('.',','); }
+function mmss(ms){ ms=Math.max(0,ms); const t=Math.ceil(ms/1000); return Math.floor(t/60)+':'+String(t%60).padStart(2,'0'); }
+function nomComplet(a){ return a ? `${a.prenom||''} ${(a.nom||'').toUpperCase()}`.trim() : ''; }
+function mParle(m){ const e=Math.floor(m+1e-9), cm=Math.round((m-e)*100); return `${e} mètre${e>1?'s':''}${cm===0?'':' '+(cm<10?'zéro '+cm:cm)}`; }
+const ORD=['premier','deuxième','troisième','quatrième','cinquième','sixième'];
+function planchesListe(){ return String(C().planches||'').split(/[\s;]+/).map(x => parseFloat(x.replace(',','.'))).filter(x => !isNaN(x)); }
+
+/* ---------- Règles des sauts horizontaux ---------- */
+function ess(id){ return S.essais[id] || (S.essais[id]=[]); }
+function essT(id,t){ return (S.essais[id]||[])[t] || null; }
+function horsJeu(a){ return a.statut==='abs'; }
+function valides(id){ return (S.essais[id]||[]).filter(e => e && e.r==='v').map(e => e.m).sort((x,y) => y-x); }
+function meilleur(id){ return valides(id)[0] ?? null; }
+function ventDe(id,m){ const e=(S.essais[id]||[]).find(e => e && e.r==='v' && e.m===m); return e ? e.v : null; }
+function cmpPerf(a,b){ const x=valides(a.id), y=valides(b.id); for(let i=0;i<Math.max(x.length,y.length);i++){ const d=(y[i]??-1)-(x[i]??-1); if(d) return d; } return 0; }
+function classement(){
+  const L = S.athletes.map((a,k) => ({a, k, best:meilleur(a.id), abs:horsJeu(a)}));
+  L.sort((x,y) => (x.abs-y.abs) || cmpPerf(x.a,y.a) || x.k-y.k);
+  let prec=null;
+  L.forEach((l,i) => { if(l.abs || l.best==null){ l.rang=null; return; } l.rang = prec && cmpPerf(prec.a,l.a)===0 ? prec.rang : i+1; prec=l; });
+  return L;
+}
+function rangDe(id, L){ const l=(L||classement()).find(x => x.a.id===id); return l ? l.rang : null; }
+function engages(){ return S.athletes.filter(a => !horsJeu(a)); }
+function enFinale(){ const n=engages().length, f=+C().finalistes||8; return n>f; }
+function finalistes(){
+  const L=classement().filter(l => !l.abs), f=+C().finalistes||8;
+  if(L.length<=f) return L.map(l => l.a.id);
+  return L.filter((l,i) => i<f || (l.rang!=null && l.rang<=f)).map(l => l.a.id);
+}
+function ordreInverse(ids){
+  const L=classement(), pos=id => { const l=L.find(x => x.a.id===id); return l && l.rang!=null ? l.rang : 999; };
+  const base=S.athletes.map(a => a.id);
+  return ids.slice().sort((x,y) => (pos(y)-pos(x)) || (base.indexOf(x)-base.indexOf(y)));
+}
+function calculerOrdre(t){
+  if(t<3) return engages().map(a => a.id);
+  if(t===3) return ordreInverse(finalistes());
+  if(t===5 && C().reordre==='oui') return ordreInverse(S.ordres[3]||finalistes());
+  return (S.ordres[t-1]||[]).slice();
+}
+function eligible(id,t){ const a=A(id); if(!a || horsJeu(a)) return false; if(a.statut==='ab') return false; return !essT(id,t); }
+function ordreEnCours(){ return (S.ordres[S.tour]||[]).filter(id => eligible(id,S.tour)).map(A); }
+function auSaut(){ return S.etat==='encours' ? (ordreEnCours()[0]||null) : null; }
+function encoreEnLice(){ return (S.ordres[S.tour]||[]).filter(id => { const a=A(id); return a && !horsJeu(a) && a.statut!=='ab'; }).length; }
+function typeDuree(a){ return a && S.live.precedent===a.id ? 'consec' : 'normal'; }
+function dureePour(a){ return +(typeDuree(a)==='consec' ? C().tconsec : C().t1) || 60; }
+function libDuree(a){ return typeDuree(a)==='consec' ? 'essais consécutifs' : 'temps d’essai'; }
+
+function majResume(){ try{ S.resume = resumePublic(); }catch(e){} }
+function resumePublic(){
+  const nb=+C().nbEssais||6, a=auSaut();
+  return {type:EPR.lancer?C().engin:EPR.code, titre:C().epreuve, etat:S.etat,
+    info: S.etat==='encours' ? `Essai ${S.tour+1}/${nb}` : S.etat==='fini' ? 'Terminé' : 'À venir',
+    auSaut: a ? nomComplet(a) : '', unite:'m',
+    top: classement().filter(l => l.rang).slice(0,8).map(l => ({r:l.rang, n:nomComplet(l.a), c:l.a.club||'', p:fM(l.best)})), sections:sectionsPubliques()};
+}
+/* ---------- Son et voix ---------- */
+let audioCtx=null;
+function debloquerSon(){ try{ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); }catch(e){} }
+function bip(freq=880,dur=.18,n=1){ if(!audioCtx) return; for(let i=0;i<n;i++){ const t=audioCtx.currentTime+i*(dur+.08), o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='square'; o.frequency.value=freq; g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.25,t+.01); g.gain.exponentialRampToValueAtTime(.0001,t+dur); o.connect(g).connect(audioCtx.destination); o.start(t); o.stop(t+dur+.02); } }
+function voixDispo(){ try{ return ('speechSynthesis' in window) ? speechSynthesis.getVoices() : []; }catch(e){ return []; } }
+function choisirVoix(){ const v=voixDispo(); return v.find(x => x.name===C().voixNom) || v.find(x => /^fr[-_]FR/i.test(x.lang)) || v.find(x => /^fr/i.test(x.lang)) || null; }
+function parler(txt,fois){
+  if(!txt) return;
+  try{ if(!('speechSynthesis' in window)) return; speechSynthesis.cancel();
+    const n=Math.max(1,Math.min(3,+(fois??C().repet)||1)), voix=choisirVoix();
+    for(let i=0;i<n;i++){ const u=new SpeechSynthesisUtterance(txt); u.lang=voix?voix.lang:'fr-FR'; if(voix) u.voice=voix;
+      u.rate=Math.min(2,Math.max(.5,+C().debit||1)); u.pitch=Math.min(2,Math.max(0,+C().tonalite||1)); u.volume=Math.min(1,Math.max(0,C().volume===''?1:+C().volume)); speechSynthesis.speak(u); }
+  }catch(e){}
+}
+try{ if('speechSynthesis' in window) speechSynthesis.onvoiceschanged = () => { if(vue==='reglages' && !document.activeElement?.closest?.('.phrases')) toutRendre(); }; }catch(e){}
+function phrase(k,a,x={}){
+  let t=(C().phrases||{})[k] ?? PHRASES_DEFAUT[k] ?? '';
+  const val={prenom:a?.prenom||'', nom:a?.nom||'', dossard:a?.dossard||'', club:a?.club||'', planche:a?.planche!=null&&a.planche!==''?String(a.planche).replace('.',','):'',
+    mesure:x.m!=null?mParle(x.m):'', essai:x.essai||'', record:x.record||'', epreuve:(C().epreuve||'').toLowerCase(), engin:engParle(masseEngin(a))};
+  t=t.replace(/\{(\w+)\}/g,(m,c) => c in val ? val[c] : m);
+  t=t.replace(/\b(dossard|planche à|mètres)\s*(?=[,.;!?]|$)/gi,'').replace(/\s+([,.;])/g,'$1').replace(/([,.;])\s*\1/g,'$1').replace(/,\s*([.!?])/g,'$1').replace(/\s{2,}/g,' ').replace(/^[\s,.;]+/,'').trim();
+  t=t.replace(/([.!?]\s+)(\p{Ll})/gu,(m,p,c) => p+c.toUpperCase());
+  return t ? t.charAt(0).toUpperCase()+t.slice(1) : t;
+}
+function phraseFin(){ const v=classement().filter(l => l.rang===1); return v.length===1 ? phrase('fin',v[0].a,{m:v[0].best}) : 'Fin du concours.'; }
+function ici(type){ return C()[type]===(estTV()?'tv':'juge'); }
+let tamponAnnonce=[];
+function annoncer(txt){
+  if(!txt) return; tamponAnnonce.push(txt);
+  S.live.annonce={txt:tamponAnnonce.join(' '), ts:Date.now()};
+  if(tamponAnnonce.length===1) queueMicrotask(() => { const t=tamponAnnonce.join(' '); tamponAnnonce=[]; if(ici('voix')) parler(t); });
+}
+
+/* ---------- Déroulement ---------- */
+function autoActif(){ return C().auto==='oui' && S.etat==='encours'; }
+function planifierAuto(precedent){
+  S.live.auto=null; if(!autoActif()) return;
+  const a=auSaut(); if(!a) return;
+  if(C().typeAuto==='auto'){ const d=Math.max(0,+C().delai||0)*1000; S.live.auto={etat:'remise', debut:Date.now(), finAt:Date.now()+d, duree:d, pour:a.id}; }
+  else S.live.auto={etat:'remise', debut:Date.now(), finAt:null, duree:0, pour:a.id};
+  if(EPR.triple && a.planche!=null && a.planche!==''){
+    const change=!precedent || String(precedent.planche??'')!==String(a.planche);
+    if(C().autoPlanche==='toujours' || (C().autoPlanche==='change' && change)) annoncer(phrase('planche',a));
+  }
+  if(EPR.lancer && masseEngin(a)!=null){
+    const change=!precedent || masseEngin(precedent)!==masseEngin(a);
+    if(C().autoPlanche==='toujours' || (C().autoPlanche==='change' && change)) annoncer(phrase('engin',a));
+  }
+}
+function enRemise(){ const x=S.live.auto; return (x && x.etat==='remise' && S.live.chrono.etat==='idle' && S.etat==='encours') ? x : null; }
+function resteRemise(){ const x=enRemise(); if(!x||x.finAt==null) return null; return Math.max(0,x.finAt-maintenantJuge()); }
+function basculerAuto(){ C().auto=C().auto==='oui'?'non':'oui'; if(C().auto==='oui' && S.etat==='encours' && S.live.chrono.etat==='idle') planifierAuto(null); else S.live.auto=null; sauver(); toast(C().auto==='oui'?'Enchaînement activé':'Enchaînement en pause'); }
+function pousserHisto(){ HISTO.push(JSON.stringify({essais:S.essais, tour:S.tour, ordres:S.ordres, etat:S.etat, precedent:S.live.precedent})); if(HISTO.length>40) HISTO.shift(); }
+function annulerDernier(){
+  const t=HISTO.pop(); if(!t){ toast('Rien à annuler'); return; }
+  const h=JSON.parse(t); S.essais=h.essais; S.tour=h.tour; S.ordres=h.ordres; S.etat=h.etat; S.live.precedent=h.precedent; S.live.dernier=null; S.live.chrono=chronoVide(); S.live.auto=null;
+  toast('Dernier essai annulé'); sauver();
+}
+function demarrer(){
+  if(!engages().length){ toast('Ajoutez au moins un athlète'); return; }
+  S.etat='encours'; S.tour=0; S.ordres=[calculerOrdre(0)]; S.live.chrono=chronoVide(); S.live.precedent=null; S.live.dernier=null;
+  annoncer(phrase('debut')); planifierAuto(null); sauver();
+}
+function avancer(){
+  if(S.etat!=='encours') return;
+  let garde=0;
+  while(!ordreEnCours().length && garde++<10){
+    if(S.tour+1 >= (+C().nbEssais||6)){ S.etat='fini'; S.live.chrono=chronoVide(); S.live.auto=null; annoncer(phraseFin()); return; }
+    S.tour++; S.ordres[S.tour]=calculerOrdre(S.tour);
+    if(S.tour===3 && enFinale()) annoncer(phrase('finale'));
+  }
+}
+function enregistrer(r, m, v){
+  const a=auSaut(); if(!a) return;
+  if(r==='v' && (m==null || !(m>0))){ toast('Saisissez la mesure'); return; }
+  pousserHisto();
+  ess(a.id)[S.tour] = {r, m:r==='v'?m:null, v:r==='v'?v:null};
+  const pb = r==='v' && a.pb && m > +a.pb + 1e-9, sb = r==='v' && !pb && a.sb && m > +a.sb + 1e-9;
+  const rmv = parseM(C().recordMeeting), rm = r==='v' && rmv && m > rmv + 1e-9;
+  S.live.dernier={id:a.id, r, m, v, ts:Date.now(), essai:S.tour+1, pb, sb, rm};
+  S.live.precedent=a.id; S.live.chrono=chronoVide();
+  if(r==='v') annoncer((rm||pb) ? phrase('record',a,{m, record: rm?'nouveau record du meeting':'record personnel'}) : phrase('mesure',a,{m}));
+  else if(r==='x') annoncer(phrase('mordu',a)); else annoncer(phrase('passe',a));
+  avancer(); planifierAuto(a); sauver();
+}
+function lancerChrono(){
+  const a=auSaut(); if(!a) return; debloquerSon();
+  const c=S.live.chrono;
+  if(c.etat==='pause'){ c.finAt=Date.now()+c.resteMs; c.etat='run'; sauver(); return; }
+  const d=dureePour(a)*1000;
+  S.live.chrono={etat:'run', finAt:Date.now()+d, resteMs:d, duree:d, pour:a.id}; S.live.auto=null;
+  annoncer(phrase('appel',a,{essai:ORD[S.tour]||''})); sauver();
+}
+function pauseChrono(){ const c=S.live.chrono; if(c.etat!=='run') return; c.resteMs=Math.max(0,c.finAt-Date.now()); c.etat='pause'; sauver(); }
+function rasChrono(){ S.live.chrono=chronoVide(); sauver(); }
+function terminer(){ S.etat='fini'; S.live.chrono=chronoVide(); S.live.auto=null; annoncer(phraseFin()); sauver(); }
+function tempsEcoule(){
+  const c=S.live.chrono; if(c.etat!=='run'||c.expire) return; c.expire=true;
+  const a=auSaut(); if(C().autoTemps==='oui' && a) annoncer(phrase('temps',a));
+  if(C().echecTemps==='oui' && a && autoActif()){ enregistrer('x'); return; }
+  sauver();
+}
+
+/* ---------- Rendu poste juge ---------- */
+function estTV(){ return vue==='tv'; }
+function toutRendre(){
+  document.getElementById('sousTitre').textContent=[C().nom,C().lieu].filter(Boolean).join(', ');
+  if(estTV()){ apresReception(); return; }
+  document.getElementById('onglets').innerHTML=VUES.map(([k,l]) => `<button role="tab" aria-selected="${vue===k}" class="${k==='tv'?'tv-lien':''}" data-act="vue" data-v="${k}">${l}</button>`).join('');
+  const f=({concours:vConcours, athletes:vAthletes, reglages:vReglages, export:vExport})[vue]||vConcours;
+  const actif=document.activeElement && document.activeElement.id, val=actif && document.activeElement.value;
+  const garde={mesure:(document.getElementById('mesure')||{}).value, vent:(document.getElementById('vent')||{}).value, pour:(document.getElementById('mesure')||{dataset:{}}).dataset.pour};
+  document.getElementById('vue').innerHTML=f();
+  const mz=document.getElementById('mesure');
+  if(mz && garde.pour && mz.dataset.pour===garde.pour){ mz.value=garde.mesure||''; const vz=document.getElementById('vent'); if(vz) vz.value=garde.vent||''; }
+  if(actif){ const el=document.getElementById(actif); if(el && el.tagName==='INPUT'){ el.focus(); } }
+  majChronoJuge();
+}
+function cellule(e){ if(!e) return ''; if(e.r==='x') return '<span class="m-X">X</span>'; if(e.r==='-') return '<span class="m-P">–</span>'; return `<span class="m-O">${fM(e.m)}</span>${e.v!=null&&C().vent==='oui'?`<small class="vt${e.v>2?' fort':''}">${fV(e.v)}</small>`:''}`; }
+function vConcours(){
+  const L=classement(); let haut='';
+  const nb=+C().nbEssais||6;
+  if(S.etat==='prep'){
+    const n=engages().length;
+    haut=`<section class="bloc"><h2>Prêt pour le concours ?</h2>
+      <p class="discret">${n} athlète${n>1?'s':''} engagé${n>1?'s':''}, ${nb} essais${n>(+C().finalistes||8)&&nb>3?`, finale à ${C().finalistes} après le 3e essai`:''}.</p>
+      ${!n?`<div class="alerte">Ajoutez les athlètes ou chargez un listing dans l’onglet « Athlètes ».</div>`:''}
+      <div class="actions"><button class="btn bleu" data-act="demarrer" ${n?'':'disabled'}>Démarrer le concours</button><button class="btn" data-act="vue" data-v="athletes">Gérer les athlètes</button><button class="btn" data-act="vue" data-v="tv">Ouvrir l’affichage télé</button></div></section>`;
+  } else if(S.etat==='encours'){
+    const a=auSaut(), ordre=ordreEnCours(), c=S.live.chrono, x=enRemise();
+    haut=`<div class="auto-barre"><button class="interrupteur" data-act="auto" aria-pressed="${C().auto==='oui'}"><span class="piste-i"></span>Enchaînement</button>
+      <p class="discret">${C().auto==='oui' ? (C().typeAuto==='auto' ? `Automatique : appel et chrono lancés seuls ${C().delai} s après chaque essai.` : `Semi-automatique : après chaque essai, validez « ${EPR.lancer?'aire prête':'sautoir prêt'} » (barre d’espace) une fois ${EPR.lancer?'l’engin rapporté':'le sable ratissé'}.`) : 'Vous lancez chaque appel vous-même (barre d’espace). Touche A pour réactiver.'}</p></div>
+    <div class="poste">
+      <section class="carte"><span class="lbl">Essai</span>
+        <div class="hauteur-geante">${S.tour+1}<small>/ ${nb}</small></div>
+        <div class="discret">${S.tour>=3 && enFinale() ? 'Finale, ordre inverse du classement' : 'Ordre de passage tiré au sort'}</div>
+        <div class="discret">${ordre.length} encore à sauter dans ce tour</div>
+        <div class="actions" style="margin-top:4px"><button class="btn petit" data-act="terminer">Terminer le concours</button></div></section>
+      <section class="carte carte-saut" aria-live="polite"><span class="lbl">${lieuAff()}</span>
+        ${a ? `<div class="nom">${esc(nomComplet(a))}</div>
+        <div class="meta">${a.dossard?`<span>Dossard <b>${esc(a.dossard)}</b></span>`:''}${a.club?`<span>${esc(a.club)}</span>`:''}${a.pb?`<span>RP <b>${fM(+a.pb)}</b></span>`:''}${meilleur(a.id)!=null?`<span>Meilleur <b>${fM(meilleur(a.id))}</b></span>`:''}</div>
+        ${EPR.triple?`<div class="poteaux"><span class="lbl">Planche</span><span class="val">${a.planche!=null&&a.planche!==''?esc(String(a.planche).replace('.',',')):'–'}</span><span class="unite">m</span>
+          ${planchesListe().map(p => `<button class="btn" data-act="planche" data-p="${p}" ${+a.planche===p?'aria-pressed="true" style="border-color:var(--bleu);color:var(--bleu)"':''}>${String(p).replace('.',',')}</button>`).join('')}<button class="btn petit" data-act="plancheDire">Annoncer</button></div>`:''}
+        ${EPR.lancer?`<div class="poteaux"><span class="lbl">Engin</span><span class="val">${esc(fEngin(masseEngin(a))||'–')}</span><span class="unite">${esc(a.cat||'')} ${a.sexe==='H'?'H':'F'}</span><button class="btn petit" data-act="enginDire">Annoncer</button></div>`:''}
+        <div class="saisie">
+          <label class="champ">Mesure (m)<input id="mesure" data-pour="${a.id}" type="text" inputmode="decimal" autocomplete="off" placeholder="${EPR.exM}"></label>
+          ${C().vent==='oui'?`<label class="champ">Vent (m/s)<input id="vent" type="text" inputmode="decimal" autocomplete="off" placeholder="+0,0"></label>`:''}
+        </div>
+        <div class="decision">
+          <button class="btn bleu" data-act="valider">Valider<kbd>Entrée</kbd></button>
+          <button class="btn rose" data-act="essai" data-r="x">${EPR.lancer?'Nul':'Mordu'}<kbd>touche X</kbd></button>
+          <button class="btn" data-act="essai" data-r="-">Passe<kbd>touche P</kbd></button>
+        </div>` : `<p>Personne en attente.</p>`}
+        <div class="actions" style="margin-top:4px"><button class="btn petit" data-act="annuler" ${HISTO.length?'':'disabled'}>Annuler le dernier essai (Z)</button></div></section>
+      <section class="carte"><span class="lbl">${x ? (x.finAt==null ? (EPR.lancer?'Retour de l’engin depuis':'Ratissage en cours depuis') : (EPR.lancer?'Retour de l’engin, appel dans':'Ratissage, appel automatique dans')) : `Chrono (${mmss(dureePour(a)*1000)}, ${libDuree(a)})`}</span>
+        <div class="chrono-juge" id="chronoJuge">0:00</div>
+        <div class="actions" style="margin-top:2px">
+          ${x && x.finAt==null ? `<button class="btn bleu" data-act="chrono" style="min-height:64px;font-size:1.15rem">${EPR.lancer?'Aire prête, appeler':'Sautoir prêt, appeler'}</button>` :
+            x ? `<button class="btn bleu" data-act="chrono">Appeler maintenant</button><button class="btn" data-act="attendre">Attendre</button><button class="btn" data-act="plus15">+15 s</button>` :
+            c.etat==='run' ? `<button class="btn rose" data-act="pause">Pause</button>` : `<button class="btn bleu" data-act="chrono" ${a?'':'disabled'}>${c.etat==='pause'?'Reprendre':'Lancer le chrono'}</button>`}
+          <button class="btn" data-act="ras" ${c.etat==='idle'?'disabled':''}>Remettre à zéro</button></div>
+        <p class="discret" style="margin:0">Barre d’espace (hors champ de saisie) pour appeler ou mettre en pause.</p></section>
+    </div>
+    <div class="ensuite"><span>Ensuite :</span>${ordre.slice(1,4).map(x => `<b>${esc(nomComplet(x))}</b>${EPR.triple&&x.planche?` <span${a&&String(x.planche)!==String(a.planche)&&x===ordre[1]?' class="a-changer"':''}>(planche ${String(x.planche).replace('.',',')} m)</span>`:''}${EPR.lancer&&masseEngin(x)!=null?` <span${a&&masseEngin(x)!==masseEngin(a)&&x===ordre[1]?' class="a-changer"':''}>(${fEngin(masseEngin(x))})</span>`:''}`).join('<span>puis</span>') || '<span>fin du tour</span>'}</div>`;
+  } else {
+    haut=`<section class="bloc"><h2>Concours terminé</h2>${L[0]&&L[0].rang===1?`<p>Vainqueur : <b>${esc(nomComplet(L[0].a))}</b> avec ${fM(L[0].best)} m.</p>`:''}
+      <div class="actions"><button class="btn bleu" data-act="vue" data-v="export">Exporter les résultats</button><button class="btn" data-act="rouvrir">Rouvrir le concours</button></div></section>`;
+  }
+  return haut+`<section class="bloc"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px"><h2>Feuille de concours</h2><span class="discret">Touchez une case pour corriger une saisie.</span></div>${htmlFeuille(L)}</section>
+  <section class="bloc"><h3>Annonces</h3><p class="discret">${S.live.annonce?'Dernière : « '+esc(S.live.annonce.txt)+' »':'Aucune annonce pour l’instant.'}${C().voix==='aucun'?' La voix est désactivée dans les réglages.':''}</p>
+    <div class="annonce-libre"><button class="btn bleu" data-act="repeter" ${S.live.annonce?'':'disabled'}>Répéter la dernière annonce (R)</button><input id="annonceLibre" type="text" placeholder="Annonce libre"><button class="btn" data-act="dire">Dire</button></div></section>
+  <section class="bloc"><h3>Message défilant sur la télé</h3><div style="display:flex;gap:10px;flex-wrap:wrap"><input id="bandeau" type="text" value="${esc(C().bandeau)}" placeholder="Ex. : Remise des médailles à 17 h" style="flex:1;min-width:220px"><button class="btn" data-act="bandeau">Afficher</button><button class="btn" data-act="bandeauOff">Retirer</button></div></section>`;
+}
+function htmlFeuille(L){
+  if(!S.athletes.length) return `<p class="discret">Aucun athlète pour l’instant.</p>`;
+  const nb=+C().nbEssais||6, R={}; L.forEach(l => R[l.a.id]=l);
+  const cur=auSaut(), fin=S.tour>=3 && S.ordres[3] ? S.ordres[3] : null;
+  const ordre = S.etat==='prep' ? S.athletes : S.athletes.slice().sort((x,y) => { const a=R[x.id], b=R[y.id]; return (a.rang??999)-(b.rang??999) || S.athletes.indexOf(x)-S.athletes.indexOf(y); });
+  return `<div class="defil"><table class="feuille"><thead><tr><th class="num">Rang</th><th>Doss.</th><th>Athlète</th>${EPR.triple?'<th class="num">Planche</th>':''}${EPR.lancer?'<th class="num">Engin</th>':''}
+    ${Array.from({length:nb},(_,t) => `<th class="h ${S.etat==='encours'&&t===S.tour?'cur':''}">${t+1}</th>`).join('')}<th class="num">Meilleur</th></tr></thead>
+    <tbody>${ordre.map(a => { const l=R[a.id], horsF = fin && !fin.includes(a.id);
+      const tag=a.statut==='abs'?'<span class="etiq">Absent</span>':a.statut==='ab'?'<span class="etiq rose">Abandon</span>':horsF?'<span class="etiq">Non finaliste</span>':'';
+      return `<tr class="${cur&&cur.id===a.id?'au-saut':''} ${horsJeu(a)||a.statut==='ab'||horsF?'hors':''}"><td class="rang">${l&&l.rang?l.rang:''}</td><td>${esc(a.dossard)}</td>
+        <td class="nom"><button data-act="statut" data-id="${a.id}">${esc(nomComplet(a))}${tag}<small>${esc(a.club||'')}</small></button></td>${EPR.triple?`<td class="num">${a.planche?String(a.planche).replace('.',','):''}</td>`:''}${EPR.lancer?`<td class="num">${esc(fEngin(masseEngin(a)))}</td>`:''}
+        ${Array.from({length:nb},(_,t) => `<td class="h ${S.etat==='encours'&&t===S.tour?'cur':''}"><button data-act="cellule" data-id="${a.id}" data-t="${t}">${cellule(essT(a.id,t))}</button></td>`).join('')}
+        <td class="num perf">${l&&l.best!=null?fM(l.best):(S.etat!=='prep'&&!horsJeu(a)&&(S.athletes.length&&(S.essais[a.id]||[]).filter(Boolean).length)?'NM':'')}</td></tr>`; }).join('')}</tbody></table></div>`;
+}
+function majChronoJuge(){
+  const el=document.getElementById('chronoJuge'); if(!el) return;
+  const r=resteChrono(), a=auSaut(), rr=resteRemise(), x=enRemise();
+  if(r==null && rr!=null){ el.textContent=mmss(rr); el.dataset.a='r'; return; }
+  if(r==null && x){ el.textContent=mmss(Date.now()-x.debut+999); el.dataset.a='r'; return; }
+  el.textContent=mmss(r==null?dureePour(a)*1000:r);
+  el.dataset.a=r==null?'0':(r<=0?'2':(r<=C().alerte*1000?'1':'0'));
+}
+function champ(cle,label,type='text',extra='',aide=''){ return `<label class="champ">${label}${aide?` <small>${aide}</small>`:''}<input type="${type}" data-cfg="${cle}" value="${esc(C()[cle])}" ${extra}></label>`; }
+function sel(cle,label,opts){ return `<label class="champ">${label}<select data-cfg="${cle}">${opts.map(([v,l]) => `<option value="${v}" ${String(C()[cle])===String(v)?'selected':''}>${l}</option>`).join('')}</select></label>`; }
+function vReglages(){
+  const vs=voixDispo().slice().sort((x,y) => (/^fr/i.test(y.lang)-/^fr/i.test(x.lang)) || x.name.localeCompare(y.name));
+  return `<section class="bloc"><h2>Concours</h2><div class="grille">${champ('nom','Nom du concours')}${champ('lieu','Lieu')}${champ('date','Date','date')}${champ('epreuve','Épreuve affichée')}${champ('recordMeeting','Record du meeting','text','placeholder="ex. 6,85"','en mètres')}</div></section>
+  ${EPR.lancer?`<section class="bloc"><h2>Engin</h2><div class="grille">${sel('engin','Épreuve',Object.entries(ENGINS).map(([k,v]) => [k,v.nom]))}</div>
+    <p class="discret">La masse de l’engin est attribuée à chaque athlète selon sa catégorie et son sexe. Valeurs FFA par défaut pour U14 à Seniors ; valeurs Masters d’après World Athletics, à vérifier selon le règlement de votre compétition. Une masse saisie sur la fiche d’un athlète remplace celle du tableau.</p>
+    <div class="defil"><table><thead><tr><th>Catégorie</th><th class="num">Femmes (kg)</th><th class="num">Hommes (kg)</th></tr></thead><tbody>
+    ${CATS_ENGIN.map(([k,l]) => `<tr><td>${l}</td>${['F','H'].map(sx => `<td class="num"><input type="text" inputmode="decimal" data-masse="${k}|${sx}" value="${String(((C().masses||MASSES_DEFAUT)[C().engin]||{})[k]?.[sx]??'').replace('.',',')}" style="max-width:110px;min-height:36px;text-align:right"></td>`).join('')}</tr>`).join('')}
+    </tbody></table></div><div class="actions"><button class="btn" data-act="massesDefaut">Rétablir les masses officielles</button></div></section>`:''}
+  <section class="bloc"><h2>Déroulement</h2><p class="discret">Règle World Athletics appliquée par la FFA : avec plus de 8 athlètes, 3 essais pour tous puis 3 essais pour les 8 meilleurs (ex aequo à la 8e place compris), dans l’ordre inverse du classement. Avec 8 athlètes ou moins, chacun a ses 6 essais. Le classement départage les égalités par la 2e meilleure performance, puis la 3e, etc.</p>
+    <div class="grille">${sel('nbEssais','Nombre d’essais',[[3,'3 essais'],[4,'4 essais'],[6,'6 essais']])}${champ('finalistes','Finalistes après le 3e essai','number','min="1" max="20"')}
+    ${sel('reordre','Ordre du dernier essai',[['oui','Inverse du classement après le 5e (TR 25.6)'],['non','Identique aux 4e et 5e']])}${EPR.lancer?'':sel('vent','Mesure du vent',[['oui','Oui (plein air)'],['non','Non (salle)']])}
+    ${EPR.triple?champ('planches','Planches disponibles','text','placeholder="7 9 11 13"','en mètres, séparées par des espaces'):''}</div></section>
+  <section class="bloc"><h2>Temps d’essai</h2><p class="discret">World Athletics TR 25.17, appliqué par la FFA : 1 min par essai, quel que soit le nombre d’athlètes, et 2 min pour des essais consécutifs. La durée ne change pas en cours de concours, sauf pour les essais consécutifs.</p>
+    <div class="grille"><label class="champ">Modèle de règlement<select data-cfg="regle">${Object.entries(REGLES_TEMPS).map(([k,r]) => `<option value="${k}" ${C().regle===k?'selected':''}>${r.lib}</option>`).join('')}<option value="perso" ${C().regle==='perso'?'selected':''}>Personnalisé</option></select></label>
+    ${champ('t1','Temps d’essai','number','min="10" step="5"','secondes')}${champ('tconsec','Essais consécutifs','number','min="10" step="5"','secondes')}${champ('alerte','Alerte de fin (drapeau jaune)','number','min="0"','secondes restantes')}</div></section>
+  <section class="bloc"><h2>Enchaînement</h2><p class="discret">Après chaque essai, l’app annonce le résultat${EPR.triple?' et la planche du suivant':EPR.lancer?' et l’engin du suivant s’il change':''}. En semi-automatique, l’appel et le chrono partent quand vous validez « ${EPR.lancer?'aire prête':'sautoir prêt'} ». En automatique, ils partent après un délai fixe.</p>
+    <div class="grille">${sel('auto','Enchaînement',[['oui','Activé'],['non','Désactivé']])}${sel('typeAuto','Lancement de l’appel',[['semi','Semi-automatique : « sautoir prêt »'],['auto','Automatique : après un délai fixe']])}
+    ${champ('delai',EPR.lancer?'Délai de retour de l’engin':'Délai de ratissage','number','min="0" step="5"','secondes, mode automatique')}${(EPR.triple||EPR.lancer)?sel('autoPlanche',EPR.lancer?'Annoncer l’engin du suivant':'Annoncer la planche du suivant',[['change','Seulement s’il change'],['toujours','Toujours'],['jamais','Jamais']]):''}
+    ${sel('autoTemps','Annoncer « temps écoulé »',[['oui','Oui'],['non','Non']])}${sel('echecTemps','Temps écoulé',[['non','Le juge décide'],['oui','Essai nul automatique']])}</div></section>
+  <section class="bloc"><h2>Son et télé</h2><div class="grille">${sel('voix','Annonces vocales',[['aucun','Désactivées'],['juge','Sur ce poste'],['tv','Sur la télé']])}${sel('son','Bips du chrono',[['aucun','Désactivés'],['juge','Sur ce poste'],['tv','Sur la télé']])}${champ('nbTV','Lignes du classement à l’écran','number','min="3" max="16"')}</div></section>
+  <section class="bloc"><h2>Synthèse vocale</h2><div class="grille">
+    <label class="champ">Voix <small>${vs.length} sur cet appareil</small><select data-cfg="voixNom"><option value="">Voix française par défaut</option>${vs.map(v => `<option value="${esc(v.name)}" ${C().voixNom===v.name?'selected':''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('')}</select></label>
+    ${champ('debit','Débit','number','min="0.5" max="2" step="0.05"','1 = normal')}${champ('tonalite','Hauteur de voix','number','min="0" max="2" step="0.05"')}${champ('volume','Volume','number','min="0" max="1" step="0.1"')}
+    ${sel('repet','Répéter chaque annonce',[[1,'Une fois'],[2,'2 fois'],[3,'3 fois']])}</div>
+    <h3 style="margin-top:18px">Phrases d’annonce</h3><div class="jetons">${['prenom','nom','dossard','club','mesure','essai','epreuve',...(EPR.triple?['planche']:[]),...(EPR.lancer?['engin']:[]),'record'].map(j => `<code>{${j}}</code>`).join('')}</div>
+    <div class="phrases">${LIB_PHRASES.map(([k,l]) => `<div class="phrase"><label for="ph-${k}">${l}</label><input id="ph-${k}" type="text" data-phrase="${k}" value="${esc(C().phrases[k]??PHRASES_DEFAUT[k])}"><button class="btn petit" data-act="testPhrase" data-k="${k}">Écouter</button></div>`).join('')}</div>
+    <div class="actions"><button class="btn" data-act="phrasesDefaut">Rétablir les phrases d’origine</button></div></section>
+  <section class="bloc"><h2>Remise à zéro</h2><div class="actions"><button class="btn" data-act="effacerResultats">Effacer les résultats, garder les athlètes</button><button class="btn rose" data-act="nouveau">Nouveau concours vierge</button></div></section>`;
+}
+function vAthletes(){
+  return `<section class="bloc"><h2>Ajouter un athlète</h2><div class="grille">
+    <label class="champ">Dossard<input id="nDos" type="text"></label><label class="champ">Licence<input id="nLic" type="text" inputmode="numeric"></label>
+    <label class="champ">Prénom<input id="nPre" type="text"></label><label class="champ">Nom<input id="nNom" type="text"></label><label class="champ">Club<input id="nClub" type="text"></label>
+    <label class="champ">Sexe<select id="nSexe"><option value="F">Femme</option><option value="H">Homme</option></select></label><label class="champ">Catégorie<input id="nCat" type="text" placeholder="ex. U18"></label>
+    ${EPR.triple?`<label class="champ">Planche <small>en mètres</small><input id="nPla" type="text" placeholder="ex. 11"></label>`:''}
+    ${EPR.lancer?`<label class="champ">Masse d’engin <small>vide = selon la catégorie</small><input id="nMas" type="text" inputmode="decimal" placeholder="ex. 5"></label>`:''}
+    <label class="champ">Record perso<input id="nPb" type="text" placeholder="ex. ${EPR.exM}"></label><label class="champ">Meilleure perf. de la saison<input id="nSb" type="text"></label></div>
+    <div class="actions"><button class="btn bleu" data-act="ajouter">Ajouter</button></div></section>
+  <section class="bloc"><h2>Ordre de passage</h2>
+    ${S.athletes.length?`<div class="defil"><table class="liste-ath"><thead><tr><th class="num">Ordre</th><th>Doss.</th><th>Licence</th><th>Athlète</th><th>Club</th><th>Cat.</th>${EPR.triple?'<th class="num">Planche</th>':''}${EPR.lancer?'<th class="num">Engin</th>':''}<th class="num">RP</th><th class="num">MPS</th><th></th></tr></thead><tbody>
+    ${S.athletes.map((a,k) => `<tr><td class="num">${k+1}</td><td>${esc(a.dossard)}</td><td>${esc(a.licence||'')}</td><td>${esc(nomComplet(a))}</td><td>${esc(a.club)}</td><td>${esc(a.cat||'')}</td>${EPR.triple?`<td class="num">${a.planche?String(a.planche).replace('.',','):''}</td>`:''}${EPR.lancer?`<td class="num">${esc(fEngin(masseEngin(a)))}${a.masse?' *':''}</td>`:''}<td class="num">${a.pb?fM(+a.pb):''}</td><td class="num">${a.sb?fM(+a.sb):''}</td>
+      <td><span class="ordre"><button class="btn petit" data-act="monter" data-id="${a.id}" aria-label="Monter">↑</button><button class="btn petit" data-act="descendre" data-id="${a.id}" aria-label="Descendre">↓</button><button class="btn petit" data-act="editer" data-id="${a.id}">Modifier</button><button class="btn petit" data-act="supprimer" data-id="${a.id}">Retirer</button></span></td></tr>`).join('')}
+    </tbody></table></div><div class="actions"><button class="btn" data-act="tirage">Tirer l’ordre au sort</button></div>`:`<p class="discret">Personne pour l’instant : ajoutez un athlète ou chargez un listing ci-dessous.</p>`}</section>
+  ${htmlImport()}`;
+}
+function vExport(){
+  const L=classement();
+  return `<section class="bloc"><h2>Classement</h2><div class="defil"><table><thead><tr><th class="num">Rang</th><th>Doss.</th><th>Licence</th><th>Athlète</th><th>Club</th><th class="num">Meilleur</th>${C().vent==='oui'?'<th class="num">Vent</th>':''}<th>Série</th></tr></thead><tbody>
+    ${L.map(l => `<tr><td class="num"><b>${l.rang||''}</b></td><td>${esc(l.a.dossard)}</td><td>${esc(l.a.licence||'')}</td><td>${esc(nomComplet(l.a))}</td><td>${esc(l.a.club)}</td><td class="num"><b>${l.best!=null?fM(l.best):(l.abs?'DNS':(S.etat!=='prep'?'NM':''))}</b></td>${C().vent==='oui'?`<td class="num">${l.best!=null?fV(ventDe(l.a.id,l.best)):''}</td>`:''}<td>${(S.essais[l.a.id]||[]).map(e => e?(e.r==='v'?fM(e.m):e.r==='x'?'X':'–'):'').join('  ')}</td></tr>`).join('')}
+    </tbody></table></div>
+    ${(() => { const cats=[...new Set(L.filter(l => !l.abs).map(l => (l.a.cat||'')+'|'+l.a.sexe))]; if(cats.length<2) return '';
+      return '<h3 style="margin-top:16px">Classements par catégorie</h3>'+cats.map(k => { const [cat,sx]=k.split('|'); const sub=L.filter(l => (l.a.cat||'')===cat && l.a.sexe===sx && !l.abs); let r=0, prec=null;
+        return `<p style="margin:12px 0 4px"><b>${esc(cat||'Sans catégorie')} ${sx==='H'?'Hommes':'Femmes'}</b>${EPR.lancer?' · '+esc(fEngin(masseEngin(sub[0]?.a))):''}</p><div class="defil"><table><tbody>${sub.map((l,i) => { if(l.best==null) return `<tr><td class="num"></td><td>${esc(nomComplet(l.a))}</td><td>${esc(l.a.club)}</td><td class="num">NM</td></tr>`; r = prec && cmpPerf(prec.a,l.a)===0 ? r : i+1; prec=l; return `<tr><td class="num"><b>${r}</b></td><td>${esc(nomComplet(l.a))}</td><td>${esc(l.a.club)}</td><td class="num"><b>${fM(l.best)}</b></td></tr>`; }).join('')}</tbody></table></div>`; }).join(''); })()}
+    <div class="actions"><button class="btn bleu" data-act="csv">Télécharger le CSV</button><button class="btn" data-act="copier">Copier le classement</button></div></section>
+  ${htmlOfficiels()}
+  <section class="bloc"><h2>Affichage télé sur un autre écran</h2><p class="discret">Ouvrez ce même lien sur la télé, connecté au même compte (ou avec le code de salle sur GitHub), puis choisissez « Affichage télé ».</p></section>`;
+}
+
+/* ---------- Rendu télé ---------- */
+let tvPage=0, tvFlashTs=0, tvAnnonceTs=Date.now(), sonDebloque=false, bipsFaits={};
+function apresReception(){
+  if(!estTV()) return;
+  const d=S.live.dernier, an=S.live.annonce;
+  if(an && an.ts>tvAnnonceTs){ tvAnnonceTs=an.ts; if(ici('voix') && sonDebloque) parler(an.txt); }
+  rendreTV();
+  if(d && d.ts>tvFlashTs){ const neuf=tvFlashTs!==0 || (maintenantJuge()-d.ts<4000); tvFlashTs=d.ts; if(neuf) flashTV(d); }
+}
+function flashTV(d){
+  const a=A(d.id); if(!a) return; const zone=document.querySelector('#tv .tv-scene'); if(!zone) return;
+  let cls=d.r==='v'?'O':(d.r==='x'?'X':'P'), big, small;
+  if(d.r==='v'){ big=`${fM(d.m)} m`; small=nomComplet(a)+(d.v!=null&&C().vent==='oui'?`, vent ${fV(d.v)} m/s`:''); if(d.rm){ cls='R'; small='Record du meeting ! '+small; } else if(d.pb){ cls='R'; small='Record personnel ! '+small; } else if(d.sb) small='Meilleure perf. de la saison. '+small; }
+  else if(d.r==='x'){ big=EPR.lancer?'Essai nul':'Mordu'; small=`${nomComplet(a)}, ${d.essai}e essai`; } else { big='Passe'; small=nomComplet(a); }
+  const div=document.createElement('div'); div.className='tv-flash '+cls; div.innerHTML=`<div class="big">${esc(big)}</div><div class="small">${esc(small)}</div>`;
+  zone.style.position='relative'; zone.appendChild(div); setTimeout(() => div.remove(), 3500);
+}
+function tvEntete(){ return `<div class="tv-haut"><div class="tv-marque"><span class="tb">#TEAMBRO</span><span class="pv">${titreAff()}</span></div><div class="tv-concours">${esc([C().nom,C().epreuve,C().lieu].filter(Boolean).join('  ·  '))}</div><div class="tv-heure"><span class="tv-direct ${S.etat==='encours'?'':'off'}"></span><span id="tvHeure"></span></div></div>`; }
+function tvBandeau(){ return C().bandeau?`<div class="tv-bandeau"><span>${esc(C().bandeau)}</span></div>`:'<div></div>'; }
+function tvSortie(){ return `${htmlLiaisonTV()}<div class="tv-sortie"><button data-act="pleinEcran">Plein écran</button><button data-act="vue" data-v="concours">Quitter l’affichage</button></div>${!sonDebloque&&(C().voix==='tv'||C().son==='tv')?`<button class="tv-son" data-act="sonTV">Activer le son</button>`:''}`; }
+function rendreTV(){ const el=document.getElementById('tv'); el.innerHTML = S.etat==='prep'?tvAccueil():S.etat==='fini'?tvPodium():tvDirect(); majHorlogeTV(); majChronoTV(); }
+function tvAccueil(){
+  const ath=engages();
+  return `<div class="tv" style="grid-template-rows:auto 1fr auto">${tvEntete()}<div class="tv-centre"><div class="tv-titre"><span class="tb">#TEAMBRO</span><br><span class="pv">${titreAff()}</span></div>
+    <div class="tv-sous" style="font-size:clamp(16px,3vh,44px)">${esc(C().nom)}</div>
+    ${ath.length?`<div class="tv-grille-ath">${ath.map(a => `<div><b>${esc(a.dossard||'')}</b><span>${esc(nomComplet(a))}</span><small>${esc(a.club||'')}</small></div>`).join('')}</div>`:''}</div>${tvBandeau()}</div>${tvSortie()}`;
+}
+function tvDirect(){
+  const a=auSaut(), L=classement().filter(l => !l.abs), nb=Math.max(3,+C().nbTV||8), nbE=+C().nbEssais||6;
+  const pages=Math.max(1,Math.ceil(L.length/nb)); if(tvPage>=pages) tvPage=0;
+  const lignes=L.slice(tvPage*nb, tvPage*nb+nb), prochains=ordreEnCours().slice(1,3), fin=S.tour>=3&&S.ordres[3]?S.ordres[3]:null;
+  return `<div class="tv">${tvEntete()}<div class="tv-scene">
+    <div class="tv-panneau"><span class="tv-lbl">Essai</span><div class="tv-hauteur">${S.tour+1}<small>/${nbE}</small></div>
+      <div class="tv-sable"></div>
+      <div class="tv-sous">${S.tour>=3&&enFinale()?'Finale':'Concours'} · ${ordreEnCours().length} à sauter</div>
+      ${C().recordMeeting?`<div class="tv-sous">Record du meeting <b>${fM(parseM(C().recordMeeting))}</b></div>`:''}</div>
+    <div class="tv-panneau tv-ath">${a?`${a.dossard?`<span class="tv-dossard">${esc(a.dossard)}</span>`:''}<div class="tv-nom"><span class="prenom">${esc(a.prenom||'')}</span>${esc((a.nom||'').toUpperCase())}</div>
+      ${a.club?`<div class="tv-club">${esc(a.club)}</div>`:''}
+      <div class="tv-serie">${Array.from({length:nbE},(_,t) => { const e=essT(a.id,t); return `<span class="tv-case ${t===S.tour?'suivant':''} ${e?(e.r==='v'?'O':e.r==='x'?'X':'P'):''}">${e?(e.r==='v'?fM(e.m):e.r==='x'?'X':'–'):''}</span>`; }).join('')}</div>
+      <div class="tv-refs">${EPR.lancer&&masseEngin(a)!=null?`<span>Engin <b>${esc(fEngin(masseEngin(a)))}</b></span>`:''}${EPR.triple&&a.planche?`<span>Planche <b>${String(a.planche).replace('.',',')}</b> m</span>`:''}${meilleur(a.id)!=null?`<span>Meilleur <b>${fM(meilleur(a.id))}</b></span>`:''}${a.pb?`<span>Record perso <b>${fM(+a.pb)}</b></span>`:''}${rangDe(a.id)?`<span>Classement <b>${rangDe(a.id)}e</b></span>`:''}</div>
+      ${prochains.length?`<div class="tv-sous" style="margin-top:1.6vh">Ensuite : <b>${prochains.map(x => esc(nomComplet(x))).join('</b>, puis <b>')}</b></div>`:''}`:`<div class="tv-nom" style="font-size:clamp(28px,6vh,90px)">Tour suivant</div>`}</div>
+    <div class="tv-panneau tv-chrono"><div class="tv-anneau" id="tvAnneau" data-e="idle"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="fond" cx="60" cy="60" r="52" fill="none" stroke-width="9"/><circle class="arc" id="tvArc" cx="60" cy="60" r="52" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><div class="val" id="tvChrono">0:00</div></div><div class="tv-chrono-etat" id="tvChronoEtat"></div></div>
+  </div>
+  <div class="tv-bas"><table class="tv-classement"><thead><tr><th class="rg">Rg</th><th style="text-align:left">Athlète ${pages>1?`<span class="tv-pages">${tvPage+1}/${pages}</span>`:''}</th>${Array.from({length:nbE},(_,t) => `<th class="hc ${t===S.tour?'cur':''}">${t+1}</th>`).join('')}<th class="pf" style="text-align:right">Meilleur</th></tr></thead>
+    <tbody>${lignes.map(l => { const x=l.a, hf=fin&&!fin.includes(x.id); return `<tr class="${a&&a.id===x.id?'actif':''} ${hf||x.statut==='ab'?'elim':''}"><td class="rg">${l.rang||''}</td><td class="nm">${esc(nomComplet(x))}<small>${esc([x.club, EPR.lancer?x.cat:''].filter(Boolean).join(' · '))}</small></td>
+      ${Array.from({length:nbE},(_,t) => { const e=essT(x.id,t); return `<td class="hc mesure">${e?(e.r==='v'?`<span class="k-O">${fM(e.m)}</span>`:e.r==='x'?'<span class="k-X">X</span>':'<span class="k-P">–</span>'):''}</td>`; }).join('')}
+      <td class="pf">${l.best!=null?fM(l.best):''}</td></tr>`; }).join('')}</tbody></table></div>${tvBandeau()}</div>${tvSortie()}`;
+}
+function tvPodium(){
+  const L=classement().filter(l => l.rang), m=r => L.filter(l => l.rang===r);
+  const marche=(r,cls) => { const g=m(r); if(!g.length) return '<div class="tv-marche"></div>'; return `<div class="tv-marche ${cls}"><div class="qui">${g.map(l => `${esc(nomComplet(l.a))}<small>${esc(l.a.club||'')}</small>`).join('')}</div><div class="socle"><span class="r">${r}</span><span class="p">${fM(g[0].best)} m</span></div></div>`; };
+  return `<div class="tv" style="grid-template-rows:auto 1fr auto">${tvEntete()}<div class="tv-centre"><div class="tv-titre" style="font-size:clamp(30px,7vh,110px)"><span class="pv">Résultats</span></div><div class="tv-podium">${marche(2,'m2')}${marche(1,'m1')}${marche(3,'m3')}</div></div>${tvBandeau()}</div>${tvSortie()}`;
+}
+function majHorlogeTV(){ const e=document.getElementById('tvHeure'); if(e){ const d=new Date(); e.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); } }
+function majChronoTV(){
+  const v=document.getElementById('tvChrono'); if(!v) return;
+  const an=document.getElementById('tvAnneau'), arc=document.getElementById('tvArc'), et=document.getElementById('tvChronoEtat');
+  const c=S.live.chrono, r=resteChrono(), a=auSaut(), rr=resteRemise(), x=enRemise();
+  if(r==null && x){ v.textContent=rr!=null?mmss(rr):mmss(dureePour(a)*1000); an.dataset.e='remise'; an.dataset.a='0'; arc.style.strokeDashoffset=rr!=null?String(326.7*(1-Math.max(0,Math.min(1,rr/(x.duree||1))))):'0'; et.textContent=EPR.lancer?'Retour de l’engin':'Ratissage du sautoir'; return; }
+  if(r==null){ v.textContent=mmss(dureePour(a)*1000); an.dataset.e='idle'; an.dataset.a='0'; arc.style.strokeDashoffset='0'; et.textContent=a?'En attente de l’appel':''; return; }
+  v.textContent=mmss(r); an.dataset.e=c.etat; an.dataset.a=r<=0?'2':(r<=C().alerte*1000?'1':'0');
+  arc.style.strokeDashoffset=String(326.7*(1-Math.max(0,Math.min(1,r/(c.duree||1)))));
+  et.textContent=r<=0?'Temps écoulé':(c.etat==='pause'?'Chrono en pause':`Temps d’essai, ${Math.round(c.duree/1000)} s`);
+}
+/* =========================================================
+   Sauvegarde et synchronisation
+   ========================================================= */
+let db=null, refDb=null, ecritEnCours=false, ecritSale=false, tDb=null, premierSnap=true, lectureSeule=false;
+function sauver(rendre=true){
+  S.maj = Date.now(); majResume();
+  const json = JSON.stringify(S);
+  try{ localStorage.setItem(CLE, json); }catch(e){}
+  try{ localStorage.setItem(CLE_HISTO, JSON.stringify(HISTO.slice(-40))); }catch(e){}
+  if(canal) try{ canal.postMessage({json}); }catch(e){}
+  if(modeLibre && !estTV()) diffuser(json);
+  planifierDb();
+  if(rendre) toutRendre();
+}
+function planifierDb(){ if(!refDb || estTV() || lectureSeule) return; ecritSale=true; clearTimeout(tDb); tDb=setTimeout(ecrire,120); }
+async function ecrire(){
+  if(ecritEnCours || !ecritSale || !refDb) return;
+  ecritEnCours=true; ecritSale=false;
+  S.maj = Date.now(); majResume();
+  const json = JSON.stringify(S);
+  try{ localStorage.setItem(CLE, json); }catch(e){}
+  try{ await refDb.set({json, maj:S.maj}); majSync('ok'); }
+  catch(e){
+    if(e && e.code==='invalid_argument'){ lectureSeule=true; majSync('lecture'); }
+    else majSync('erreur');
+  }
+  ecritEnCours=false;
+  if(ecritSale) ecrire();
+}
+function majSync(s){
+  const el=document.getElementById('sync'); if(!el) return;
+  if(modeLibre){
+    const n = conns.filter(c => c.open).length;
+    el.dataset.s = n ? 'ok' : (s==='pair-err' || s==='pair-pris' ? 'erreur' : 'local');
+    el.querySelector('span').textContent = s==='pair-pris' ? `Code ${C().salle} déjà utilisé par un autre poste juge` :
+      s==='pair-err' ? 'Liaison télé indisponible, la télé de cet ordinateur fonctionne quand même' :
+      `Code télé : ${C().salle}${n ? ` · ${n} écran${n>1?'s':''} relié${n>1?'s':''}` : ' · aucun écran relié'}`;
+    return;
+  }
+  el.dataset.s=s;
+  el.querySelector('span').textContent = ({
+    ok:'Synchronisé avec la télé', erreur:'Synchro interrompue, enregistré sur cet appareil',
+    lecture:'Lecture seule sur ce compte', local:'Enregistré sur cet appareil'})[s] || '';
+}
+
+/* ---------- Hors de claude.ai (GitHub Pages) : liaison directe par code ---------- */
+const CLE_SALLE_TV = EPR.cle+'-salle-tv';
+const PEERJS = 'https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js';
+let modeLibre=false, peer=null, peerRole=null, conns=[], tvConn=null, tvEtat='attente', tvRetry=null, meilleurRtt=null, tPing=null, peerjsCharge=null;
+function chargerPeerJS(){
+  if(window.Peer) return Promise.resolve();
+  if(!peerjsCharge) peerjsCharge = new Promise((ok,ko) => { const sc=document.createElement('script'); sc.src=PEERJS; sc.onload=ok; sc.onerror=ko; document.head.appendChild(sc); });
+  return peerjsCharge;
+}
+function detruirePeer(){ clearTimeout(tvRetry); clearInterval(tPing); try{ if(peer) peer.destroy(); }catch(e){} peer=null; peerRole=null; conns=[]; tvConn=null; }
+async function majLiaison(){
+  if(!modeLibre) return;
+  try{ await chargerPeerJS(); }catch(e){ majSync('pair-err'); if(estTV()){ tvEtat='erreur'; rendreTV(); } return; }
+  if(estTV()) connecterTV(); else hebergerJuge();
+}
+function diffuser(json){ conns.forEach(c => { try{ if(c.open) c.send({t:'etat', json}); }catch(e){} }); }
+function hebergerJuge(){
+  if(peer && peerRole==='juge' && !peer.destroyed) return;
+  detruirePeer(); peerRole='juge';
+  try{ localStorage.setItem(CLE, JSON.stringify(S)); }catch(e){}
+  peer = new Peer(EPR.peer+C().salle);
+  peer.on('open', () => majSync('ok'));
+  peer.on('connection', c => {
+    conns.push(c);
+    c.on('open', () => { try{ c.send({t:'etat', json:JSON.stringify(S)}); }catch(e){} majSync('ok'); });
+    c.on('data', d => { if(d && d.t==='ping') try{ c.send({t:'pong', t0:d.t0, tj:Date.now()}); }catch(e){} });
+    c.on('close', () => { conns=conns.filter(x => x!==c); majSync('ok'); });
+    c.on('error', () => { conns=conns.filter(x => x!==c); majSync('ok'); });
+  });
+  peer.on('disconnected', () => { setTimeout(() => { try{ if(peer && !peer.destroyed) peer.reconnect(); }catch(e){} }, 2000); });
+  peer.on('error', e => { majSync(e && e.type==='unavailable-id' ? 'pair-pris' : 'pair-err'); if(e && e.type!=='unavailable-id'){ setTimeout(() => { if(!estTV()){ detruirePeer(); hebergerJuge(); } }, 5000); } });
+}
+function codeTV(){ const q=new URLSearchParams(location.search).get('salle'); if(q) return q.trim().toUpperCase(); try{ return (localStorage.getItem(CLE_SALLE_TV)||'').toUpperCase(); }catch(e){ return ''; } }
+function connecterTV(force){
+  if(!estTV()) return;
+  const code = codeTV();
+  if(!code){ tvEtat='code'; rendreTV(); return; }
+  if(!force && peer && peerRole==='tv' && tvConn && tvConn.open) return;
+  detruirePeer(); peerRole='tv'; tvEtat='attente'; rendreTV();
+  peer = new Peer();
+  const reessayer = () => { if(!estTV() || tvEtat==='code') return; tvEtat='attente'; rendreTV(); clearTimeout(tvRetry); tvRetry=setTimeout(() => connecterTV(true), 3000); };
+  peer.on('open', () => {
+    const c = peer.connect(EPR.peer+code, {reliable:true});
+    c.on('open', () => {
+      tvConn=c; tvEtat='ok'; meilleurRtt=null; rendreTV();
+      const ping = () => { try{ c.send({t:'ping', t0:Date.now()}); }catch(e){} };
+      ping(); clearInterval(tPing); tPing=setInterval(ping, 15000);
+    });
+    c.on('data', d => {
+      if(!d) return;
+      if(d.t==='etat'){ try{ S=fusion(JSON.parse(d.json)); apresReception(); }catch(e){} }
+      else if(d.t==='pong'){ const t1=Date.now(), rtt=t1-d.t0; if(meilleurRtt==null || rtt<=meilleurRtt){ meilleurRtt=rtt; decalage=(d.t0+t1)/2 - d.tj; } }
+    });
+    c.on('close', reessayer); c.on('error', reessayer);
+  });
+  peer.on('error', reessayer);
+  peer.on('disconnected', reessayer);
+}
+function htmlLiaisonTV(){
+  if(!modeLibre) return '';
+  if(tvEtat==='code') return `<div class="tv-liaison"><h3>Relier cette télé</h3><p>Saisissez le code affiché en haut du poste juge.</p>
+    <input id="tvCodeIn" type="text" maxlength="8" autocomplete="off" value="${esc(codeTV())}"><button data-act="tvCode">Relier</button></div>`;
+  if(tvEtat==='ok') return '';
+  return `<div class="tv-etat-liaison">${tvEtat==='erreur' ? 'Liaison indisponible (internet ?)' : `Recherche du poste juge ${esc(codeTV())}…`} <button data-act="tvChangerCode" style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit">changer de code</button></div>`;
+}
+async function initDb(){
+  if(!window.claude){ modeLibre=true; try{ localStorage.setItem(CLE, JSON.stringify(S)); }catch(e){} majSync('local'); majLiaison(); return; }
+  try{ db = window.claude && typeof claude.use==='function' ? await claude.use('db') : null; }catch(e){ db=null; }
+  if(!db){ majSync('local'); return; }
+  try{ refDb = db.doc('concours/live'); }catch(e){ refDb=null; return; }
+  refDb.onSnapshot(recevoirDb, () => majSync('erreur'));
+}
+function recevoirDb(snap){
+  const initial = premierSnap; premierSnap=false;
+  if(!snap.exists){ if(!estTV() && S.maj) planifierDb(); else if(estTV()) rendreTV(); return; }
+  let r; try{ r = fusion(JSON.parse(snap.data().json)); }catch(e){ return; }
+  if(estTV()){
+    if(!initial) observerDecalage(r.maj);
+    if(r.maj >= S.maj){ S=r; apresReception(); }
+    majSync('ok');
+    return;
+  }
+  if(r.maj > S.maj && !ecritEnCours && !ecritSale){
+    S=r; try{ localStorage.setItem(CLE, JSON.stringify(S)); }catch(e){}
+    toutRendre();
+  } else if(initial && S.maj > r.maj) planifierDb();
+  majSync('ok');
+}
+if(canal) canal.onmessage = ev => {
+  try{
+    const r = fusion(JSON.parse(ev.data.json));
+    if(r.maj >= S.maj){ S=r; if(estTV()) apresReception(); else toutRendre(); }
+  }catch(e){}
+};
+
+/* Décalage d’horloge entre le poste juge et la télé */
+let decalage = null;
+function observerDecalage(maj){ const o = Date.now()-maj; if(decalage===null || o<decalage) decalage=o; }
+function maintenantJuge(){ return estTV() ? Date.now() - (decalage||0) : Date.now(); }
+function resteChrono(){
+  const c = S.live.chrono;
+  if(c.etat==='run') return Math.max(0, c.finAt - maintenantJuge());
+  if(c.etat==='pause') return c.resteMs;
+  return null;
+}
+
+/* =========================================================
+   Chargement d’un listing d’athlètes (Excel, CSV, collage)
+   ========================================================= */
+const XLSX_URL = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+let xlsxCharge = null;
+function chargerXLSX(){
+  if(window.XLSX) return Promise.resolve();
+  if(!xlsxCharge) xlsxCharge = new Promise((ok,ko) => { const s=document.createElement('script'); s.src=XLSX_URL; s.onload=ok; s.onerror=ko; document.head.appendChild(s); });
+  return xlsxCharge;
+}
+function normEntete(s){ return String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim(); }
+const ALIAS_COMMUNS = {
+  dossard:['dossard','dos','doss','bib','numero','num','n','no','numero dossard'],
+  licence:['licence','license','lic','n licence','no licence','numero licence','num licence','licence ffa','numero de licence','n de licence'],
+  prenom:['prenom','first name','firstname','prenoms'],
+  nom:['nom','nom de famille','last name','lastname','surname'],
+  nomcomplet:['athlete','athletes','nom prenom','nom et prenom','concurrent','participant','identite'],
+  club:['club','equipe','structure','club ffa','association'],
+  sexe:['sexe','genre','sex','s'],
+  cat:['categorie','cat','category'],
+  naissance:['annee','naissance','date de naissance','ne le','nee le','an','annee de naissance','ddn']
+};
+function aliasListing(){ return {...ALIAS_COMMUNS, ...(LISTING.alias||{})}; }
+function cleDeColonne(h){
+  const n = normEntete(h); if(!n) return null;
+  const al = aliasListing();
+  for(const [k,v] of Object.entries(al)) if(v.includes(n)) return k;
+  for(const [k,v] of Object.entries(al)) if(v.some(x => x.length>3 && n.startsWith(x))) return k;
+  const mots = ' '+n+' ';
+  for(const [k,v] of Object.entries(al)) if(v.some(x => x.length>4 && mots.includes(' '+x+' '))) return k;
+  return null;
+}
+function analyserCSV(txt){
+  const l1 = (txt.split(/\r?\n/).find(x => x.trim())||'');
+  const sep = [';','\t',','].map(s => [s, l1.split(s).length]).sort((a,b) => b[1]-a[1])[0][0];
+  const rows=[]; let row=[], cell='', q=false;
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(q){ if(c==='"'){ if(txt[i+1]==='"'){ cell+='"'; i++; } else q=false; } else cell+=c; continue; }
+    if(c==='"') q=true;
+    else if(c===sep){ row.push(cell); cell=''; }
+    else if(c==='\n' || c==='\r'){ if(c==='\r' && txt[i+1]==='\n') i++; row.push(cell); rows.push(row); row=[]; cell=''; }
+    else cell+=c;
+  }
+  if(cell!=='' || row.length){ row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(x => x.trim())).filter(r => r.some(x => x));
+}
+function separerNomComplet(t){
+  const mots = String(t||'').trim().split(/\s+/); if(mots.length<2) return {nom:t||'', prenom:''};
+  const maj = mots.filter(m => m===m.toUpperCase() && /[A-ZÀ-Ý]/.test(m));
+  if(maj.length && maj.length<mots.length) return {nom:maj.join(' '), prenom:mots.filter(m => !maj.includes(m)).join(' ')};
+  return {nom:mots[0], prenom:mots.slice(1).join(' ')};
+}
+function normSexe(v){ v=normEntete(v); if(!v) return ''; if(/^(f|w|femme|feminin|fille|d|dame)/.test(v)) return 'F'; if(/^(h|m|homme|masculin|garcon|g)/.test(v)) return 'H'; return ''; }
+function lignesVersObjets(rows){
+  if(!rows.length) return {objets:[], colonnes:[]};
+  let ent=-1, map=null;
+  for(let i=0;i<Math.min(rows.length,10);i++){
+    const m = rows[i].map(cleDeColonne);
+    if(m.filter(Boolean).length>=2){ ent=i; map=m; break; }
+  }
+  if(!map){ map = LISTING.ordre.slice(); ent=-1; }
+  const objets=[];
+  rows.slice(ent+1).forEach(r => {
+    const o={};
+    map.forEach((k,j) => { if(k && r[j]!=null && String(r[j]).trim()!=='' && o[k]==null) o[k]=String(r[j]).trim(); });
+    if(o.nomcomplet && !o.nom){ Object.assign(o, separerNomComplet(o.nomcomplet)); }
+    if(!o.nom && !o.prenom) return;
+    if(o.sexe!=null) o.sexe = normSexe(o.sexe);
+    objets.push(o);
+  });
+  return {objets, colonnes:[...new Set(map.filter(Boolean))]};
+}
+let importEnAttente = null;
+function proposerImport(rows, source){
+  const {objets, colonnes} = lignesVersObjets(rows);
+  if(!objets.length){ toast('Aucun athlète reconnu dans '+source); return; }
+  proposerObjets(objets, colonnes);
+}
+function proposerObjets(objets, colonnes, fictif){
+  importEnAttente = objets;
+  const lib = {dossard:'Dossard',licence:'Licence',prenom:'Prénom',nom:'Nom',nomcomplet:'Nom complet',club:'Club',sexe:'Sexe',cat:'Catégorie',naissance:'Naissance', ...(LISTING.libelles||{})};
+  const cols = ['dossard','licence','nom','prenom','club','sexe','cat', ...Object.keys(LISTING.libelles||{})].filter(k => objets.some(o => o[k]!=null));
+  ouvrirModale(`<h3>${objets.length} athlète${objets.length>1?'s':''} ${fictif?'fictif':'trouvé'}${objets.length>1?'s':''}</h3>
+    <p class="discret">${fictif ? 'Athlètes fictifs pour la formation et les tests : licences commençant par FORM, club « TEAMBRO Formation ».' : 'Colonnes reconnues : '+colonnes.map(c => lib[c]||c).join(', ')+'.'}</p>
+    <div class="defil" style="max-height:240px;overflow:auto"><table><thead><tr>${cols.map(c => `<th>${lib[c]||c}</th>`).join('')}</tr></thead>
+    <tbody>${objets.slice(0,8).map(o => `<tr>${cols.map(c => `<td>${esc(o[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    ${objets.length>8?`<p class="discret">… et ${objets.length-8} autre${objets.length-8>1?'s':''}.</p>`:''}
+    <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="impRemplacer" ${fictif?'checked':''}> Remplacer la liste actuelle</label>
+    <div class="actions"><button class="btn bleu" data-act="okImport">Importer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+}
+async function lireFichierListing(f){
+  if(!f) return;
+  try{
+    if(/\.(xlsx|xlsm|xls|ods)$/i.test(f.name)){
+      await chargerXLSX();
+      const wb = XLSX.read(await f.arrayBuffer(), {type:'array'});
+      const ws = wb.Sheets[wb.SheetNames.find(n => /particip|athl|engag|inscri|liste/i.test(n)) || wb.SheetNames[0]];
+      proposerImport(XLSX.utils.sheet_to_json(ws, {header:1, raw:false, defval:''}).map(r => r.map(x => String(x??'').trim())), f.name);
+    } else {
+      const buf = await f.arrayBuffer();
+      let t = new TextDecoder('utf-8').decode(buf);
+      if(t.includes('\uFFFD')) t = new TextDecoder('windows-1252').decode(buf);
+      proposerImport(analyserCSV(t.replace(/^\uFEFF/,'')), f.name);
+    }
+  }catch(e){ toast('Lecture impossible : '+(/\.(xlsx|xls|ods)$/i.test(f.name)?'le lecteur Excel n’a pas pu se charger, enregistrez le fichier en CSV':'fichier illisible')); }
+}
+document.addEventListener('change', e => { if(e.target && e.target.id==='fichierListing'){ lireFichierListing(e.target.files[0]); e.target.value=''; } });
+function htmlImport(){
+  return `<section class="bloc"><h2>Charger un listing</h2>
+    <p class="discret">Fichier Excel (.xlsx, .xls, .ods) ou CSV exporté de votre logiciel d’engagements. La première ligne peut contenir les titres de colonnes : ${LISTING.aide}. Sans titres, l’ordre attendu est : ${LISTING.ordre.map(k => ({dossard:'dossard',licence:'licence',prenom:'prénom',nom:'nom',club:'club',sexe:'sexe',cat:'catégorie', ...(LISTING.libelles||{})})[k]||k).join(' ; ')}.</p>
+    <div class="actions" style="margin-top:6px"><label class="btn bleu" style="cursor:pointer">Choisir un fichier<input id="fichierListing" type="file" accept=".csv,.txt,.tsv,.xlsx,.xls,.xlsm,.ods" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
+    <h3 style="margin-top:16px">Ou coller depuis un tableur</h3>
+    <textarea id="collage" placeholder="${esc(LISTING.exemple)}"></textarea>
+    <div class="actions"><button class="btn" data-act="coller">Analyser le collage</button></div>
+    <h3 style="margin-top:16px">Liste fictive pour la formation</h3>
+    <p class="discret">Génère des athlètes imaginaires avec licence, club, catégorie et performances crédibles, pour former les juges ou tester l’app sans vraie liste.</p>
+    <div class="actions"><button class="btn rose" data-act="listeFictive">Créer une liste fictive</button>${typeof simulerDemo==='function'?'<button class="btn" data-act="simulerDemo">Charger des résultats fictifs</button>':''}</div>
+  </section>`;
+}
+/* ---------- Liste fictive (formation, tests) ---------- */
+const PRENOMS_F=['Léa','Inès','Chloé','Manon','Jade','Lina','Zoé','Emma','Louise','Alice','Camille','Sarah','Nina','Maëlys','Lou','Rose','Anaïs','Clara','Yasmine','Eva','Lucie','Margaux','Océane','Mila'];
+const PRENOMS_H=['Léo','Hugo','Tom','Nathan','Lucas','Enzo','Noah','Adam','Louis','Gabriel','Yanis','Théo','Rayan','Sacha','Maxime','Jules','Ethan','Mathis','Nolan','Bilal','Axel','Kylian','Rémi','Samuel'];
+const NOMS=['MARTIN','BERNARD','DUBOIS','THOMAS','ROBERT','RICHARD','PETIT','DURAND','LEROY','MOREAU','SIMON','LAURENT','LEFEBVRE','MICHEL','GARCIA','DAVID','BERTRAND','ROUX','VINCENT','FOURNIER','MOREL','GIRARD','ANDRE','MERCIER','BLANC','GUERIN','BOYER','FAURE','ROUSSEL','CHEVALIER','BONNET','FRANCOIS','LAMBERT','FONTAINE','ROUSSEAU','MASSON','NICOLAS','HENRY','DUMAS','BRUN'];
+const CLUBS=['TEAMBRO Formation','TEAMBRO Formation Nord','TEAMBRO Formation Sud','TEAMBRO Formation Est'];
+const CATS=['U16','U18','U20','Senior'];
+function hasard(a,b){ return a+Math.random()*(b-a); }
+function choix(t){ return t[Math.floor(Math.random()*t.length)]; }
+function genererFictifs(n, sexe){
+  const pris=new Set(), L=[];
+  for(let i=0;i<n;i++){
+    const sx = sexe==='mixte' ? (i%2?'H':'F') : sexe;
+    let pr, nm, k=0; do{ pr=choix(sx==='F'?PRENOMS_F:PRENOMS_H); nm=choix(NOMS); k++; } while(pris.has(pr+nm) && k<50); pris.add(pr+nm);
+    const niveau=Math.random();
+    const o={dossard:String(100+i+1), licence:'FORM'+String(Math.floor(hasard(100000,999999))), prenom:pr, nom:nm, club:choix(CLUBS), sexe:sx, cat:choix(CATS)};
+    if(LISTING.fictif) LISTING.fictif(o, i, n, niveau);
+    L.push(o);
+  }
+  return L;
+}
+function fP(v){ return (Math.round(v*100)/100).toFixed(2).replace('.',','); }
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return;
+  if(b.dataset.act==='listeFictive'){
+    ouvrirModale(`<h3>Créer une liste fictive</h3><p class="discret">Pour la formation et les tests. Les athlètes sont imaginaires et faciles à repérer (licence FORM…, club TEAMBRO Formation).</p>
+      <div class="grille" style="grid-template-columns:1fr 1fr">
+        <label class="champ">Nombre d’athlètes<select id="fxN">${[6,8,10,12,16,24,32].map(n => `<option value="${n}" ${n===(LISTING.fictifDefaut||12)?'selected':''}>${n}</option>`).join('')}</select></label>
+        <label class="champ">Sexe<select id="fxS"><option value="F">Femmes</option><option value="H">Hommes</option><option value="mixte">Mixte</option></select></label>
+      </div>
+      <div class="actions"><button class="btn bleu" data-act="okFictive">Générer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+  } else if(b.dataset.act==='okFictive'){
+    const n=+document.getElementById('fxN').value, sx=document.getElementById('fxS').value;
+    proposerObjets(genererFictifs(n, sx), [], true);
+  }
+});
+
+/* Engagés envoyés par l’artefact principal #TEAMBRO Athlé */
+window.addEventListener('message', ev => { const m=ev.data; if(m && m.tb && m.op==='engages' && ev.source===window.parent && Array.isArray(m.objets)){ if(!m.objets.length){ toast('Aucun engagé pour cette épreuve'); return; } proposerObjets(m.objets, [], false); } });
+
+/* ---------- Boucle de temps ---------- */
+setInterval(() => {
+  if(estTV()) majChronoTV(); else majChronoJuge();
+  const c=S.live.chrono, r=resteChrono();
+  if(!estTV() && S.etat==='encours'){ const rr=resteRemise(); if(rr!=null && rr<=0 && autoActif()) lancerChrono(); else if(c.etat==='run' && r!=null && r<=0 && !c.expire) tempsEcoule(); }
+  if(c.etat==='run' && r!=null && ici('son')){ const k=c.finAt; if(!bipsFaits[k]) bipsFaits[k]={}; if(r<=C().alerte*1000 && r>0 && !bipsFaits[k].a){ bipsFaits[k].a=1; bip(880,.15,2); } if(r<=0 && !bipsFaits[k].z){ bipsFaits[k].z=1; bip(520,.6,1); } }
+}, 200);
+setInterval(() => { if(estTV()) majHorlogeTV(); }, 10000);
+setInterval(() => { if(!estTV()||S.etat!=='encours') return; const nb=Math.max(3,+C().nbTV||8), pages=Math.ceil(engages().length/nb); if(pages>1){ tvPage=(tvPage+1)%pages; rendreTV(); } }, 9000);
+
+/* ---------- Navigation, modales ---------- */
+let verrou=null;
+async function garderEcran(){ try{ if('wakeLock' in navigator && !verrou){ verrou=await navigator.wakeLock.request('screen'); verrou.addEventListener('release',()=>verrou=null); } }catch(e){} }
+function allerA(v){
+  if(!VUES.some(([k]) => k===v)) v='concours'; vue=v; const tv=v==='tv';
+  document.getElementById('tv').hidden=!tv; document.getElementById('appJuge').hidden=tv;
+  if(tv){ tvFlashTs=S.live.dernier?S.live.dernier.ts:0; tvAnnonceTs=Date.now(); premierSnap=true; garderEcran(); }
+  try{ if(location.hash!=='#'+v) history.replaceState(null,'','#'+v); }catch(e){}
+  toutRendre(); window.scrollTo(0,0); if(modeLibre) majLiaison();
+}
+window.addEventListener('hashchange', () => { const h=location.hash.slice(1); if(h && h!==vue) allerA(h); });
+document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible' && estTV()) garderEcran(); });
+let tSouris=null;
+document.getElementById('tv').addEventListener('mousemove', () => { const t=document.getElementById('tv'); t.classList.add('souris'); clearTimeout(tSouris); tSouris=setTimeout(()=>t.classList.remove('souris'),2500); });
+let tToast=null;
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('vu'); clearTimeout(tToast); tToast=setTimeout(()=>t.classList.remove('vu'),3200); }
+function ouvrirModale(html){ const m=document.getElementById('modale'); m.innerHTML=`<div class="boite" role="dialog" aria-modal="true">${html}</div>`; m.hidden=false; const f=m.querySelector('input,select,button'); if(f) f.focus(); }
+function fermerModale(){ const m=document.getElementById('modale'); m.hidden=true; m.innerHTML=''; }
+let actionConfirmee=null;
+function confirmer(msg,ok,lib='Confirmer'){ actionConfirmee=ok; ouvrirModale(`<h3>${msg}</h3><div class="actions"><button class="btn rose" data-act="okConfirm">${lib}</button><button class="btn" data-act="fermer">Annuler</button></div>`); }
+document.getElementById('modale').addEventListener('click', e => { if(e.target.id==='modale') fermerModale(); });
+function lireAthleteForm(p){
+  const g=id => (document.getElementById(p+id)||{}).value ?? '';
+  return {dossard:g('Dos').trim(), licence:g('Lic').trim(), prenom:g('Pre').trim(), nom:g('Nom').trim(), club:g('Club').trim(), sexe:g('Sexe')||'F', cat:g('Cat').trim(),
+    planche:EPR.triple?(parseFloat(g('Pla').replace(',','.'))||''):'', masse:EPR.lancer?(parseFloat(g('Mas').replace(',','.'))||''):'', pb:parseM(g('Pb')), sb:parseM(g('Sb'))};
+}
+function deplacer(id,d){ const i=S.athletes.findIndex(a=>a.id===id), j=i+d; if(j<0||j>=S.athletes.length) return; [S.athletes[i],S.athletes[j]]=[S.athletes[j],S.athletes[i]]; sauver(); }
+function validerMesure(){
+  const a=auSaut(); if(!a) return;
+  const m=parseM((document.getElementById('mesure')||{}).value), v=parseVent((document.getElementById('vent')||{}).value);
+  if(m==null){ toast('Mesure invalide, par exemple '+EPR.exM); document.getElementById('mesure')?.focus(); return; }
+  if(m>(EPR.lancer?(C().engin==='javelot'?110:C().engin==='poids'?26:90):EPR.max)){ toast('Mesure improbable : vérifiez la saisie'); return; }
+  enregistrer('v', m, C().vent==='oui'?v:null);
+  setTimeout(() => document.getElementById('mesure')?.focus(), 30);
+}
+
+/* ---------- Actions ---------- */
+const ACT = {
+  vue: b => allerA(b.dataset.v), demarrer, terminer: () => confirmer('Terminer le concours maintenant ?', terminer, 'Terminer'),
+  rouvrir: () => { S.etat='encours'; avancer(); if(S.etat!=='encours') S.etat='encours'; sauver(); },
+  essai: b => enregistrer(b.dataset.r), valider: validerMesure, annuler: annulerDernier,
+  chrono: lancerChrono, pause: pauseChrono, ras: rasChrono, auto: basculerAuto,
+  attendre: () => { S.live.auto=null; sauver(); toast('Appel automatique suspendu pour ce saut'); },
+  plus15: () => { if(S.live.auto){ S.live.auto.finAt+=15000; S.live.auto.duree+=15000; sauver(); } },
+  planche: b => { const a=auSaut(); if(!a) return; a.planche=+b.dataset.p; sauver(); },
+  enginDire: () => { const a=auSaut(); if(!a||masseEngin(a)==null) return; annoncer(phrase('engin',a)); sauver(); },
+  massesDefaut: () => confirmer('Rétablir les masses officielles pour toutes les épreuves ?', () => { C().masses=JSON.parse(JSON.stringify(MASSES_DEFAUT)); sauver(); toast('Masses rétablies'); }, 'Rétablir'),
+  plancheDire: () => { const a=auSaut(); if(!a||!a.planche){ toast('Choisissez d’abord la planche'); return; } annoncer(phrase('planche',a)); sauver(); },
+  bandeau: () => { C().bandeau=document.getElementById('bandeau').value.trim(); sauver(); toast(C().bandeau?'Message affiché sur la télé':'Message retiré'); },
+  bandeauOff: () => { C().bandeau=''; sauver(); toast('Message retiré'); },
+  repeter: () => { const an=S.live.annonce; if(!an) return; annoncer(an.txt); sauver(); },
+  dire: () => { const el=document.getElementById('annonceLibre'), t=(el.value||'').trim(); if(!t){ el.focus(); return; } annoncer(t); el.value=''; sauver(); toast(C().voix==='aucun'?'Voix désactivée : activez-la dans les réglages':'Annonce envoyée'); },
+  fermer: fermerModale, okConfirm: () => { const f=actionConfirmee; fermerModale(); actionConfirmee=null; if(f) f(); },
+  cellule: b => { const a=A(b.dataset.id), t=+b.dataset.t, e=essT(a.id,t);
+    ouvrirModale(`<h3>${esc(nomComplet(a))}, essai ${t+1}</h3><p class="discret">Mesure en mètres, X pour mordu, tiret pour passe, vide pour effacer.</p>
+      <div class="grille" style="grid-template-columns:1fr 1fr"><label class="champ">Résultat<input id="celV" type="text" value="${e?(e.r==='v'?fM(e.m):e.r==='x'?'X':'-'):''}" inputmode="decimal"></label>
+      ${C().vent==='oui'?`<label class="champ">Vent<input id="celW" type="text" value="${e&&e.v!=null?fV(e.v).replace('−','-'):''}" inputmode="decimal"></label>`:''}</div>
+      <div class="actions"><button class="btn bleu" data-act="okCellule" data-id="${a.id}" data-t="${t}">Enregistrer</button><button class="btn" data-act="fermer">Annuler</button></div>`); },
+  okCellule: b => { const id=b.dataset.id, t=+b.dataset.t, raw=document.getElementById('celV').value.trim();
+    let e=null; if(/^x$/i.test(raw)) e={r:'x',m:null,v:null}; else if(/^[-–p]$/i.test(raw)) e={r:'-',m:null,v:null}; else if(raw){ const m=parseM(raw); if(m==null){ toast('Résultat invalide'); return; } e={r:'v',m,v:parseVent((document.getElementById('celW')||{}).value)}; }
+    pousserHisto(); ess(id)[t]=e||undefined; if(!e){ const arr=ess(id); delete arr[t]; } S.live.chrono=chronoVide(); S.live.auto=null; fermerModale(); if(S.etat==='encours') avancer(); sauver(); },
+  statut: b => { const a=A(b.dataset.id); ouvrirModale(`<h3>${esc(nomComplet(a))}</h3><p class="discret">Statut actuel : ${a.statut==='abs'?'absent':a.statut==='ab'?'abandon':'en compétition'}.</p>
+    <div class="actions"><button class="btn" data-act="okStatut" data-id="${a.id}" data-s="">En compétition</button><button class="btn" data-act="okStatut" data-id="${a.id}" data-s="abs">Absent</button><button class="btn rose" data-act="okStatut" data-id="${a.id}" data-s="ab">Abandon</button><button class="btn" data-act="editer" data-id="${a.id}">Modifier la fiche</button></div>`); },
+  okStatut: b => { pousserHisto(); A(b.dataset.id).statut=b.dataset.s; fermerModale(); if(S.etat==='encours'){ if(S.tour<3) S.ordres[S.tour]=S.ordres[S.tour].filter(id => !horsJeu(A(id))); avancer(); if(S.live.chrono.etat==='idle') planifierAuto(null); } sauver(); },
+  ajouter: () => { const a=lireAthleteForm('n'); if(!a.prenom&&!a.nom){ toast('Indiquez au moins un nom'); return; } S.athletes.push({id:uid(), statut:'', ...a}); if(S.etat==='encours' && S.tour<3) S.ordres[S.tour].push(S.athletes[S.athletes.length-1].id); sauver(); toast(nomComplet(a)+' ajouté'+(a.sexe==='F'?'e':'')); document.getElementById('nDos')?.focus(); },
+  editer: b => { const a=A(b.dataset.id); const ch=(id,l,v)=>`<label class="champ">${l}<input id="e${id}" type="text" value="${esc(v??'')}"></label>`;
+    ouvrirModale(`<h3>Modifier la fiche</h3><div class="grille" style="grid-template-columns:1fr 1fr">${ch('Dos','Dossard',a.dossard)}${ch('Lic','Licence',a.licence)}${ch('Pre','Prénom',a.prenom)}${ch('Nom','Nom',a.nom)}${ch('Club','Club',a.club)}${ch('Cat','Catégorie',a.cat)}
+      <label class="champ">Sexe<select id="eSexe"><option value="F" ${a.sexe!=='H'?'selected':''}>Femme</option><option value="H" ${a.sexe==='H'?'selected':''}>Homme</option></select></label>
+      ${EPR.triple?ch('Pla','Planche (m)',a.planche):''}${EPR.lancer?ch('Mas','Masse d’engin (kg, vide = auto)',a.masse):''}${ch('Pb','Record perso',a.pb?fM(+a.pb):'')}${ch('Sb','Saison',a.sb?fM(+a.sb):'')}</div>
+      <div class="actions"><button class="btn bleu" data-act="okEditer" data-id="${a.id}">Enregistrer</button><button class="btn" data-act="fermer">Annuler</button></div>`); },
+  okEditer: b => { Object.assign(A(b.dataset.id), lireAthleteForm('e')); fermerModale(); sauver(); },
+  supprimer: b => { const a=A(b.dataset.id); confirmer(`Retirer ${esc(nomComplet(a))} de la liste ?`, () => { S.athletes=S.athletes.filter(x=>x.id!==a.id); delete S.essais[a.id]; S.ordres=S.ordres.map(o => o.filter(i => i!==a.id)); sauver(); }, 'Retirer'); },
+  monter: b => deplacer(b.dataset.id,-1), descendre: b => deplacer(b.dataset.id,1),
+  tirage: () => { if(S.etat!=='prep'){ toast('Le concours a commencé'); return; } const t=S.athletes; for(let i=t.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [t[i],t[j]]=[t[j],t[i]]; } sauver(); toast('Ordre de passage tiré au sort'); },
+  coller: () => { const t=document.getElementById('collage').value; if(!t.trim()){ toast('Collez d’abord une liste'); return; } proposerImport(analyserCSV(t),'le collage'); },
+  okImport: () => { const rem=document.getElementById('impRemplacer')?.checked, liste=importEnAttente||[]; importEnAttente=null; fermerModale();
+    if(rem){ if(S.etat!=='prep'){ toast('Concours commencé : la liste ne peut pas être remplacée'); return; } S.athletes=[]; S.essais={}; }
+    liste.forEach(o => S.athletes.push({id:uid(), statut:'', dossard:o.dossard||'', licence:o.licence||'', prenom:o.prenom||'', nom:o.nom||'', club:o.club||'', sexe:o.sexe||'F', cat:o.cat||'',
+      planche:EPR.triple?(parseFloat(String(o.planche||'').replace(',','.'))||''):'', masse:EPR.lancer?(parseFloat(String(o.masse||'').replace(',','.'))||''):'', pb:parseM(o.pb), sb:parseM(o.sb)}));
+    sauver(); toast(`${liste.length} athlète${liste.length>1?'s':''} importé${liste.length>1?'s':''}`); },
+  testPhrase: b => { const inp=document.getElementById('ph-'+b.dataset.k); if(inp) C().phrases[b.dataset.k]=inp.value; parler(phrase(b.dataset.k,{prenom:'Léa',nom:'Martin',dossard:'12',club:'EA Nîmes',planche:11,cat:'U18',sexe:'F'},{m:parseM(EPR.exM),essai:'deuxième',record:'record personnel'}),1); },
+  phrasesDefaut: () => confirmer('Rétablir toutes les phrases d’origine ?', () => { C().phrases={...PHRASES_DEFAUT}; sauver(); toast('Phrases rétablies'); }, 'Rétablir'),
+  effacerResultats: () => confirmer('Effacer tous les essais et revenir avant le début ?', () => { S.essais={}; S.tour=0; S.ordres=[]; S.etat='prep'; S.live={...etatDefaut().live}; HISTO=[]; sauver(); toast('Résultats effacés'); }, 'Effacer'),
+  nouveau: () => confirmer('Tout effacer, athlètes compris ?', () => { const cfg={...C()}; S=etatDefaut(); ['t1','tconsec','alerte','voix','son','nbTV','voixNom','debit','tonalite','volume','repet','phrases','salle','auto','typeAuto','delai','planches','vent'].forEach(k => S.config[k]=cfg[k]); HISTO=[]; sauver(); toast('Nouveau concours prêt'); }, 'Tout effacer'),
+  csv: exporterCSV,
+  copier: async () => { try{ await navigator.clipboard.writeText(texteClassement()); toast('Classement copié'); }catch(e){ ouvrirModale(`<h3>Classement</h3><textarea readonly style="min-height:240px">${esc(texteClassement())}</textarea><div class="actions"><button class="btn" data-act="fermer">Fermer</button></div>`); } },
+  pleinEcran: () => { try{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>toast('Plein écran indisponible ici')); else document.exitFullscreen(); }catch(e){ toast('Plein écran indisponible ici'); } },
+  sonTV: () => { debloquerSon(); sonDebloque=true; try{ speechSynthesis.speak(new SpeechSynthesisUtterance(' ')); }catch(e){} bip(660,.1,1); rendreTV(); },
+  tvCode: () => { const v=(document.getElementById('tvCodeIn').value||'').trim().toUpperCase(); if(!v) return; try{ localStorage.setItem(CLE_SALLE_TV,v); }catch(e){} connecterTV(true); },
+  tvChangerCode: () => { tvEtat='code'; detruirePeer(); rendreTV(); }
+};
+document.addEventListener('click', e => { const b=e.target.closest('[data-act]'); if(!b||b.disabled) return; const f=ACT[b.dataset.act]; if(f){ e.preventDefault(); debloquerSon(); f(b,e); } });
+document.addEventListener('change', e => {
+  const el=e.target;
+  if(el.dataset && el.dataset.masse){ const [k,sx]=el.dataset.masse.split('|'), v=parseFloat(el.value.replace(',','.')); if(!C().masses) C().masses=JSON.parse(JSON.stringify(MASSES_DEFAUT)); if(!C().masses[C().engin][k]) C().masses[C().engin][k]={}; C().masses[C().engin][k][sx]=isNaN(v)?null:v; sauver(false); toast('Masse enregistrée'); return; }
+  if(el.dataset && el.dataset.cfg==='engin'){ const ancien=ENGINS[C().engin]?.nom; C().engin=el.value; if(!C().epreuve || C().epreuve===ancien || C().epreuve===EPR.epreuve) C().epreuve=ENGINS[el.value].nom; sauver(); toast('Épreuve : '+ENGINS[el.value].nom); return; }
+  if(el.dataset && el.dataset.phrase){ C().phrases[el.dataset.phrase]=el.value; sauver(false); toast('Phrase enregistrée'); return; }
+  if(!el.dataset || !el.dataset.cfg) return;
+  const k=el.dataset.cfg; let v=el.value; if(el.type==='number' || ['repet','nbEssais'].includes(k)) v = v==='' ? '' : +v;
+  C()[k]=v;
+  if(k==='regle' && REGLES_TEMPS[v]){ Object.assign(C(), {t1:REGLES_TEMPS[v].t1, tconsec:REGLES_TEMPS[v].tconsec}); sauver(); toast('Temps : '+REGLES_TEMPS[v].lib); return; }
+  if(['t1','tconsec'].includes(k)){ const r=REGLES_TEMPS[C().regle]; if(r && +r[k]!==+v){ C().regle='perso'; sauver(); toast('Temps personnalisés'); return; } }
+  sauver(false); toast('Réglage enregistré');
+});
+document.addEventListener('keydown', e => {
+  const mod=!document.getElementById('modale').hidden;
+  if(e.key==='Enter' && e.target.id==='tvCodeIn'){ e.preventDefault(); ACT.tvCode(); return; }
+  if(e.key==='Escape' && mod){ fermerModale(); return; }
+  if(e.key==='Enter' && mod){ const ok=document.querySelector('#modale .btn.bleu, #modale .btn.rose'); if(ok && e.target.tagName!=='TEXTAREA'){ e.preventDefault(); ok.click(); } return; }
+  if(vue!=='concours' || S.etat!=='encours' || mod) return;
+  if(e.key==='Enter' && (e.target.id==='mesure' || e.target.id==='vent')){ e.preventDefault(); validerMesure(); return; }
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.metaKey || e.altKey || (e.ctrlKey && e.key!=='z')) return;
+  const k=e.key.toLowerCase();
+  if(k==='x'){ e.preventDefault(); enregistrer('x'); }
+  else if(k==='p'||k==='-'){ e.preventDefault(); enregistrer('-'); }
+  else if(k==='z'){ e.preventDefault(); annulerDernier(); }
+  else if(k==='r'){ e.preventDefault(); ACT.repeter(); }
+  else if(k==='a'){ e.preventDefault(); basculerAuto(); }
+  else if(k==='m'){ e.preventDefault(); document.getElementById('mesure')?.focus(); }
+  else if(k===' '){ e.preventDefault(); S.live.chrono.etat==='run' ? pauseChrono() : lancerChrono(); }
+});
+
+/* ---------- Export ---------- */
+function texteClassement(){ return [`${C().nom} – ${C().epreuve} – ${C().date}`, ...classement().map(l => `${l.rang||'-'}\t${l.a.dossard||''}\t${l.a.licence||''}\t${nomComplet(l.a)}\t${l.a.club||''}\t${l.best!=null?fM(l.best):(l.abs?'DNS':'NM')}`)].join('\n'); }
+let telechargement=null;
+(async () => { try{ if(window.claude && typeof claude.use==='function') telechargement=await claude.use('downloads'); }catch(e){} })();
+async function telechargerCSV(nom, lignes){
+  const csv='\uFEFF'+lignes.map(r => r.map(v => { const s=String(v??''); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(';')).join('\r\n');
+  if(telechargement){ try{ await telechargement.save({filename:nom, data:csv}); return; }catch(e){ if(e&&e.code==='cancelled') return; } }
+  if(!window.claude){ try{ const u=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})), l=document.createElement('a'); l.href=u; l.download=nom; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); return; }catch(e){} }
+  ouvrirModale(`<h3>Résultats au format CSV</h3><textarea readonly style="min-height:240px">${esc(csv.slice(1))}</textarea><div class="actions"><button class="btn" data-act="fermer">Fermer</button></div>`);
+}
+function exporterCSV(){
+  const nb=+C().nbEssais||6, vent=C().vent==='oui';
+  const tete=['Rang','Dossard','Licence','Prénom','Nom','Club','Sexe','Catégorie',...(EPR.triple?['Planche']:[]),...(EPR.lancer?['Engin']:[]),'Meilleur',...(vent?['Vent']:[]),...Array.from({length:nb},(_,t) => [`Essai ${t+1}`, ...(vent?[`Vent ${t+1}`]:[])]).flat()];
+  const lignes=classement().map(l => [l.rang||'', l.a.dossard||'', l.a.licence||'', l.a.prenom||'', l.a.nom||'', l.a.club||'', l.a.sexe||'', l.a.cat||'', ...(EPR.triple?[l.a.planche||'']:[]),...(EPR.lancer?[fEngin(masseEngin(l.a))]:[]),
+    l.best!=null?fM(l.best):(l.abs?'DNS':'NM'), ...(vent?[l.best!=null?fV(ventDe(l.a.id,l.best)):'']:[]),
+    ...Array.from({length:nb},(_,t) => { const e=essT(l.a.id,t); return [e?(e.r==='v'?fM(e.m):e.r==='x'?'X':'–'):'', ...(vent?[e&&e.v!=null?fV(e.v):'']:[])]; }).flat()]);
+  telechargerCSV((C().nom||EPR.code).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase()+'-resultats.csv', [tete,...lignes]);
+}
+const FAQ_COMMUN=[
+  ['Exporter les résultats en PDF ou CSV','Onglet « Résultats » : ajoutez les officiels, faites signer chacun à l’écran (doigt ou stylet), puis « Télécharger le PDF signé ». Le bouton CSV est à côté.',['pdf','csv','export','imprim','signat','officiel','envoi']],
+  ['Charger une liste d’athlètes','Bloc « Charger un listing » : fichier Excel ou CSV (modèle #TEAMBRO conseillé), collage depuis un tableur, ou « Créer une liste fictive » pour s’entraîner.',['charger','import','listing','excel','fichier','liste fictive','formation']],
+  ['Afficher sur la télé','Ouvrez le même lien sur la télé et choisissez « Affichage télé ». Hors de claude.ai (GitHub), utilisez le code de salle indiqué en haut.',['tele','ecran','affich','spectat']],
+  ['Annonces vocales','Réglages, section Synthèse vocale : choix de la voix, débit, répétition, phrases modifiables. Touche R : répéter la dernière annonce.',['voix','annonce','parler','micro']]
+];
+/* =========================================================
+   Officiels, signatures électroniques et export PDF
+   ========================================================= */
+const ROLES_OFF=['Juge-arbitre','Chef de concours','Chef juge','Juge','Starter','Juge à l’arrivée','Chronométreur','Secrétaire','Délégué technique'];
+function offListe(){ const c=EXPORT.config(); if(!Array.isArray(c.officiels)) c.officiels=[]; return c.officiels; }
+function offSign(){ const st=EXPORT.etat(); if(!st.signatures || typeof st.signatures!=='object') st.signatures={}; return st.signatures; }
+function empreinte(){ const t=JSON.stringify(EXPORT.sections().map(s => s.lignes)); let h=5381; for(let i=0;i<t.length;i++) h=((h<<5)+h+t.charCodeAt(i))|0; return (h>>>0).toString(36); }
+function htmlOfficiels(){
+  const L=offListe(), S_=offSign(), emp=empreinte();
+  return `<section class="bloc" id="blocOfficiels"><div class="tete-bloc"><h2>Officiels et signatures</h2><span class="discret">${L.filter(o => S_[o.id]).length} / ${L.length} signature${L.length>1?'s':''}</span></div>
+    <p class="discret">Ajoutez les officiels de la compétition. Avant l’envoi, chacun signe à l’écran avec le doigt ou un stylet : la signature est intégrée au PDF des résultats. Si les résultats changent après une signature, elle est signalée comme antérieure à la modification.</p>
+    ${L.length?`<div class="defil"><table><thead><tr><th>Fonction</th><th>Nom</th><th>Licence</th><th>Signature</th><th></th></tr></thead><tbody>
+      ${L.map(o => { const sg=S_[o.id]; return `<tr><td>${esc(o.role)}</td><td>${esc(o.nom)}</td><td>${esc(o.licence||'')}</td>
+        <td>${sg?`<img src="${sg.img}" alt="Signature de ${esc(o.nom)}" class="mini-sign"><small class="${sg.empreinte!==emp?'m-X':''}">${sg.empreinte!==emp?'Résultats modifiés depuis':'Signé le '+new Date(sg.ts).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'})}</small>`:'<span class="etiq">À signer</span>'}</td>
+        <td><button class="btn petit ${sg?'':'bleu'}" data-act="offSigner" data-id="${o.id}">${sg?'Signer à nouveau':'Signer'}</button><button class="btn petit" data-act="offRetirer" data-id="${o.id}">Retirer</button></td></tr>`; }).join('')}</tbody></table></div>`:''}
+    <div class="grille" style="margin-top:12px"><label class="champ">Fonction<input id="offRole" list="offRoles" placeholder="ex. Juge-arbitre"><datalist id="offRoles">${ROLES_OFF.map(r => `<option value="${r}">`).join('')}</datalist></label>
+      <label class="champ">Nom et prénom<input id="offNom"></label><label class="champ">Licence<input id="offLic" inputmode="numeric"></label></div>
+    <div class="actions"><button class="btn" data-act="offAjouter">Ajouter l’officiel</button>
+      <button class="btn bleu" data-act="pdf">Télécharger le PDF signé</button><button class="btn" data-act="csv">Télécharger le CSV</button>
+      ${Object.keys(S_).length?'<button class="btn petit" data-act="offEffacer">Effacer les signatures</button>':''}</div>
+  </section>`;
+}
+let padTrace=false, padVide=true;
+function ouvrirPad(id){
+  const o=offListe().find(x => x.id===id); if(!o) return;
+  ouvrirModale(`<h3>Signature : ${esc(o.nom)}</h3><p class="discret">${esc(o.role)}${o.licence?' · licence '+esc(o.licence):''}. En signant, l’officiel certifie l’exactitude des résultats de « ${esc(EXPORT.titre())} ».</p>
+    <canvas id="pad" class="pad" width="900" height="300" aria-label="Zone de signature"></canvas>
+    <div class="actions"><button class="btn bleu" data-act="offValider" data-id="${o.id}">Valider la signature</button><button class="btn" data-act="offEffacerPad">Effacer</button><button class="btn" data-act="fermer">Annuler</button></div>`);
+  const cv=document.getElementById('pad'), ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0A0F33'; padVide=true;
+  const pos=e => { const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)*cv.width/r.width, (e.clientY-r.top)*cv.height/r.height]; };
+  cv.addEventListener('pointerdown', e => { padTrace=true; padVide=false; cv.setPointerCapture(e.pointerId); const [x,y]=pos(e); ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+.1,y+.1); ctx.stroke(); e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if(!padTrace) return; const [x,y]=pos(e); ctx.lineTo(x,y); ctx.stroke(); e.preventDefault(); });
+  cv.addEventListener('pointerup', () => { padTrace=false; });
+}
+function validerPad(id){
+  const o=offListe().find(x => x.id===id), cv=document.getElementById('pad'); if(!o||!cv) return;
+  if(padVide){ toast('Signez dans le cadre blanc'); return; }
+  const m=document.createElement('canvas'); m.width=450; m.height=150; const c=m.getContext('2d'); c.fillStyle='#fff'; c.fillRect(0,0,450,150); c.drawImage(cv,0,0,450,150);
+  offSign()[id]={img:m.toDataURL('image/png'), ts:Date.now(), nom:o.nom, role:o.role, licence:o.licence||'', empreinte:empreinte()};
+  fermerModale(); EXPORT.sauver(); toast('Signature enregistrée');
+}
+/* --- PDF --- */
+const JSPDF_URL='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', AUTOTABLE_URL='https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
+let pdfCharge=null;
+function chargerScript(u){ return new Promise((ok,ko) => { const s=document.createElement('script'); s.src=u; s.onload=ok; s.onerror=ko; document.head.appendChild(s); }); }
+function chargerPDF(){ if(!pdfCharge) pdfCharge=(window.jspdf?Promise.resolve():chargerScript(JSPDF_URL)).then(() => chargerScript(AUTOTABLE_URL)); return pdfCharge; }
+function txtPDF(v){ return String(v??'').replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/…/g,'...').replace(/\u00a0|\u202f/g,' ').replace(/[^\x00-\xff]/g,'?'); }
+async function exporterPDF(forcer){
+  const L=offListe(), S_=offSign(), emp=empreinte();
+  const manque=L.filter(o => !S_[o.id]), perimes=L.filter(o => S_[o.id] && S_[o.id].empreinte!==emp);
+  if(!forcer && (manque.length || perimes.length || !L.length)){
+    ouvrirModale(`<h3>Avant l’envoi</h3><p>${!L.length?'Aucun officiel n’est déclaré.':''}${manque.length?` Signature manquante : ${manque.map(o => esc(o.nom)).join(', ')}.`:''}${perimes.length?` Résultats modifiés après la signature de ${perimes.map(o => esc(o.nom)).join(', ')}.`:''}</p>
+      <div class="actions"><button class="btn rose" data-act="pdfForcer">Exporter quand même</button><button class="btn" data-act="fermer">Revenir</button></div>`);
+    return;
+  }
+  try{ await chargerPDF(); }catch(e){ toast('Le générateur de PDF n’a pas pu se charger (connexion ?)'); return; }
+  const secs=EXPORT.sections(), large=Math.max(...secs.map(s => s.colonnes.length))>9;
+  const doc=new window.jspdf.jsPDF({orientation:large?'landscape':'portrait', unit:'mm', format:'a4'});
+  const W=doc.internal.pageSize.getWidth(), Hh=doc.internal.pageSize.getHeight(), c=EXPORT.config();
+  doc.setFillColor(30,70,255); doc.rect(0,0,W/2,3,'F'); doc.setFillColor(232,19,122); doc.rect(W/2,0,W/2,3,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(232,19,122); doc.text('#TEAMBRO', 14, 15);
+  doc.setTextColor(30,70,255); doc.text(txtPDF(EXPORT.titre()), 14+doc.getTextWidth('#TEAMBRO ')+1, 15);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(60,66,110);
+  doc.text(txtPDF([c.nom, c.lieu, c.date ? new Date(c.date+'T12:00').toLocaleDateString('fr-FR',{dateStyle:'long'}) : ''].filter(Boolean).join('  ·  ')), 14, 21);
+  let y=27;
+  secs.forEach(sec => {
+    if(sec.titre){ doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,15,51); doc.text(txtPDF(sec.titre), 14, y+2); y+=5; }
+    if(sec.note){ doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(74,82,131); doc.text(txtPDF(sec.note), 14, y+2); y+=5; }
+    doc.autoTable({startY:y, head:[sec.colonnes.map(txtPDF)], body:sec.lignes.map(r => r.map(txtPDF)), margin:{left:14, right:14},
+      styles:{font:'helvetica', fontSize:sec.colonnes.length>14?6.5:sec.colonnes.length>9?8:9, cellPadding:1.4, textColor:[10,15,51], lineColor:[205,211,242], lineWidth:.1},
+      headStyles:{fillColor:[30,70,255], textColor:255, fontStyle:'bold'}, alternateRowStyles:{fillColor:[238,241,255]}});
+    y=doc.lastAutoTable.finalY+8; if(y>Hh-40){ doc.addPage(); y=16; }
+  });
+  // Officiels
+  if(y>Hh-60){ doc.addPage(); y=16; }
+  doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,15,51); doc.text('Officiels', 14, y); y+=4;
+  if(!L.length){ doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.text('Aucun officiel déclaré.', 14, y+4); y+=10; }
+  const colW=(W-28)/(large?4:3); let x=14;
+  L.forEach((o,i) => {
+    if(x+colW>W-10){ x=14; y+=34; } if(y>Hh-38){ doc.addPage(); y=16; x=14; }
+    const sg=S_[o.id];
+    doc.setDrawColor(205,211,242); doc.roundedRect(x, y, colW-4, 30, 2, 2);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(10,15,51); doc.text(txtPDF(o.nom), x+3, y+5);
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(74,82,131); doc.text(txtPDF(o.role+(o.licence?' · lic. '+o.licence:'')), x+3, y+9);
+    if(sg){ try{ doc.addImage(sg.img, 'PNG', x+3, y+11, 39, 13); }catch(e){} doc.setFontSize(7); doc.text(txtPDF((sg.empreinte!==emp?'Signé AVANT modification des résultats, le ':'Signé le ')+new Date(sg.ts).toLocaleString('fr-FR')), x+3, y+28); }
+    else { doc.setTextColor(232,19,122); doc.text('Non signé', x+3, y+18); }
+    x+=colW;
+  });
+  const n=doc.getNumberOfPages();
+  for(let i=1;i<=n;i++){ doc.setPage(i); doc.setFontSize(7.5); doc.setTextColor(124,131,171); doc.text(txtPDF(`Généré par #TEAMBRO le ${new Date().toLocaleString('fr-FR')} · empreinte des résultats ${emp} · page ${i}/${n}`), 14, Hh-6); }
+  const nom=(c.nom+'-'+EXPORT.titre()).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase()+'.pdf';
+  const blob=doc.output('blob');
+  if(typeof telechargement!=='undefined' && telechargement){ try{ await telechargement.save({filename:nom, data:blob}); return; }catch(e){ if(e&&e.code==='cancelled') return; } }
+  try{ const u=URL.createObjectURL(blob), l=document.createElement('a'); l.href=u; l.download=nom; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),3000); }catch(e){ toast('Téléchargement indisponible ici'); }
+}
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
+  if(a==='offAjouter'){ const r=document.getElementById('offRole').value.trim(), n=document.getElementById('offNom').value.trim(), l=document.getElementById('offLic').value.trim(); if(!n){ toast('Indiquez le nom de l’officiel'); return; } offListe().push({id:Math.random().toString(36).slice(2,9), role:r||'Juge', nom:n, licence:l}); EXPORT.sauver(); }
+  else if(a==='offRetirer'){ const id=b.dataset.id; EXPORT.config().officiels=offListe().filter(o => o.id!==id); delete offSign()[id]; EXPORT.sauver(); }
+  else if(a==='offSigner') ouvrirPad(b.dataset.id);
+  else if(a==='offValider') validerPad(b.dataset.id);
+  else if(a==='offEffacerPad'){ const cv=document.getElementById('pad'); if(cv){ const c=cv.getContext('2d'); c.fillStyle='#fff'; c.fillRect(0,0,cv.width,cv.height); padVide=true; } }
+  else if(a==='offEffacer'){ const st=EXPORT.etat(); st.signatures={}; EXPORT.sauver(); toast('Signatures effacées'); }
+  else if(a==='pdf') exporterPDF(false);
+  else if(a==='pdfForcer'){ fermerModale(); exporterPDF(true); }
+});
+
+function sectionsPubliques(){ try{ return tableauxResultats().map(s => { const i=s.colonnes.indexOf('Licence'); return i<0 ? s : {...s, colonnes:s.colonnes.filter((_,j) => j!==i), lignes:s.lignes.map(r => r.filter((_,j) => j!==i))}; }); }catch(e){ return []; } }
+
+if(window.__DEMO){ setTimeout(() => { try{ simulerDemo(window.__DEMO.objets, window.__DEMO.avancement, true); }catch(e){ console.error(e); } setTimeout(() => { try{ window.parent.postMessage({tb:1, op:'demoFini'}, '*'); }catch(e){} }, 1800); }, 1500); }
+document.addEventListener('click', e => { const b=e.target.closest('[data-act="simulerDemo"]'); if(!b) return;
+  confirmer('Remplacer les athlètes et les résultats par une compétition fictive ?', () => { simulerDemo(genererFictifs(LISTING.fictifDefaut||12,'mixte'), 1, true); toutRendre(); toast('Résultats fictifs chargés'); }, 'Charger'); });
+/* ---------- Export et assistant (sauts horizontaux et lancers) ---------- */
+function tableauxResultats(){
+  const L=classement(), nb=+C().nbEssais||6, vent=C().vent==='oui';
+  const cel=e => e ? (e.r==='v' ? fM(e.m)+(vent&&e.v!=null?' ('+fV(e.v)+')':'') : e.r==='x' ? 'X' : '-') : '';
+  const cols=['Rg','Doss.','Licence','Athlète','Club','Cat.',...(EPR.triple?['Planche']:[]),...(EPR.lancer?['Engin']:[]),'Meilleur',...Array.from({length:nb},(_,t) => String(t+1))];
+  const ligne=(l,r) => [r??(l.rang||''), l.a.dossard||'', l.a.licence||'', nomComplet(l.a), l.a.club||'', l.a.cat||'', ...(EPR.triple?[l.a.planche||'']:[]), ...(EPR.lancer?[fEngin(masseEngin(l.a))]:[]),
+    l.best!=null?fM(l.best)+(vent&&ventDe(l.a.id,l.best)!=null?' ('+fV(ventDe(l.a.id,l.best))+')':''):(l.abs?'DNS':(S.etat!=='prep'?'NM':'')), ...Array.from({length:nb},(_,t) => cel(essT(l.a.id,t)))];
+  const secs=[{titre:'Classement général', colonnes:cols, lignes:L.map(l => ligne(l))}];
+  const cats=[...new Set(L.filter(l => !l.abs).map(l => (l.a.cat||'')+'|'+l.a.sexe))];
+  if(cats.length>1) cats.forEach(k => { const [cat,sx]=k.split('|'); const sub=L.filter(l => (l.a.cat||'')===cat && l.a.sexe===sx && !l.abs); let r=0, prec=null;
+    secs.push({titre:`${cat||'Sans catégorie'} ${sx==='H'?'Hommes':'Femmes'}${EPR.lancer?' · engin '+fEngin(masseEngin(sub[0]?.a)):''}`, colonnes:cols, lignes:sub.map((l,i) => { if(l.best==null) return ligne(l,''); r = prec && cmpPerf(prec.a,l.a)===0 ? r : i+1; prec=l; return ligne(l,r); })}); });
+  return secs;
+}
+const EXPORT={etat:() => S, config:() => C(), sections:tableauxResultats, titre:() => C().epreuve||EPR.epreuve, sauver:() => sauver()};
+const ASSIST={nom:'#TEAMBRO '+titreAff(), couloirs:false,
+  suggestions:['Retirer le dossard 12','Martin est absente','Mettre Martin en position 1','Échanger 12 et 15','Comment exporter en PDF ?'],
+  athletes:() => S.athletes.map((a,i) => ({id:a.id, dossard:a.dossard, prenom:a.prenom, nom:a.nom, statut:a.statut==='abs'?'absent':a.statut==='ab'?'abandon':'', pos:i+1, extra:[a.cat, EPR.lancer?fEngin(masseEngin(a)):'', EPR.triple&&a.planche?'planche '+a.planche:''].filter(Boolean).join(', ')})),
+  contexte:() => S.etat==='prep' ? 'concours pas encore commencé' : S.etat==='fini' ? 'concours terminé' : `concours en cours, essai ${S.tour+1} sur ${C().nbEssais}${S.tour>=3?' (finale : ordre fixé par le classement, non modifiable)':''}, en action : ${nomComplet(auSaut())}`,
+  schema:`{"type":"retirer","id":"…"} retire l’athlète (avant le début ; ensuite il est déclaré absent ou en abandon)
+{"type":"statut","id":"…","statut":"abs"|"ab"|""} absent, abandon, ou retour en compétition
+{"type":"deplacer","id":"…","position":n} place l’athlète à la position n de l’ordre de passage (impossible pendant la finale)
+{"type":"echanger","id":"…","id2":"…"} échange deux athlètes dans l’ordre de passage
+{"type":"modifier","id":"…","champ":"dossard|licence|prenom|nom|club|cat|pb|sb${EPR.triple?'|planche':''}${EPR.lancer?'|masse':''}","valeur":"…"} modifie la fiche (pb, sb en mètres${EPR.triple?', planche en mètres':''}${EPR.lancer?', masse en kg':''})`,
+  instantane:() => JSON.stringify({athletes:S.athletes, essais:S.essais, ordres:S.ordres, tour:S.tour, etat:S.etat}),
+  restaurer:t => { const o=JSON.parse(t); Object.assign(S, o); },
+  executer:ac => {
+    const a=A(ac.id); if(!a) throw new Error('athlète introuvable');
+    const resync=() => { if(S.etat==='encours' && S.tour<3 && S.ordres[S.tour]){ const set=new Set(S.ordres[S.tour]); S.ordres[S.tour]=S.athletes.map(x => x.id).filter(id => set.has(id)); } };
+    if(ac.type==='retirer'){ if(S.etat==='prep'){ S.athletes=S.athletes.filter(x => x.id!==a.id); delete S.essais[a.id]; } else a.statut=(S.essais[a.id]||[]).some(Boolean)?'ab':'abs'; }
+    else if(ac.type==='statut'){ a.statut=ac.statut||''; if(S.etat==='encours' && S.tour<3){ if(a.statut==='abs') S.ordres[S.tour]=S.ordres[S.tour].filter(id => id!==a.id); else if(!S.ordres[S.tour].includes(a.id)){ S.ordres[S.tour].push(a.id); resync(); } } }
+    else if(ac.type==='deplacer' || ac.type==='echanger'){
+      if(S.etat==='encours' && S.tour>=3) throw new Error('en finale, l’ordre suit le classement');
+      if(ac.type==='deplacer'){ const i=S.athletes.indexOf(a); S.athletes.splice(i,1); S.athletes.splice(Math.max(0,Math.min(S.athletes.length,(+ac.position||1)-1)),0,a); }
+      else { const b=A(ac.id2); if(!b) throw new Error('second athlète introuvable'); const i=S.athletes.indexOf(a), j=S.athletes.indexOf(b); S.athletes[i]=b; S.athletes[j]=a; }
+      resync();
+    }
+    else if(ac.type==='modifier'){ const ch=ac.champ; if(['pb','sb'].includes(ch)) a[ch]=parseM(ac.valeur); else if((ch==='planche'&&EPR.triple)||(ch==='masse'&&EPR.lancer)) a[ch]=parseFloat(String(ac.valeur).replace(',','.'))||''; else if(['dossard','licence','prenom','nom','club','cat'].includes(ch)) a[ch]=String(ac.valeur??''); else throw new Error('champ inconnu'); }
+    else return false;
+    if(S.etat==='encours') avancer();
+  },
+  sauver:() => sauver(),
+  aide:[...FAQ_COMMUN,
+    ['Changer l’ordre de passage','Onglet « Athlètes » : flèches ↑ ↓ ou « Tirer l’ordre au sort », avant ou pendant les 3 premiers essais. En finale, l’ordre suit le classement (règle World Athletics). Ou dites-moi « mettre Martin en position 2 ».',['ordre','position','passage','tirage']],
+    ['Corriger un essai','Touchez la case dans la feuille de concours. Touche Z : annuler le dernier essai.',['corrig','erreur','annul','essai','case']],
+    ['Finale à 8','Avec plus de 8 athlètes, les 8 meilleurs après 3 essais ont 3 essais de plus, dans l’ordre inverse du classement. Réglable dans Réglages, Déroulement.',['finale','8','huit','finaliste']],
+    ...(EPR.lancer?[['Masse des engins','Réglages, section Engin : tableau des masses par catégorie et sexe (FFA), modifiable. Une masse saisie sur la fiche d’un athlète est prioritaire.',['masse','engin','kilo','poids de']]]:[]),
+    ...(EPR.triple?[['Planche d’appel','Sur le poste juge, boutons de planche au-dessus de la saisie. La liste des planches se règle dans Réglages.',['planche']]]:[]),
+    ['Mode automatique','Réglages, Enchaînement : semi-automatique ou délai fixe. Touche A pour suspendre.',['auto','enchain']]]
+};
+/* ---------- Démonstration : concours fictif simulé ---------- */
+function simulerDemo(objets, av, remplacer){
+  const tr=toutRendre; toutRendre=() => {};
+  try{
+    if(remplacer){ S.athletes=[]; S.essais={}; S.ordres=[]; S.tour=0; S.etat='prep'; S.live={...etatDefaut().live}; HISTO=[]; }
+    objets.forEach((o,i) => LISTING.fictif(o, i, objets.length, Math.random()));
+    importEnAttente=objets; ACT.okImport();
+    C().auto='non'; C().voix='aucun'; demarrer();
+    const limite = av>=1 ? 3000 : Math.round(av*S.athletes.length*(+C().nbEssais||6)*0.8);
+    for(let n=0; n<limite && S.etat==='encours'; n++){
+      const a=auSaut(); if(!a) break; const pb=+a.pb || parseM(EPR.exM);
+      if(Math.random()<0.18) enregistrer('x');
+      else enregistrer('v', Math.floor(pb*(0.86+Math.random()*0.15)*100)/100, C().vent==='oui' ? Math.round((Math.random()*3.4-1)*10)/10 : null);
+    }
+  } finally { toutRendre=tr; }
+  sauver();
+}
+/* =========================================================
+   Assistant : commandes en langage courant
+   ========================================================= */
+let samplerIA=null, histoAssist=[], annulerAssist=null;
+(async () => { try{ if(window.claude && typeof claude.use==='function') samplerIA=await claude.use('sample'); }catch(e){} })();
+function nrm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,' ').replace(/\s+/g,' ').trim(); }
+function trouverAthletes(txt){
+  const L=ASSIST.athletes(), t=' '+nrm(txt)+' ', res=[];
+  const nums=[...t.matchAll(/(?:dossard|doss|n°|no|numero|#|le)\s*(\d{1,5})\b/g)].map(m => m[1]);
+  nums.forEach(n => { const a=L.find(x => String(x.dossard)===n); if(a && !res.includes(a)) res.push(a); });
+  L.forEach(a => { const p=nrm(a.prenom), n=nrm(a.nom); if(!n) return;
+    const ok = (p && t.includes(' '+p+' '+n+' ')) || (p && t.includes(' '+n+' '+p+' ')) || (n.length>2 && t.includes(' '+n+' ') && L.filter(x => nrm(x.nom)===n).length===1) || (p.length>2 && t.includes(' '+p+' ') && L.filter(x => nrm(x.prenom)===p).length===1);
+    if(ok && !res.includes(a)) res.push(a); });
+  if(!res.length){ const seuls=[...t.matchAll(/\b(\d{1,4})\b/g)].map(m => m[1]); seuls.forEach(n => { const a=L.find(x => String(x.dossard)===n); if(a && !res.includes(a)) res.push(a); }); }
+  return res;
+}
+function analyseLocale(txt){
+  const t=nrm(txt), cibles=trouverAthletes(txt), n=ASSIST.athletes().length;
+  const a=cibles[0];
+  if(/^(aide|\?|que (peux|sais)|comment|ou |où |pourquoi|quand)/.test(t) || /comment /.test(t)) return {aide:true};
+  if(!a) return null;
+  if(/(echang|invers|permut)/.test(t) && cibles[1]) return {actions:[{type:'echanger', id:a.id, id2:cibles[1].id}]};
+  if(/(retir|enlev|supprim|efface|sortir)/.test(t)) return {actions:[{type:'retirer', id:a.id}]};
+  if(/(absent|forfait|dns|pas venu|non partant)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:'abs'}]};
+  if(/(abandon|blesse|arrete)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:'ab'}]};
+  if(/(reintegr|remettre en competition|retablir|annuler l absence|de retour)/.test(t)) return {actions:[{type:'statut', id:a.id, statut:''}]};
+  if(ASSIST.couloirs && /couloir\s*(\d{1,2})/.test(t)){ const c=+t.match(/couloir\s*(\d{1,2})/)[1]; const sm=t.match(/(?:serie|course)\s*(\d{1,2})/); return {actions:[{type:'couloir', id:a.id, couloir:c, serie:sm?+sm[1]:null}]}; }
+  let pos=null; const ap=a.pos||1;
+  if(/en (premier|tete|1er)|en premiere position/.test(t)) pos=1; else if(/en dernier|a la fin|en derniere position/.test(t)) pos=n;
+  else { const m=t.match(/(?:position|place|rang|ordre|en|au)\s*(?:n°|no|numero)?\s*(\d{1,3})\b(?!\s*(?:m|cm|kg))/); if(m && /(mett|plac|deplac|pass|chang|bouge|ordre|position|rang)/.test(t)) pos=+m[1]; }
+  if(pos==null && /(remonte|monter|avance|plus tot)/.test(t)) pos=Math.max(1,ap-1);
+  if(pos==null && /(descend|recule|plus tard|apres)/.test(t)) pos=Math.min(n,ap+1);
+  if(pos!=null && /(mett|plac|deplac|pass|chang|bouge|ordre|position|rang|monte|descend|avance|recule|premier|dernier|tete|fin)/.test(t)) return {actions:[{type:'deplacer', id:a.id, position:pos}]};
+  return null;
+}
+function decrire(ac){
+  const A_=id => { const a=ASSIST.athletes().find(x => x.id===id); return a ? `${a.prenom} ${String(a.nom||'').toUpperCase()}${a.dossard?' (dossard '+a.dossard+')':''}` : 'athlète inconnu'; };
+  switch(ac.type){
+    case 'retirer': return `Retirer ${A_(ac.id)} de la liste`;
+    case 'statut': return ac.statut==='abs' ? `Déclarer ${A_(ac.id)} absent` : ac.statut==='ab' ? `Déclarer l’abandon de ${A_(ac.id)}` : `Remettre ${A_(ac.id)} en compétition`;
+    case 'deplacer': return `Placer ${A_(ac.id)} en position ${ac.position} de l’ordre de passage`;
+    case 'echanger': return `Échanger ${A_(ac.id)} et ${A_(ac.id2)}`;
+    case 'modifier': return `Modifier ${ac.champ} de ${A_(ac.id)} : ${ac.valeur}`;
+    case 'couloir': return `Mettre ${A_(ac.id)} au couloir ${ac.couloir}${ac.serie?' de la série '+ac.serie:''}`;
+    default: return ASSIST.decrire ? ASSIST.decrire(ac) : JSON.stringify(ac);
+  }
+}
+function ajouterMsg(qui, html){ histoAssist.push({qui, html}); const f=document.getElementById('aideFil'); if(f){ f.insertAdjacentHTML('beforeend', `<div class="aide-msg ${qui}">${html}</div>`); f.scrollTop=f.scrollHeight; } }
+let propositions=null;
+function proposer(reponse, actions){
+  propositions=actions||[];
+  ajouterMsg('app', `${reponse?esc(reponse):''}${propositions.length?`<ul>${propositions.map(a => `<li>${esc(decrire(a))}</li>`).join('')}</ul><div class="actions"><button class="btn bleu petit" data-act="assistOk">Appliquer</button><button class="btn petit" data-act="assistNon">Annuler</button></div>`:''}`);
+}
+function texteAide(){ return ASSIST.aide.map(([q,r]) => `• ${q}\n${r}`).join('\n\n'); }
+async function demanderAssistant(txt){
+  txt=String(txt||'').trim(); if(!txt) return;
+  ajouterMsg('moi', esc(txt));
+  const loc=analyseLocale(txt);
+  if(loc && loc.actions){ proposer('Voici ce que je propose :', loc.actions); return; }
+  const faq=ASSIST.aide.find(([q,r,mots]) => (mots||[]).some(m => nrm(txt).includes(m)));
+  if(!samplerIA){
+    if(faq){ ajouterMsg('app', `<b>${esc(faq[0])}</b>\n${esc(faq[1])}`); return; }
+    ajouterMsg('app', esc('Je n’ai pas compris. Essayez par exemple : « retirer le dossard 12 », « Léa Martin est absente », « mettre Martin en position 3 », « échanger 12 et 15 ».'+(loc&&loc.aide?'\n\n'+texteAide():'')));
+    return;
+  }
+  ajouterMsg('app', '<i>Je réfléchis…</i>');
+  const fil=document.getElementById('aideFil'), att=fil && fil.lastElementChild;
+  const prompt=`Tu es l’assistant de l’application « ${ASSIST.nom} » de gestion de compétition d’athlétisme (règlement World Athletics et FFA). Réponds en français, brièvement, avec des apostrophes typographiques.
+Mode d’emploi de l’application :
+${texteAide()}
+
+État actuel : ${ASSIST.contexte()}
+Athlètes (id | dossard | prénom nom | statut | position) :
+${ASSIST.athletes().map(a => `${a.id} | ${a.dossard||''} | ${a.prenom||''} ${a.nom||''} | ${a.statut||'en compétition'} | ${a.pos||''}${a.extra?' | '+a.extra:''}`).join('\n')}
+
+Actions possibles (n’utilise que celles-ci, avec les id ci-dessus) :
+${ASSIST.schema}
+
+Demande de l’utilisateur : « ${txt} »
+Réponds UNIQUEMENT avec un objet JSON : {"reponse": "phrase courte pour l’utilisateur", "actions": [ ... ]}. Si la demande est une question ou est ambiguë, "actions" est vide et "reponse" explique ou pose une question.`;
+  try{
+    const r=await samplerIA.json(prompt, {modelTier:'quick'});
+    if(att) att.remove();
+    const acts=(Array.isArray(r.actions)?r.actions:[]).filter(a => a && a.type && (!a.id || ASSIST.athletes().some(x => x.id===a.id)));
+    proposer(r.reponse||'', acts);
+  }catch(e){ if(att) att.remove(); ajouterMsg('app', esc(faq ? faq[0]+'\n'+faq[1] : 'L’assistant n’est pas disponible pour le moment. '+(e&&e.code==='not_granted'?'Autorisez Claude pour l’utiliser.':''))); }
+}
+function appliquerPropositions(){
+  if(!propositions||!propositions.length) return;
+  const avant=ASSIST.instantane(); let ok=0; const err=[];
+  propositions.forEach(a => { try{ const m=ASSIST.executer(a); if(m===false) err.push(decrire(a)); else ok++; }catch(e){ err.push(decrire(a)+' : '+e.message); } });
+  propositions=null; ASSIST.sauver();
+  annulerAssist=avant;
+  ajouterMsg('app', `${ok} action${ok>1?'s':''} appliquée${ok>1?'s':''}.${err.length?'\nNon appliqué : '+esc(err.join(' ; ')):''}<div class="actions"><button class="btn petit" data-act="assistDefaire">Défaire</button></div>`);
+}
+function construireAssistant(){
+  if(document.getElementById('aideBtn')) return;
+  document.body.insertAdjacentHTML('beforeend', `<button id="aideBtn" data-act="assistOuvrir" aria-expanded="false">Aide</button>
+  <div id="aidePanneau" hidden role="dialog" aria-label="Assistant"><div class="aide-tete"><b>Assistant</b><button class="btn petit" data-act="assistFermer">Fermer</button></div>
+    <div class="aide-fil" id="aideFil"><div class="aide-msg app">Dites-moi ce que vous voulez faire, par exemple : « retirer le dossard 12 », « Léa Martin est absente », « mettre Martin en 3e position », « échanger 12 et 15 »${ASSIST.couloirs?', « mettre le 12 au couloir 4 »':''}. Vous pouvez aussi poser une question sur l’app.</div></div>
+    <div class="aide-puces">${ASSIST.suggestions.map(s => `<button data-act="assistPuce" data-t="${esc(s)}">${esc(s)}</button>`).join('')}</div>
+    <div class="aide-saisie"><input id="aideTexte" type="text" placeholder="Votre demande" autocomplete="off"><button class="btn bleu" data-act="assistEnvoyer">OK</button></div></div>`);
+}
+function majVisibiliteAssistant(){ const b=document.getElementById('aideBtn'); if(!b) return; const tv=document.getElementById('tv'), mo=document.getElementById('module'), cache=(tv && !tv.hidden) || (document.getElementById('ecran') && !document.getElementById('ecran').hidden) || (mo && !mo.hidden); b.hidden=!!cache; if(cache) document.getElementById('aidePanneau').hidden=true; }
+setInterval(majVisibiliteAssistant, 700);
+document.addEventListener('click', e => {
+  const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
+  if(a==='assistOuvrir'){ const p=document.getElementById('aidePanneau'); p.hidden=!p.hidden; b.setAttribute('aria-expanded', String(!p.hidden)); if(!p.hidden) document.getElementById('aideTexte').focus(); }
+  else if(a==='assistFermer'){ document.getElementById('aidePanneau').hidden=true; }
+  else if(a==='assistEnvoyer'){ const i=document.getElementById('aideTexte'); demanderAssistant(i.value); i.value=''; }
+  else if(a==='assistPuce'){ const i=document.getElementById('aideTexte'); i.value=b.dataset.t; i.focus(); }
+  else if(a==='assistOk') appliquerPropositions();
+  else if(a==='assistNon'){ propositions=null; ajouterMsg('app','D’accord, rien n’a été modifié.'); }
+  else if(a==='assistDefaire'){ if(annulerAssist){ ASSIST.restaurer(annulerAssist); annulerAssist=null; ASSIST.sauver(); ajouterMsg('app','C’est défait.'); } }
+});
+document.addEventListener('keydown', e => { if(e.key==='Enter' && e.target.id==='aideTexte'){ e.preventDefault(); e.stopPropagation(); demanderAssistant(e.target.value); e.target.value=''; } }, true);
+setTimeout(() => { if(!(typeof MODE_PUBLIC!=='undefined' && MODE_PUBLIC)) construireAssistant(); }, 0);
+
+allerA((location.hash||'').slice(1) || window.__VUE_INITIALE || 'concours');
+initDb();
+</script>
+</body>
+</html>
